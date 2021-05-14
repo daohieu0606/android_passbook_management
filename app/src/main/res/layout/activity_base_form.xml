@@ -11,31 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:padding="10dp">
+        android:padding="@dimen/base_padding">
 
-        <com.example.savingsbookmanagement.customviews.IconButton
+        <com.example.savingsbookmanagement.customviews.IconLabel
             android:id="@+id/btnBack"
             android:text="\uf053"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <com.example.savingsbookmanagement.customviews.IconButton
-            android:text="Back"
+        <com.example.savingsbookmanagement.customviews.IconLabel
+            android:id="@+id/txtTitle"
+            android:text="@string/back"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_toRightOf="@id/btnBack"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/base_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <com.example.savingsbookmanagement.customviews.IconButton
+        <com.example.savingsbookmanagement.customviews.IconLabel
+            android:id="@+id/btnMenu"
             android:text="\uf142"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

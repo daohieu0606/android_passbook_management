@@ -7,16 +7,16 @@ import android.view.Gravity;
 
 import com.example.savingsbookmanagement.R;
 
-public class IconButton extends androidx.appcompat.widget.AppCompatTextView {
+public class IconLabel extends androidx.appcompat.widget.AppCompatTextView {
 
     private Context context;
 
-    public IconButton(Context context) {
+    public IconLabel(Context context) {
         super(context);
         Init(context);
     }
 
-    public IconButton(Context context, AttributeSet attrs) {
+    public IconLabel(Context context, AttributeSet attrs) {
         super(context, attrs);
         Init(context);
     }

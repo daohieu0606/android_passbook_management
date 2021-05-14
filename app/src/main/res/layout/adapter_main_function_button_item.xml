@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="12dp"
+            app:cardElevation="15dp"
+            android:clickable="true"
+            app:cardBackgroundColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="105dp"
+                android:layout_height="105dp">
+            <com.example.savingsbookmanagement.customviews.IconLabel
+                android:id="@+id/icDisplay"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"/>
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_below="@id/icDisplay"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+</RelativeLayout>
