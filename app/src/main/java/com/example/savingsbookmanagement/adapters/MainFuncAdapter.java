@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ public class MainFuncAdapter extends RecyclerView.Adapter {
 
     private Context context;
     private List<MainFuncModel> items;
+    private OnItemAdapterClickListener onItemAdapterClickListener;
 
     public MainFuncAdapter(Context context, List<MainFuncModel> items) {
         this.context = context;
@@ -34,6 +36,16 @@ public class MainFuncAdapter extends RecyclerView.Adapter {
 
         MainFuncViewHolder viewHolder = new MainFuncViewHolder(view);
 
+        RelativeLayout bg = view.findViewById(R.id.bg);
+        bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onItemAdapterClickListener != null) {
+                    onItemAdapterClickListener.OnItemClicked(items.get(viewHolder.position));
+                }
+            }
+        });
+
         return viewHolder;
     }
 
@@ -46,6 +58,8 @@ public class MainFuncAdapter extends RecyclerView.Adapter {
             return;
         }
 
+        mainFuncViewHolder.position = position;
+
         mainFuncViewHolder.icDisplay.setText(item.iconFont);
         mainFuncViewHolder.txtName.setText(item.name);
     }
@@ -55,10 +69,15 @@ public class MainFuncAdapter extends RecyclerView.Adapter {
         return items.size();
     }
 
+    public void setOnItemClick(OnItemAdapterClickListener onItemAdapterClickListener) {
+        this.onItemAdapterClickListener = onItemAdapterClickListener;
+    }
 
     public class MainFuncViewHolder extends RecyclerView.ViewHolder{
         public IconLabel icDisplay;
         public TextView txtName;
+
+        public int position;
 
         public MainFuncViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,5 +85,9 @@ public class MainFuncAdapter extends RecyclerView.Adapter {
             icDisplay = itemView.findViewById(R.id.icDisplay);
             txtName = itemView.findViewById(R.id.txtName);
         }
+    }
+
+    public interface OnItemAdapterClickListener{
+        void OnItemClicked(MainFuncModel item);
     }
 }

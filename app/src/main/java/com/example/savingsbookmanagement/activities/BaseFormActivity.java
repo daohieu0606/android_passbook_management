@@ -2,6 +2,7 @@ package com.example.savingsbookmanagement.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,15 +21,17 @@ public abstract class BaseFormActivity extends AppCompatActivity {
 
     private String title;
 
-    public BaseFormActivity(int containerLayout) {
-        this.containerLayout = containerLayout;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_form);
 
+        Intent intent = getIntent();
+
+        if(intent != null) {
+            containerLayout = intent.getIntExtra("layout", 0);
+            title = intent.getStringExtra("title");
+        }
 
         Init();
     }
@@ -51,12 +54,21 @@ public abstract class BaseFormActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: create menu
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        txtTitle.setText(title);
+        if(title != null && title != "") {
+            txtTitle.setText(title);
+        }
     }
 }

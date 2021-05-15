@@ -3,27 +3,25 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-        <androidx.cardview.widget.CardView
-            app:cardCornerRadius="12dp"
-            app:cardElevation="15dp"
-            android:clickable="true"
-            app:cardBackgroundColor="@color/white"
+    <RelativeLayout
+        android:background="@drawable/bg_white_corner"
+        android:layout_width="105dp"
+        android:layout_height="105dp">
+        <com.example.savingsbookmanagement.customviews.IconLabel
+            android:id="@+id/icDisplay"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="105dp"
-                android:layout_height="105dp">
-            <com.example.savingsbookmanagement.customviews.IconLabel
-                android:id="@+id/icDisplay"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_centerInParent="true"/>
-            <TextView
-                android:id="@+id/txtName"
-                android:layout_below="@id/icDisplay"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+            android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_below="@id/icDisplay"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:id="@+id/bg"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
 </RelativeLayout>
