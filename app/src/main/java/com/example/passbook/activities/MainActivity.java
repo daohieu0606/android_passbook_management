@@ -57,16 +57,16 @@ public class MainActivity extends AppCompatActivity {
     private void handleItemClick(MainFuncModel item) {
         Intent intent = new Intent(MainActivity.this, TestForm.class);
         intent.putExtra(Constant.layout, R.layout.activity_test_form);
-        intent.putExtra(Constant.title, "test app");
+        intent.putExtra(Constant.title, "Register Passbook");
         startActivity(intent);
     }
 
     private void loadDataToAdapter() {
-        items.add(new MainFuncModel("fsdf", "function 1"));
-        items.add(new MainFuncModel("fsdf", "function 2"));
-        items.add(new MainFuncModel("fsdf", "function 3"));
-        items.add(new MainFuncModel("fsdf", "function 4"));
-        items.add(new MainFuncModel("fsdf", "function 5"));
-        items.add(new MainFuncModel("fsdf", "function 6"));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_register), getResources().getString(R.string.register_passbook)));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_deposit), getResources().getString(R.string.get_deposit_form)));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_withdraw), getResources().getString(R.string.get_withdraw_form)));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_search), getResources().getString(R.string.search_passbooks)));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_monthly_report), getResources().getString(R.string.monthly_report)));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_change_regulations), getResources().getString(R.string.change_regulations)));
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,24 +11,25 @@
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:padding="@dimen/base_padding">
+        android:padding="@dimen/padding_header_controls">
 
         <com.example.passbook.customviews.IconLabel
             android:id="@+id/btnBack"
             android:text="\uf053"
             android:textColor="@color/white"
             android:textSize="24sp"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <com.example.passbook.customviews.IconLabel
+        <TextView
             android:id="@+id/txtTitle"
-            android:text="@string/back"
             android:textColor="@color/white"
+            android:background="@color/transparent"
             android:textSize="24sp"
             android:layout_toRightOf="@id/btnBack"
-            android:layout_marginStart="@dimen/base_margin"
+            android:layout_marginStart="@dimen/margin_back_button"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <com.example.passbook.customviews.IconLabel
@@ -35,6 +37,7 @@
             android:text="\uf142"
             android:textColor="@color/white"
             android:textSize="24sp"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

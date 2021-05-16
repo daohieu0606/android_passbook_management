@@ -15,4 +15,5 @@
     <color name="colorSecondary">@color/teal_200</color>
     <color name="colorSecondaryVariant">@color/teal_700</color>
     <color name="colorOnSecondary">@color/black</color>
+    <color name="transparent">@android:color/transparent</color>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/btnLanguage" android:title="@string/language"/>
+    <item android:id="@+id/btnColor" android:title="@string/color"/>
+    <item android:id="@+id/btnAbout" android:title="@string/about"/>
+</menu>

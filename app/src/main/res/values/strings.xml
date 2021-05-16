@@ -2,4 +2,12 @@
     <string name="app_name">Passbook</string>
     <string name="back">Back</string>
     <string name="register_passbook">Register Passbook</string>
+    <string name="get_deposit_form">Get Deposit Form</string>
+    <string name="get_withdraw_form">Get Withdraw Form</string>
+    <string name="search_passbooks">Search Passbooks</string>
+    <string name="monthly_report">Monthly Report</string>
+    <string name="change_regulations">Change Regulations</string>
+    <string name="language">Language</string>
+    <string name="about">About</string>
+    <string name="color">Color</string>
 </resources>
