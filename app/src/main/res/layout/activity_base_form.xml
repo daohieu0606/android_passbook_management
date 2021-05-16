@@ -13,16 +13,15 @@
         android:gravity="center_vertical"
         android:padding="@dimen/base_padding">
 
-        <com.example.savingsbookmanagement.customviews.IconLabel
+        <com.example.passbook.customviews.IconLabel
             android:id="@+id/btnBack"
             android:text="\uf053"
             android:textColor="@color/white"
-            android:textStyle="bold"
             android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <com.example.savingsbookmanagement.customviews.IconLabel
+        <com.example.passbook.customviews.IconLabel
             android:id="@+id/txtTitle"
             android:text="@string/back"
             android:textColor="@color/white"
@@ -31,11 +30,10 @@
             android:layout_marginStart="@dimen/base_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <com.example.savingsbookmanagement.customviews.IconLabel
+        <com.example.passbook.customviews.IconLabel
             android:id="@+id/btnMenu"
             android:text="\uf142"
             android:textColor="@color/white"
-            android:textStyle="bold"
             android:textSize="24sp"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
@@ -52,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <com.example.savingsbookmanagement.customviews.CustomBottomNavigation
+        <com.example.passbook.customviews.CustomBottomNavigation
             android:id="@+id/navi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

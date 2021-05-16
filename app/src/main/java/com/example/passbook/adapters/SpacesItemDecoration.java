@@ -1,4 +1,4 @@
-package com.example.savingsbookmanagement.adapters;
+package com.example.passbook.adapters;
 
 import android.graphics.Rect;
 import android.view.View;

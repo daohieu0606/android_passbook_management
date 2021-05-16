@@ -1,4 +1,4 @@
-package com.example.savingsbookmanagement.adapters;
+package com.example.passbook.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.savingsbookmanagement.R;
-import com.example.savingsbookmanagement.customviews.IconLabel;
-import com.example.savingsbookmanagement.models.MainFuncModel;
+import com.example.passbook.R;
+import com.example.passbook.customviews.IconLabel;
+import com.example.passbook.models.MainFuncModel;
 
 import java.util.List;
 

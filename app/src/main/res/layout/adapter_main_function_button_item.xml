@@ -7,7 +7,7 @@
         android:background="@drawable/bg_white_corner"
         android:layout_width="105dp"
         android:layout_height="105dp">
-        <com.example.savingsbookmanagement.customviews.IconLabel
+        <com.example.passbook.customviews.IconLabel
             android:id="@+id/icDisplay"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"

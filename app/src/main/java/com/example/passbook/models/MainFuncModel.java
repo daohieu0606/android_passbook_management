@@ -1,4 +1,4 @@
-package com.example.savingsbookmanagement.models;
+package com.example.passbook.models;
 
 public class MainFuncModel extends BaseModel {
     public String iconFont;
@@ -11,4 +11,8 @@ public class MainFuncModel extends BaseModel {
         this.iconFont = iconFont;
         this.name = name;
     }
+}
+
+enum ApplicationFunction {
+    CREATE_SAVING_BOOK,
 }

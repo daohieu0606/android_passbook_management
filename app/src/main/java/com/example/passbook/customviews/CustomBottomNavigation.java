@@ -1,4 +1,4 @@
-package com.example.savingsbookmanagement.customviews;
+package com.example.passbook.customviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.savingsbookmanagement.R;
+import com.example.passbook.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CustomBottomNavigation extends BottomNavigationView {

@@ -1,12 +1,10 @@
-package com.example.savingsbookmanagement.customviews;
+package com.example.passbook.customviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
-
-import com.example.savingsbookmanagement.R;
 
 public class IconLabel extends androidx.appcompat.widget.AppCompatTextView {
 

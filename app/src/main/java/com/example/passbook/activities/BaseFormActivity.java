@@ -1,4 +1,4 @@
-package com.example.savingsbookmanagement.activities;
+package com.example.passbook.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.example.savingsbookmanagement.R;
-import com.example.savingsbookmanagement.customviews.IconLabel;
+import com.example.passbook.R;
+import com.example.passbook.customviews.IconLabel;
+import com.example.passbook.utils.Constant;
 
 public abstract class BaseFormActivity extends AppCompatActivity {
 
@@ -29,8 +30,8 @@ public abstract class BaseFormActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if(intent != null) {
-            containerLayout = intent.getIntExtra("layout", 0);
-            title = intent.getStringExtra("title");
+            containerLayout = intent.getIntExtra(Constant.layout, 0);
+            title = intent.getStringExtra(Constant.title);
         }
 
         Init();

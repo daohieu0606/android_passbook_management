@@ -1,19 +1,18 @@
-package com.example.savingsbookmanagement.activities;
+package com.example.passbook.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.Window;
-import android.widget.Toast;
 
-import com.example.savingsbookmanagement.R;
-import com.example.savingsbookmanagement.adapters.SpacesItemDecoration;
-import com.example.savingsbookmanagement.adapters.MainFuncAdapter;
-import com.example.savingsbookmanagement.models.MainFuncModel;
+import com.example.passbook.R;
+import com.example.passbook.adapters.SpacesItemDecoration;
+import com.example.passbook.adapters.MainFuncAdapter;
+import com.example.passbook.models.MainFuncModel;
+import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
         rvMainFunction = findViewById(R.id.rvMainFunction);
         adapter = new MainFuncAdapter(getApplicationContext(), items);
 
+        loadDataToAdapter();
+
         adapter.setOnItemClick(new MainFuncAdapter.OnItemAdapterClickListener() {
             @Override
             public void OnItemClicked(MainFuncModel item) {
-                Log.i("MainActivity", item.name);
+                handleItemClick(item);
             }
         });
 
@@ -51,14 +52,21 @@ public class MainActivity extends AppCompatActivity {
         rvMainFunction.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 
         rvMainFunction.setLayoutManager(new GridLayoutManager(this, 3));
+    }
 
+    private void handleItemClick(MainFuncModel item) {
+        Intent intent = new Intent(MainActivity.this, TestForm.class);
+        intent.putExtra(Constant.layout, R.layout.activity_test_form);
+        intent.putExtra(Constant.title, "test app");
+        startActivity(intent);
+    }
+
+    private void loadDataToAdapter() {
         items.add(new MainFuncModel("fsdf", "function 1"));
         items.add(new MainFuncModel("fsdf", "function 2"));
         items.add(new MainFuncModel("fsdf", "function 3"));
         items.add(new MainFuncModel("fsdf", "function 4"));
         items.add(new MainFuncModel("fsdf", "function 5"));
         items.add(new MainFuncModel("fsdf", "function 6"));
-
-        adapter.notifyDataSetChanged();
     }
 }
