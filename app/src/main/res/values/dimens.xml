@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="base_margin">10dp</dimen>
-    <dimen name="margin_back_button">20dp</dimen>
-    <dimen name="padding_header_controls">15dp</dimen>
-    <dimen name="base_control_margin">3dp</dimen>
-    <dimen name="base_padding">10dp</dimen>
-    <dimen name="spacing">30dp</dimen>
+    <dimen name="base_margin">@dimen/_8sdp</dimen>
+    <dimen name="margin_back_button">@dimen/_15sdp</dimen>
+    <dimen name="padding_header_controls">@dimen/_12sdp</dimen>
+    <dimen name="base_control_margin">@dimen/_2sdp</dimen>
+    <dimen name="base_padding">@dimen/_8sdp</dimen>
+    <dimen name="spacing">@dimen/_10sdp</dimen>
+    <dimen name="main_function_size">@dimen/_80sdp</dimen>
+    <dimen name="main_function_text_size">@dimen/_27sdp</dimen>
 </resources>

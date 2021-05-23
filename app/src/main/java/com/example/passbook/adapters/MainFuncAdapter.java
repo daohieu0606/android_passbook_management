@@ -32,7 +32,7 @@ public class MainFuncAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
-        View view = layoutInflater.inflate(R.layout.adapter_main_function_button_item, null, false);
+        View view = layoutInflater.inflate(R.layout.item_adapter_main_function_button, null, false);
 
         MainFuncViewHolder viewHolder = new MainFuncViewHolder(view);
 

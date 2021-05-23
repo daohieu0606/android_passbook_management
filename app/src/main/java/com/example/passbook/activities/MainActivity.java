@@ -1,18 +1,28 @@
 package com.example.passbook.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.View;
 import android.view.Window;
+import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ListAdapter;
 
 import com.example.passbook.R;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.adapters.MainFuncAdapter;
 import com.example.passbook.models.MainFuncModel;
 import com.example.passbook.utils.Constant;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +40,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Init();
+
+        TextInputLayout textField = findViewById(R.id.textField);
+        TextInputLayout dtlayout = findViewById(R.id.dtlayout);
+        TextInputEditText edt = findViewById(R.id.edt);
+        AutoCompleteTextView list_item = findViewById(R.id.list_item);
+
+        dtlayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MaterialDatePicker datePicker =
+                        MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Select date")
+                                .build();
+                datePicker.show(getSupportFragmentManager(), "fds");
+            }
+        });
+
+        List<String> items = new ArrayList<String>();
+        items.add("Material");
+        items.add("MVVM");
+        items.add("iOS");
+        items.add("Android");
+
+
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.list_item, items);
+        list_item.setAdapter(adapter);
     }
 
     private void Init() {

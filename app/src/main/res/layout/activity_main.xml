@@ -7,8 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
+    <include
+        android:id="@+id/test_layout"
+        layout="@layout/item_adapter_text_field"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMainFunction"
+        android:layout_below="@id/test_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>
