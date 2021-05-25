@@ -3,6 +3,7 @@ package com.example.passbook.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -16,9 +17,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ListAdapter;
 
 import com.example.passbook.R;
+import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.adapters.MainFuncAdapter;
+import com.example.passbook.models.BaseFormModel;
+import com.example.passbook.models.DateTimeModel;
 import com.example.passbook.models.MainFuncModel;
+import com.example.passbook.models.SpinnerModel;
+import com.example.passbook.models.TextFieldModel;
 import com.example.passbook.utils.Constant;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
@@ -41,31 +47,24 @@ public class MainActivity extends AppCompatActivity {
 
         Init();
 
-        TextInputLayout textField = findViewById(R.id.textField);
-        TextInputLayout dtlayout = findViewById(R.id.dtlayout);
-        TextInputEditText edt = findViewById(R.id.edt);
-        AutoCompleteTextView list_item = findViewById(R.id.list_item);
+        List<BaseFormModel> items = new ArrayList<BaseFormModel>();
 
-        dtlayout.setEndIconOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MaterialDatePicker datePicker =
-                        MaterialDatePicker.Builder.datePicker()
-                                .setTitleText("Select date")
-                                .build();
-                datePicker.show(getSupportFragmentManager(), "fds");
-            }
-        });
+        List<String> spinnerItems = new ArrayList<String>();
 
-        List<String> items = new ArrayList<String>();
-        items.add("Material");
-        items.add("MVVM");
-        items.add("iOS");
-        items.add("Android");
+        spinnerItems.add("Android");
+        spinnerItems.add("iOS");
+        spinnerItems.add("MVVM");
+        spinnerItems.add("Flutter");
+
+        items.add(new SpinnerModel("spinner!!", spinnerItems, "hint"));
+        items.add(new TextFieldModel("textfield!", "", "hint!", "day la error", InputType.TYPE_CLASS_NUMBER));
+        items.add(new DateTimeModel("datetimefield!", "", "hint!"));
 
 
-        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.list_item, items);
-        list_item.setAdapter(adapter);
+        RecyclerView test_layout = findViewById(R.id.test_layout);
+        FormAdapter formAdapter = new FormAdapter(getApplicationContext(), items);
+        test_layout.setAdapter(formAdapter);
+        test_layout.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 
     private void Init() {
