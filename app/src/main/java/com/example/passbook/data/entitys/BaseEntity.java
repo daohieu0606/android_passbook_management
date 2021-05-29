@@ -1,5 +1,7 @@
 package com.example.passbook.data.entitys;
 
-public class BaseEntity {
+import java.io.Serializable;
+
+public class BaseEntity implements Serializable {
     public String id;
 }

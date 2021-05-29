@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         RecyclerView test_layout = findViewById(R.id.test_layout);
-        FormAdapter formAdapter = new FormAdapter(getApplicationContext(), items);
+        FormAdapter formAdapter = new FormAdapter(this, items);
         test_layout.setAdapter(formAdapter);
         test_layout.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }

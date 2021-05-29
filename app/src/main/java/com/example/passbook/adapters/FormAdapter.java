@@ -1,5 +1,6 @@
 package com.example.passbook.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,16 +19,15 @@ import com.example.passbook.models.TextFieldModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.security.PublicKey;
 import java.util.List;
 
 public class FormAdapter extends RecyclerView.Adapter {
 
     private List<BaseFormModel> items;
-    private Context context;
+    private Activity activity;
 
-    public FormAdapter(Context context, List<BaseFormModel> items) {
-        this.context = context;
+    public FormAdapter(Activity activity, List<BaseFormModel> items) {
+        this.activity = activity;
         this.items = items;
     }
 
@@ -44,22 +44,26 @@ public class FormAdapter extends RecyclerView.Adapter {
             return null;
         }
 
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         BaseViewHolder viewHolder = null;
         View view = null;
 
         switch (items.get(viewType).formItemType){
             case Spinner:
-                view = inflater.inflate(R.layout.item_adapter_spinner, null, false);
+                view = inflater.inflate(R.layout.item_adapter_spinner, parent, false);
                 viewHolder = new SpinnerViewHolder(view);
+                break;
 
             case DateTime:
-                view = inflater.inflate(R.layout.item_adapter_date_time, null,false);
+                view = inflater.inflate(R.layout.item_adapter_date_time, parent,false);
                 viewHolder = new DatetimeViewHolder(view);
+                break;
 
             case TextField:
-                view = inflater.inflate(R.layout.item_adapter_text_field, null, false);
+                view = inflater.inflate(R.layout.item_adapter_text_field, parent, false);
                 viewHolder = new TextFieldViewHolder(view);
+                break;
+
             default:
                 break;
         }
@@ -70,17 +74,11 @@ public class FormAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        BaseViewHolder viewHolder = (BaseViewHolder) holder;
-
-        if(viewHolder == null || position > items.size() || position < 0) {
-            return;
-        }
-
-        viewHolder.position = position;
+        ((BaseViewHolder)holder).position = position;
 
         switch (items.get(position).formItemType) {
             case DateTime:
-                DatetimeViewHolder datetimeViewHolder = (DatetimeViewHolder) viewHolder;
+                DatetimeViewHolder datetimeViewHolder = (DatetimeViewHolder) holder;
                 DateTimeModel dateTimeModel = (DateTimeModel) items.get(position);
 
                 datetimeViewHolder.txtLayout.setHint(dateTimeModel.title);
@@ -89,15 +87,15 @@ public class FormAdapter extends RecyclerView.Adapter {
                 break;
 
             case Spinner:
-                SpinnerViewHolder spinnerViewHolder = (SpinnerViewHolder) viewHolder;
+                SpinnerViewHolder spinnerViewHolder = (SpinnerViewHolder) holder;
                 SpinnerModel spinnerModel = (SpinnerModel) items.get(position);
 
-                ArrayAdapter adapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, (List<String>) spinnerModel.value);
+                ArrayAdapter adapter = new ArrayAdapter(activity, R.layout.support_simple_spinner_dropdown_item, (List<String>) spinnerModel.value);
                 spinnerViewHolder.list_item.setAdapter(adapter);
 
                 break;
             case TextField:
-                TextFieldViewHolder textFieldViewHolder = (TextFieldViewHolder) viewHolder;
+                TextFieldViewHolder textFieldViewHolder = (TextFieldViewHolder) holder;
                 TextFieldModel textFieldModel = (TextFieldModel) items.get(position);
 
                 textFieldViewHolder.textField.setHint(textFieldModel.title);
