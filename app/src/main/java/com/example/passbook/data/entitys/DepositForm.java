@@ -1,4 +1,4 @@
 package com.example.passbook.data.entitys;
 
-public class DepositForm extends TransitionForm {
+public class DepositForm extends TransactionForm {
 }

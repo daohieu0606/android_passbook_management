@@ -49,16 +49,8 @@
 
         <RelativeLayout
             android:id="@+id/container"
-            android:layout_above="@id/navi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
-        <com.example.passbook.customviews.CustomBottomNavigation
-            android:id="@+id/navi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
 </LinearLayout>
