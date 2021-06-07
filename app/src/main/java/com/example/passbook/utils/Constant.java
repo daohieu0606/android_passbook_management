@@ -14,4 +14,5 @@ public class Constant {
     public static final String LIKE = " LIKE :";
     public static final String LIMIT = " LIMIT ";
     public static final String ID = "Id";
+    public static final String REGISTER_PASSBOOK = "Register Passbook";
 }

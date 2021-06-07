@@ -1,6 +1,5 @@
 package com.example.passbook.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,12 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
 import android.view.Window;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.ListAdapter;
 
 import com.example.passbook.R;
 import com.example.passbook.adapters.FormAdapter;
@@ -25,10 +19,8 @@ import com.example.passbook.models.DateTimeModel;
 import com.example.passbook.models.MainFuncModel;
 import com.example.passbook.models.SpinnerModel;
 import com.example.passbook.models.TextFieldModel;
+import com.example.passbook.utils.ApplicationFunction;
 import com.example.passbook.utils.Constant;
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,17 +82,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleItemClick(MainFuncModel item) {
-        Intent intent = new Intent(MainActivity.this, TestForm.class);
-        intent.putExtra(Constant.title, "Register Passbook");
+        switch (item.applicationFunction) {
+            case REGISTER_PASSBOOK:
+                moveToActivity(RegisterPassBookActivity.class);
+                break;
+            case GET_DEPOSIT_SLIP:
+                break;
+            case GET_WITHDRAWAL_SLIP:
+                break;
+            case SEARCH_PASSBOOKS:
+                break;
+            case MONTHLY_REPORT:
+                break;
+            case CHANGE_REGULATIONS:
+                break;
+            default:
+        }
+    }
+
+    private void moveToActivity(Class<RegisterPassBookActivity> registerPassBookActivityClass) {
+        Intent intent = new Intent(this, registerPassBookActivityClass);
         startActivity(intent);
     }
 
+
     private void loadDataToAdapter() {
-        items.add(new MainFuncModel(getResources().getString(R.string.fi_register), getResources().getString(R.string.register_passbook)));
-        items.add(new MainFuncModel(getResources().getString(R.string.fi_deposit), getResources().getString(R.string.get_deposit_form)));
-        items.add(new MainFuncModel(getResources().getString(R.string.fi_withdraw), getResources().getString(R.string.get_withdraw_form)));
-        items.add(new MainFuncModel(getResources().getString(R.string.fi_search), getResources().getString(R.string.search_passbooks)));
-        items.add(new MainFuncModel(getResources().getString(R.string.fi_monthly_report), getResources().getString(R.string.monthly_report)));
-        items.add(new MainFuncModel(getResources().getString(R.string.fi_change_regulations), getResources().getString(R.string.change_regulations)));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_register), getResources().getString(R.string.register_passbook), ApplicationFunction.REGISTER_PASSBOOK));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_deposit), getResources().getString(R.string.get_deposit_form), ApplicationFunction.GET_DEPOSIT_SLIP));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_withdraw), getResources().getString(R.string.get_withdraw_form), ApplicationFunction.GET_WITHDRAWAL_SLIP));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_search), getResources().getString(R.string.search_passbooks), ApplicationFunction.SEARCH_PASSBOOKS));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_monthly_report), getResources().getString(R.string.monthly_report), ApplicationFunction.MONTHLY_REPORT));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_change_regulations), getResources().getString(R.string.change_regulations), ApplicationFunction.CHANGE_REGULATIONS));
     }
 }
