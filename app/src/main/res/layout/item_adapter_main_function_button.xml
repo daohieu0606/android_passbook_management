@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:background="@drawable/bg_white_corner"
+        android:layout_width="@dimen/main_function_size"
+        android:layout_height="@dimen/main_function_size">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+            <com.example.passbook.customviews.IconLabel
+                android:id="@+id/icDisplay"
+                android:textSize="@dimen/main_function_text_size"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/txtName"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@id/icDisplay"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/base_control_margin"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bg"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+</RelativeLayout>

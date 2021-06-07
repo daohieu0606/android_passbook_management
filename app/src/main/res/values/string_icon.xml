@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fi_back">\uf060</string>
+    <string name="fi_menu">\uf142</string>
+    <string name="fi_change_regulations">\uf7d9</string>
+    <string name="fi_withdraw">\uf56e</string>
+    <string name="fi_deposit">\uf56f</string>
+    <string name="fi_monthly_report">\uf201</string>
+    <string name="fi_search">\uf002</string>
+    <string name="fi_register">\uf234</string>
+</resources>
