@@ -26,19 +26,12 @@ public abstract class BaseFormActivity extends AppCompatActivity implements Popu
     private TextView txtTitle;
     private IconLabel btnMenu;
 
-    private String title;
+    protected String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_form);
-
-        Intent intent = getIntent();
-
-        if(intent != null) {
-            containerLayout = intent.getIntExtra(Constant.layout, 0);
-            title = intent.getStringExtra(Constant.title);
-        }
 
         Init();
     }

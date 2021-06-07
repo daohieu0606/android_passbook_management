@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleItemClick(MainFuncModel item) {
         Intent intent = new Intent(MainActivity.this, TestForm.class);
-        intent.putExtra(Constant.layout, R.layout.activity_test_form);
         intent.putExtra(Constant.title, "Register Passbook");
         startActivity(intent);
     }

@@ -8,4 +8,5 @@ public interface IDAO<T> {
     public void updateOrInsertItem(T item);
     public T getItem(int id);
     public void deleteItem(T item);
+    public void deleteAll();
 }
