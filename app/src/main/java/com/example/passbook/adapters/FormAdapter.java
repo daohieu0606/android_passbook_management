@@ -1,14 +1,17 @@
 package com.example.passbook.adapters;
 
-import android.app.Activity;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
@@ -16,17 +19,25 @@ import com.example.passbook.models.BaseFormModel;
 import com.example.passbook.models.DateTimeModel;
 import com.example.passbook.models.SpinnerModel;
 import com.example.passbook.models.TextFieldModel;
+import com.example.passbook.utils.Utils;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class FormAdapter extends RecyclerView.Adapter {
 
     private List<BaseFormModel> items;
-    private Activity activity;
+    private AppCompatActivity activity;
 
-    public FormAdapter(Activity activity, List<BaseFormModel> items) {
+    public FormAdapter(AppCompatActivity activity, List<BaseFormModel> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -52,16 +63,19 @@ public class FormAdapter extends RecyclerView.Adapter {
             case Spinner:
                 view = inflater.inflate(R.layout.item_adapter_spinner, parent, false);
                 viewHolder = new SpinnerViewHolder(view);
+
                 break;
 
             case DateTime:
                 view = inflater.inflate(R.layout.item_adapter_date_time, parent,false);
-                viewHolder = new DatetimeViewHolder(view);
+                viewHolder = new DatetimeViewHolder(view, activity);
+
                 break;
 
             case TextField:
                 view = inflater.inflate(R.layout.item_adapter_text_field, parent, false);
                 viewHolder = new TextFieldViewHolder(view);
+
                 break;
 
             default:
@@ -81,8 +95,17 @@ public class FormAdapter extends RecyclerView.Adapter {
                 DatetimeViewHolder datetimeViewHolder = (DatetimeViewHolder) holder;
                 DateTimeModel dateTimeModel = (DateTimeModel) items.get(position);
 
+                String strDate = Utils.dataToString((Date) dateTimeModel.value);
+
                 datetimeViewHolder.txtLayout.setHint(dateTimeModel.title);
-                datetimeViewHolder.txtValue.setText((String)dateTimeModel.value);
+                datetimeViewHolder.txtValue.setText(strDate);
+
+                if(dateTimeModel.isError) {
+                    datetimeViewHolder.txtLayout.setError(dateTimeModel.errorSTr);
+                    datetimeViewHolder.txtLayout.setErrorEnabled(true);
+                } else {
+                    datetimeViewHolder.txtLayout.setErrorEnabled(false);
+                }
 
                 break;
 
@@ -90,8 +113,9 @@ public class FormAdapter extends RecyclerView.Adapter {
                 SpinnerViewHolder spinnerViewHolder = (SpinnerViewHolder) holder;
                 SpinnerModel spinnerModel = (SpinnerModel) items.get(position);
 
-                ArrayAdapter adapter = new ArrayAdapter(activity, R.layout.support_simple_spinner_dropdown_item, (List<String>) spinnerModel.value);
+                ArrayAdapter adapter = new ArrayAdapter(activity, R.layout.support_simple_spinner_dropdown_item, (List<String>) spinnerModel.items);
                 spinnerViewHolder.list_item.setAdapter(adapter);
+                spinnerViewHolder.txtLayout.setHint(spinnerModel.title);
 
                 break;
             case TextField:
@@ -99,17 +123,31 @@ public class FormAdapter extends RecyclerView.Adapter {
                 TextFieldModel textFieldModel = (TextFieldModel) items.get(position);
 
                 textFieldViewHolder.textField.setHint(textFieldModel.title);
-                textFieldViewHolder.textField.setError(textFieldModel.error);
-
                 textFieldViewHolder.edt.setText((String)textFieldModel.value);
                 textFieldViewHolder.edt.setInputType(textFieldModel.inputType);
 
                 textFieldViewHolder.textField.setErrorEnabled(false);
 
+                if(textFieldModel.isError) {
+                    textFieldViewHolder.textField.setError(textFieldModel.errorSTr);
+                    textFieldViewHolder.textField.setErrorEnabled(true);
+                } else {
+                    textFieldViewHolder.textField.setErrorEnabled(false);
+                }
+
                 break;
+
             default:
                 break;
         }
+
+        BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
+        baseViewHolder.onValueChanged = new OnValueChanged() {
+            @Override
+            public void OnChanged(Object value) {
+                items.get(position).value = value;      //TODO: check valid value here
+            }
+        };
     }
 
     @Override
@@ -117,13 +155,11 @@ public class FormAdapter extends RecyclerView.Adapter {
         return items.size();
     }
 
-    public boolean validate(){
-        return false;
-    }
-
     public abstract class BaseViewHolder extends RecyclerView.ViewHolder{
 
         public int position;
+        public OnValueChanged onValueChanged;
+
         public BaseViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -138,6 +174,26 @@ public class FormAdapter extends RecyclerView.Adapter {
 
             textField = itemView.findViewById(R.id.textField);
             edt = itemView.findViewById(R.id.edt);
+
+            edt.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    String value = edt.getText().toString();
+                    if (onValueChanged != null) {
+                        onValueChanged.OnChanged(value);
+                    }
+                }
+            });
         }
     }
 
@@ -146,21 +202,83 @@ public class FormAdapter extends RecyclerView.Adapter {
         public TextInputLayout txtLayout;
         public TextInputEditText txtValue;
 
-        public DatetimeViewHolder(@NonNull View itemView) {
+        public DatetimeViewHolder(@NonNull View itemView, AppCompatActivity activity) {
             super(itemView);
 
             txtLayout = itemView.findViewById(R.id.txtLayout);
             txtValue = itemView.findViewById(R.id.txtValue);
+
+            LinearLayout ll_datetime = itemView.findViewById(R.id.ll_datetime);
+
+            ll_datetime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDateDialog();
+                }
+            });
+        }
+
+        private void showDateDialog() {
+            MaterialDatePicker datePicker = MaterialDatePicker
+                    .Builder
+                    .datePicker()
+                    .setTitleText("Select date")
+                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .build();
+            datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                @Override
+                public void onPositiveButtonClick(Object selection) {
+                    Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                    calendar.setTimeInMillis((Long) selection);
+
+                    Date value = calendar.getTime();
+                    if (onValueChanged != null) {
+                        onValueChanged.OnChanged(value);
+                    }
+
+                    txtValue.setText(datePicker.getHeaderText());
+                }
+            });
+
+            datePicker.show(activity.getSupportFragmentManager(), "tag");
         }
     }
 
     public class SpinnerViewHolder extends BaseViewHolder{
 
         public AutoCompleteTextView list_item;
+        public TextInputLayout txtLayout;
+
         public SpinnerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             list_item = itemView.findViewById(R.id.list_item);
+            txtLayout = itemView.findViewById(R.id.txtLayout);
+
+            list_item.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    String value = list_item.getText().toString();
+                    if (onValueChanged != null) {
+                        onValueChanged.OnChanged(value);
+                    }
+                }
+            });
         }
     }
+
+}
+
+interface OnValueChanged{
+    void OnChanged(Object value);
 }

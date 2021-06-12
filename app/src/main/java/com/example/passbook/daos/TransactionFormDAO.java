@@ -19,7 +19,7 @@ public interface TransactionFormDAO extends IDAO<TransactionForm> {
 
     @Override
     @Insert
-    void insertItem(TransactionForm item);
+    long insertItem(TransactionForm item);
 
     @Override
     @Update
@@ -33,7 +33,7 @@ public interface TransactionFormDAO extends IDAO<TransactionForm> {
 
     @Override
     @Delete
-    void deleteItem(TransactionForm item);
+    int deleteItem(TransactionForm item);
 
     @Override
     @Query(Constant.DELETE_ALL + Constant.TRANSACTION_FORM_TABLE)

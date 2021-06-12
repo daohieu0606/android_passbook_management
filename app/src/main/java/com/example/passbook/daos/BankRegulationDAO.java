@@ -3,6 +3,7 @@ package com.example.passbook.daos;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -18,8 +19,8 @@ public interface BankRegulationDAO extends IDAO<BankRegulation> {
     List<BankRegulation> getItems();
 
     @Override
-    @Insert
-    void insertItem(BankRegulation item);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insertItem(BankRegulation item);
 
     @Override
     @Update
@@ -33,7 +34,7 @@ public interface BankRegulationDAO extends IDAO<BankRegulation> {
 
     @Override
     @Delete
-    void deleteItem(BankRegulation item);
+    int deleteItem(BankRegulation item);
 
     @Override
     @Query(Constant.DELETE_ALL + Constant.BANK_REGULATION_TABLE)

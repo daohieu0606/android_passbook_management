@@ -4,5 +4,6 @@ public enum FormItemType {
     None,
     TextField,
     Spinner,
-    DateTime
+    DateTime,
+
 }

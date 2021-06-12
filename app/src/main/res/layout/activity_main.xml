@@ -6,15 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/test_layout"
-        android:layout_height="@dimen/_300sdp"
-        android:layout_width="match_parent"/>
-
+    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMainFunction"
-        android:layout_below="@id/test_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>

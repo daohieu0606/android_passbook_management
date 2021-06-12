@@ -9,6 +9,7 @@ import androidx.room.Update;
 import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.utils.Constant;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -19,7 +20,7 @@ public interface PassBookDAO extends IDAO<PassBook> {
 
     @Override
     @Insert
-    void insertItem(PassBook item);
+    long insertItem(PassBook item);
 
     @Override
     @Update
@@ -33,9 +34,19 @@ public interface PassBookDAO extends IDAO<PassBook> {
 
     @Override
     @Delete
-    void deleteItem(PassBook item);
+    int deleteItem(PassBook item);
 
     @Override
     @Query(Constant.DELETE_ALL + Constant.PASSBOOK_TABLE)
     void deleteAll();
+
+    @Query(Constant.SELECT_ALL + Constant.PASSBOOK_TABLE
+            + Constant.ORDER_BY +"Id"
+            + Constant.DESC
+            + Constant.LIMIT +"1")
+    PassBook getLastItem();
+
+    @Query(Constant.SELECT_ALL + Constant.PASSBOOK_TABLE
+            + Constant.WHERE + Constant.CREATION_DATE_COLUMN + " BETWEEN :from AND :to")
+    List<PassBook> getPassBooksByDate(long from, long to);
 }

@@ -9,10 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
-        <activity android:name="com.example.passbook.activities.RegisterPassBookActivity"></activity>
-        <activity android:name="com.example.passbook.activities.TestForm"></activity>
-        <activity android:name="com.example.passbook.activities.BaseFormActivity" />
-        <activity android:name="com.example.passbook.activities.MainActivity">
+        <activity android:name=".activities.TestLibActivity">
+        </activity>
+        <activity android:name=".activities.PickupReportActivity" />
+        <activity android:name=".activities.MonthlyReportActivity" />
+        <activity android:name=".activities.DateReportActivity" />
+        <activity android:name=".activities.RegisterPassBookActivity" />
+        <activity android:name=".activities.EditDepositActivity" />
+        <activity android:name=".activities.EditWithdrawalActivity" />
+        <activity android:name=".activities.TestDataActivity" />
+        <activity android:name=".activities.BaseActivity" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

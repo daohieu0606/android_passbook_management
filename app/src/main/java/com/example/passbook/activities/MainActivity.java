@@ -2,25 +2,21 @@ package com.example.passbook.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Window;
 
 import com.example.passbook.R;
-import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.adapters.MainFuncAdapter;
-import com.example.passbook.models.BaseFormModel;
-import com.example.passbook.models.DateTimeModel;
+import com.example.passbook.data.entitys.BankRegulation;
+import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.models.MainFuncModel;
-import com.example.passbook.models.SpinnerModel;
-import com.example.passbook.models.TextFieldModel;
+import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.ApplicationFunction;
-import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,25 +34,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Init();
+        InitBankRegulation();
+    }
 
-        List<BaseFormModel> items = new ArrayList<BaseFormModel>();
+    private void InitBankRegulation() {
+        AppDatabase appDatabase = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name").allowMainThreadQueries().build();
 
-        List<String> spinnerItems = new ArrayList<String>();
+        if(appDatabase.bankRegulationDAO().getItems().size() == 0) {
+            BankRegulation bankRegulation = new BankRegulation();
+            bankRegulation.existedPassBookTypes = PassBookType.THREE_MONTH.getValue()
+                                                | PassBookType.SIX_MONTH.getValue()
+                                                | PassBookType.INFINITE.getValue();
+            bankRegulation.minDepositAmount = 100000;
+            bankRegulation.Id = 1;
 
-        spinnerItems.add("Android");
-        spinnerItems.add("iOS");
-        spinnerItems.add("MVVM");
-        spinnerItems.add("Flutter");
-
-        items.add(new SpinnerModel("spinner!!", spinnerItems, "hint"));
-        items.add(new TextFieldModel("textfield!", "", "hint!", "day la error", InputType.TYPE_CLASS_NUMBER));
-        items.add(new DateTimeModel("datetimefield!", "", "hint!"));
-
-
-        RecyclerView test_layout = findViewById(R.id.test_layout);
-        FormAdapter formAdapter = new FormAdapter(this, items);
-        test_layout.setAdapter(formAdapter);
-        test_layout.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            appDatabase.bankRegulationDAO().insertItem(bankRegulation);
+        }
     }
 
     private void Init() {
@@ -82,36 +76,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleItemClick(MainFuncModel item) {
+
+        Intent intent = null;
+
         switch (item.applicationFunction) {
             case REGISTER_PASSBOOK:
-                moveToActivity(RegisterPassBookActivity.class);
+                intent = new Intent(this, RegisterPassBookActivity.class);
                 break;
+
             case GET_DEPOSIT_SLIP:
+                intent = new Intent(this, EditDepositActivity.class);
                 break;
+
             case GET_WITHDRAWAL_SLIP:
+                intent = new Intent(this, EditWithdrawalActivity.class);
                 break;
+
             case SEARCH_PASSBOOKS:
                 break;
-            case MONTHLY_REPORT:
+
+            case REPORT:
+                intent = new Intent(this, PickupReportActivity.class);
                 break;
+
             case CHANGE_REGULATIONS:
                 break;
+
             default:
+
+        }
+
+        if(intent != null) {
+            startActivity(intent);
         }
     }
-
-    private void moveToActivity(Class<RegisterPassBookActivity> registerPassBookActivityClass) {
-        Intent intent = new Intent(this, registerPassBookActivityClass);
-        startActivity(intent);
-    }
-
 
     private void loadDataToAdapter() {
         items.add(new MainFuncModel(getResources().getString(R.string.fi_register), getResources().getString(R.string.register_passbook), ApplicationFunction.REGISTER_PASSBOOK));
         items.add(new MainFuncModel(getResources().getString(R.string.fi_deposit), getResources().getString(R.string.get_deposit_form), ApplicationFunction.GET_DEPOSIT_SLIP));
         items.add(new MainFuncModel(getResources().getString(R.string.fi_withdraw), getResources().getString(R.string.get_withdraw_form), ApplicationFunction.GET_WITHDRAWAL_SLIP));
         items.add(new MainFuncModel(getResources().getString(R.string.fi_search), getResources().getString(R.string.search_passbooks), ApplicationFunction.SEARCH_PASSBOOKS));
-        items.add(new MainFuncModel(getResources().getString(R.string.fi_monthly_report), getResources().getString(R.string.monthly_report), ApplicationFunction.MONTHLY_REPORT));
+        items.add(new MainFuncModel(getResources().getString(R.string.fi_monthly_report), getResources().getString(R.string.report), ApplicationFunction.REPORT));
         items.add(new MainFuncModel(getResources().getString(R.string.fi_change_regulations), getResources().getString(R.string.change_regulations), ApplicationFunction.CHANGE_REGULATIONS));
     }
 }

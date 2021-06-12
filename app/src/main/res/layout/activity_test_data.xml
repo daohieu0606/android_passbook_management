@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".activities.TestForm">
+    tools:context=".activities.TestDataActivity">
 
     <Button
         android:id="@+id/btnGetAll"

@@ -19,7 +19,7 @@ public interface CustomerDAO extends IDAO<Customer> {
 
     @Override
     @Insert
-    void insertItem(Customer item);
+    long insertItem(Customer item);
 
     @Override
     @Update
@@ -31,9 +31,14 @@ public interface CustomerDAO extends IDAO<Customer> {
             + Constant.LIMIT + "1")
     Customer getItem(int id);
 
+    @Query(Constant.SELECT_ALL + Constant.CUSTOMER_TABLE
+            + Constant.WHERE + Constant.IDENTIFY_NUMBER_COLUMN + Constant.LIKE + "identifyNumber"
+            + Constant.LIMIT + "1")
+    Customer getCustomerByIdentifyNumber(String identifyNumber);
+
     @Override
     @Delete
-    void deleteItem(Customer item);
+    int deleteItem(Customer item);
 
     @Override
     @Query(Constant.DELETE_ALL + Constant.CUSTOMER_TABLE)

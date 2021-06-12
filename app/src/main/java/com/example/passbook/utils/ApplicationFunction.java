@@ -5,6 +5,6 @@ public enum ApplicationFunction {
     GET_DEPOSIT_SLIP,
     GET_WITHDRAWAL_SLIP,
     SEARCH_PASSBOOKS,
-    MONTHLY_REPORT,
+    REPORT,
     CHANGE_REGULATIONS
 }

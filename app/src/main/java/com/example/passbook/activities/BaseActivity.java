@@ -2,6 +2,7 @@ package com.example.passbook.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +17,10 @@ import android.widget.TextView;
 
 import com.example.passbook.R;
 import com.example.passbook.customviews.IconLabel;
+import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.Constant;
 
-public abstract class BaseFormActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     protected int containerLayout = 0;
 
@@ -28,10 +30,15 @@ public abstract class BaseFormActivity extends AppCompatActivity implements Popu
 
     protected String title;
 
+    protected AppDatabase appDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_form);
+
+        appDatabase = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name").allowMainThreadQueries().build();
 
         Init();
     }

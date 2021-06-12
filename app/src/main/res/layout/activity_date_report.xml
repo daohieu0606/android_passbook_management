@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/base_margin">
+        <TextView
+            android:id="@+id/dateLabel"
+            android:text="Date: "
+            android:textColor="@android:color/darker_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/base_control_margin"/>
+        <TextView
+            android:id="@+id/txtDateValue"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@id/dateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <com.levitnudi.legacytableview.LegacyTableView
+        android:id="@+id/tbDateReport"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

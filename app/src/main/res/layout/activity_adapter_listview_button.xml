@@ -8,14 +8,19 @@
         android:id="@+id/lst_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btnSubmit"/>
+        android:layout_above="@id/btnSubmit"
+        android:layout_marginBottom="@dimen/base_margin"/>
 
-    <Button
+    <com.example.passbook.customviews.CustomButton
         android:id="@+id/btnSubmit"
-        android:text="submit"
+        android:text="Submit"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="wrap_content"/>
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:background="@color/colorPrimary"/>
 
 </RelativeLayout>

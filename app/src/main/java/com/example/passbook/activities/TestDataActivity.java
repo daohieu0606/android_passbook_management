@@ -10,11 +10,11 @@ import androidx.room.Room;
 import com.example.passbook.R;
 import com.example.passbook.daos.CustomerDAO;
 import com.example.passbook.data.entitys.Customer;
-import com.example.passbook.datastores.AppDatabase;
+import com.example.passbook.services.AppDatabase;
 
 import java.util.List;
 
-public class TestForm extends BaseFormActivity implements View.OnClickListener {
+public class TestDataActivity extends BaseActivity implements View.OnClickListener {
     private Button btnGetAll;
     private Button btnGet;
     private Button btnUpdate;
@@ -28,7 +28,7 @@ public class TestForm extends BaseFormActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        containerLayout = R.layout.activity_test_form;
+        containerLayout = R.layout.activity_test_data;
         title = "Register PassBook";
         super.onCreate(savedInstanceState);
 

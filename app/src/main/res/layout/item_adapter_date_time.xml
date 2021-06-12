@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_48sdp"
+    android:layout_marginTop="@dimen/_10sdp"
     android:layout_marginStart="@dimen/base_margin"
     android:layout_marginEnd="@dimen/base_margin">
 
@@ -11,17 +12,22 @@
         android:id="@+id/txtLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Passbook Name"
         app:endIconMode="custom"
         app:endIconDrawable="@drawable/ic_baseline_calendar_today_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtValue"
-            android:text="01/01/0001"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_datetime"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"/>
+
+</RelativeLayout>

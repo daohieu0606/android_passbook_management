@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/base_padding"
+    android:paddingEnd="@dimen/base_padding">
+
+    <com.example.passbook.customviews.CustomButton
+        android:id="@+id/btnReportByDate"
+        android:text="By Date"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/base_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"/>
+    <com.example.passbook.customviews.CustomButton
+        android:id="@+id/btnReportByMonth"
+        android:text="By Month"
+        android:layout_below="@id/btnReportByDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
     android:layout_marginStart="@dimen/base_margin"
     android:layout_marginEnd="@dimen/base_margin">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/spinner"
+        android:id="@+id/txtLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Passbook Name"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
         >
 

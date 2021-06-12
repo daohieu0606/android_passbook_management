@@ -20,7 +20,7 @@ public interface PassBookRegulationDAO extends IDAO<PassBookRegulation> {
 
     @Override
     @Insert
-    void insertItem(PassBookRegulation item);
+    long insertItem(PassBookRegulation item);
 
     @Override
     @Update
@@ -34,7 +34,7 @@ public interface PassBookRegulationDAO extends IDAO<PassBookRegulation> {
 
     @Override
     @Delete
-    void deleteItem(PassBookRegulation item);
+    int deleteItem(PassBookRegulation item);
 
     @Override
     @Query(Constant.DELETE_ALL + Constant.PASSBOOK_REGULATION_TABLE)
