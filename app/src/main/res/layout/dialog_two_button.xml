@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dialog_width"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <TextView
+        android:id="@+id/txtTitle"
+        android:text="Title"
+        android:background="@color/transparent"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        android:layout_margin="@dimen/base_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:id="@+id/body"
+        android:background="@color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_margin="@dimen/base_margin"
+        android:background="@color/transparent">
+        <Button
+            android:id="@+id/btnNo"
+            android:text="No"
+            android:textSize="16sp"
+            android:background="@color/transparent"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btnYes"
+            android:text="Yes"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/btnNo"
+            android:background="@color/transparent"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</LinearLayout>

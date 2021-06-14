@@ -10,4 +10,5 @@
     <dimen name="main_function_text_size">@dimen/_27sdp</dimen>
     <dimen name="button_corner">@dimen/_8sdp</dimen>
     <dimen name="button_height">@dimen/_35sdp</dimen>
+    <dimen name="dialog_width">@dimen/_250sdp</dimen>
 </resources>

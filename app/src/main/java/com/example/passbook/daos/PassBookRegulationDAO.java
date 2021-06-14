@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.passbook.data.entitys.PassBookRegulation;
+import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.utils.Constant;
 
 import java.util.List;
@@ -39,4 +40,10 @@ public interface PassBookRegulationDAO extends IDAO<PassBookRegulation> {
     @Override
     @Query(Constant.DELETE_ALL + Constant.PASSBOOK_REGULATION_TABLE)
     void deleteAll();
+
+    @Query(Constant.SELECT_ALL + Constant.PASSBOOK_REGULATION_TABLE
+            + Constant.WHERE + Constant.PASSBOOK_TYPE_COLUMN + Constant.LIKE + "passBookType"
+            + Constant.ORDER_BY + Constant.CREATION_DATE_TIME_COLUMN + Constant.DESC
+            + Constant.LIMIT + "1")
+    PassBookRegulation getLastPassBookByType(PassBookType passBookType);
 }

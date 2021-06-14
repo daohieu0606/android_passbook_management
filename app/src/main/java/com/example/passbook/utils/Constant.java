@@ -38,5 +38,21 @@ public class Constant {
     public static final String MONTH_REPORT = "Month Report";
     public static final String DATE_TO_GET_REPORT = "DATE_TO_GET_REPORT";
     public static final String CREATION_DATE = "Creation Date";
+    public static final String DEPOSIT_TOTAL = "Deposit Total";
+    public static final String WITHDRAWAL_TOTAL = "Withdrawal Total";
     public static final String CREATION_DATE_COLUMN = "creationDate";
+    public static final String DIFFERENCE = "Difference";
+    public static final String CUSTOMER_ID_COLUMN = "customerId";
+    public static final String PASSBOOK_ID_COLUMN = "passBookId";
+    public static final String AND = " AND ";
+    public static final String PICK_UP_DATE = " Pick Up Date ";
+    public static final String PASSBOOK_TYPE_COLUMN = "passBookType";
+    public static final String OPENED_PASSBOOK = "Opened Passbook";
+    public static final String CLOSED_PASSBOOK = "Closed Passbook";
+    public static final String ORDINAL_NUMBER = "Ordinal Number";
+    public static final String REGULATIONS = "Regulations";
+    public static final String MIN_DEPOSIT_AMOUNT = "Min deposit amount";
+    public static final String MIN_DEPOSIT_TIME = "Min deposit time";
+    public static final String CREATION_DATE_TIME_COLUMN = "creationDateTime";
+    public static final String INTEREST_RATE = "Interest rate";
 }

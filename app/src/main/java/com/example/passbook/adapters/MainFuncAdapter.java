@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
 import com.example.passbook.customviews.IconLabel;
-import com.example.passbook.models.MainFuncModel;
+import com.example.passbook.data.models.MainFuncModel;
 
 import java.util.List;
 

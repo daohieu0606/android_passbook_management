@@ -3,10 +3,12 @@ package com.example.passbook.daos;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.passbook.data.entitys.PassBook;
+import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.utils.Constant;
 
 import java.util.Date;
@@ -19,7 +21,7 @@ public interface PassBookDAO extends IDAO<PassBook> {
     List<PassBook> getItems();
 
     @Override
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertItem(PassBook item);
 
     @Override
@@ -49,4 +51,9 @@ public interface PassBookDAO extends IDAO<PassBook> {
     @Query(Constant.SELECT_ALL + Constant.PASSBOOK_TABLE
             + Constant.WHERE + Constant.CREATION_DATE_COLUMN + " BETWEEN :from AND :to")
     List<PassBook> getPassBooksByDate(long from, long to);
+
+    @Query(Constant.SELECT_ALL + Constant.PASSBOOK_TABLE
+            + Constant.WHERE + "(" + Constant.CREATION_DATE_COLUMN + " BETWEEN :from AND :to)"
+            + Constant.AND + Constant.PASSBOOK_TYPE_COLUMN + Constant.LIKE + "passBookType")
+    List<PassBook> getPassBooksByDateAndType(long from, long to, PassBookType passBookType);
 }

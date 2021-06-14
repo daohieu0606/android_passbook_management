@@ -8,6 +8,7 @@ import com.example.passbook.data.entitys.SixMonthPassBook;
 import com.example.passbook.data.entitys.ThreeMonthPassBook;
 import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.data.entitys.WithdrawalSlip;
+import com.example.passbook.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,9 @@ public class HardCode {
 
             ThreeMonthPassBook passBook1 = new ThreeMonthPassBook();
             ThreeMonthPassBook passBook2 = new ThreeMonthPassBook();
+            ThreeMonthPassBook passBook7 = new ThreeMonthPassBook();
+            ThreeMonthPassBook passBook8 = new ThreeMonthPassBook();
+            ThreeMonthPassBook passBook9 = new ThreeMonthPassBook();
             SixMonthPassBook passBook3  = new SixMonthPassBook();
             SixMonthPassBook passBook4  = new SixMonthPassBook();
             InfinitePassBook passBook5 = new InfinitePassBook();
@@ -31,6 +35,9 @@ public class HardCode {
             passBook4.Id = 4;
             passBook5.Id = 5;
             passBook6.Id = 6;
+            passBook7.Id = 7;
+            passBook8.Id = 8;
+            passBook9.Id = 9;
 
             passBook1.customerId = 1;
             passBook2.customerId = 2;
@@ -38,6 +45,9 @@ public class HardCode {
             passBook4.customerId = 4;
             passBook5.customerId = 5;
             passBook6.customerId = 6;
+            passBook7.customerId = 6;
+            passBook8.customerId = 6;
+            passBook9.customerId = 6;
 
             passBook1.creationDate = new Date();
             passBook2.creationDate = new Date();
@@ -45,12 +55,18 @@ public class HardCode {
             passBook4.creationDate = new Date();
             passBook5.creationDate = new Date();
             passBook6.creationDate = new Date();
+            passBook7.creationDate = new Date();
+            passBook8.creationDate = new Date();
+            passBook9.creationDate = Utils.getNextDate(new Date());
 
             passBook1.amount = 1123;
             passBook2.amount = 421;
             passBook3.amount = 23213;
             passBook4.amount = 21231;
             passBook5.amount = 213;
+            passBook6.amount = 1523;
+            passBook6.amount = 1523;
+            passBook6.amount = 1523;
             passBook6.amount = 1523;
 
             result.add(passBook1);
@@ -59,6 +75,9 @@ public class HardCode {
             result.add(passBook4);
             result.add(passBook5);
             result.add(passBook6);
+            result.add(passBook7);
+            result.add(passBook8);
+            result.add(passBook9);
 
             return result;
         }

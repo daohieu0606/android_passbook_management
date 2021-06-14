@@ -11,13 +11,17 @@
         android:theme="@style/Theme.MyApp">
         <activity android:name=".activities.TestLibActivity">
         </activity>
+        <activity android:name=".activities.PickUpChangeRegulationTypeActivity" />
+        <activity android:name=".activities.SelectMonthToGetReportActivity" />
         <activity android:name=".activities.PickupReportActivity" />
         <activity android:name=".activities.MonthlyReportActivity" />
         <activity android:name=".activities.DateReportActivity" />
         <activity android:name=".activities.RegisterPassBookActivity" />
         <activity android:name=".activities.EditDepositActivity" />
         <activity android:name=".activities.EditWithdrawalActivity" />
-        <activity android:name=".activities.TestDataActivity" />
+        <activity android:name=".activities.TestDataActivity" >
+
+        </activity>
         <activity android:name=".activities.BaseActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>

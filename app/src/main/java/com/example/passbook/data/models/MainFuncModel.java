@@ -1,4 +1,4 @@
-package com.example.passbook.models;
+package com.example.passbook.data.models;
 
 import com.example.passbook.utils.ApplicationFunction;
 

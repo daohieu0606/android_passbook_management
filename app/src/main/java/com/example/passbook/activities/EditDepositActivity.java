@@ -7,8 +7,8 @@ import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.Customer;
 import com.example.passbook.data.entitys.DepositSlip;
 import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.models.DateTimeModel;
-import com.example.passbook.models.TextFieldModel;
+import com.example.passbook.data.models.DateTimeModel;
+import com.example.passbook.data.models.TextFieldModel;
 import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;

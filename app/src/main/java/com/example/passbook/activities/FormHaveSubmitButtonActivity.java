@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.passbook.R;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.adapters.SpacesItemDecoration;
-import com.example.passbook.models.BaseFormModel;
+import com.example.passbook.data.models.BaseFormModel;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public abstract class FormHaveSubmitButtonActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
         containerLayout = R.layout.activity_adapter_listview_button;
+
+        super.onCreate(savedInstanceState);
 
         initModelAndAdapter();
 

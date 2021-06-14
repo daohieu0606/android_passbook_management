@@ -50,7 +50,9 @@ public class PickupReportActivity extends BaseActivity implements View.OnClickLi
                 break;
 
             case R.id.btnReportByMonth:
-                Intent intentToMonthReportActivity = new Intent(this, MonthlyReportActivity.class);
+                Intent intentToMonthReportActivity = new Intent(
+                        this,
+                        SelectMonthToGetReportActivity.class);
                 startActivity(intentToMonthReportActivity);
 
                 break;

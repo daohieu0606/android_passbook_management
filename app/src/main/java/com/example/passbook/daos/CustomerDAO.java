@@ -3,6 +3,7 @@ package com.example.passbook.daos;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -18,7 +19,7 @@ public interface CustomerDAO extends IDAO<Customer> {
     List<Customer> getItems();
 
     @Override
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertItem(Customer item);
 
     @Override

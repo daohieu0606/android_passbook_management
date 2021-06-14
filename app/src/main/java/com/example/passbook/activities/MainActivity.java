@@ -12,13 +12,19 @@ import android.view.Window;
 import com.example.passbook.R;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.adapters.MainFuncAdapter;
+import com.example.passbook.data.HardCode;
 import com.example.passbook.data.entitys.BankRegulation;
+import com.example.passbook.data.entitys.Customer;
+import com.example.passbook.data.entitys.PassBook;
+import com.example.passbook.data.entitys.PassBookRegulation;
+import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.data.enums.PassBookType;
-import com.example.passbook.models.MainFuncModel;
+import com.example.passbook.data.models.MainFuncModel;
 import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.ApplicationFunction;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,20 +33,67 @@ public class MainActivity extends AppCompatActivity {
     private MainFuncAdapter adapter;
     private List<MainFuncModel> items;
 
+    private AppDatabase appDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        Init();
-        InitBankRegulation();
+        init();
+        initBankRegulation();
+        intPassbookRegulation();
+        hardcode(); //TODO: remove hard code
     }
 
-    private void InitBankRegulation() {
-        AppDatabase appDatabase = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
+    private void intPassbookRegulation() {
+        if (appDatabase.passBookRegulationDAO().getItems().size() < 3) {
+            PassBookRegulation threeMonthsRegulation = new PassBookRegulation();
+            threeMonthsRegulation.passBookType = PassBookType.THREE_MONTH;
+            threeMonthsRegulation.creationDateTime = new Date();
+            threeMonthsRegulation.term = 3 * 30;
+            threeMonthsRegulation.Id = 1;
+            threeMonthsRegulation.interestRate = 0.005f;
 
+            PassBookRegulation sixMonthsRegulation = new PassBookRegulation();
+            sixMonthsRegulation.passBookType = PassBookType.SIX_MONTH;
+            sixMonthsRegulation.creationDateTime = new Date();
+            sixMonthsRegulation.term = 6 * 30;
+            sixMonthsRegulation.Id = 2;
+            sixMonthsRegulation.interestRate = 0.0055f;
+
+            PassBookRegulation infiniteRegulation = new PassBookRegulation();
+            infiniteRegulation.passBookType = PassBookType.INFINITE;
+            infiniteRegulation.creationDateTime = new Date();
+            infiniteRegulation.term = 0;
+            infiniteRegulation.Id = 3;
+            infiniteRegulation.interestRate = 0.0015f;
+
+            appDatabase.passBookRegulationDAO().insertItem(threeMonthsRegulation);
+            appDatabase.passBookRegulationDAO().insertItem(sixMonthsRegulation);
+            appDatabase.passBookRegulationDAO().insertItem(infiniteRegulation);
+        }
+    }
+
+    private void hardcode() {
+        for (Customer customer:
+                HardCode.HardCodeCustomer.getCustomers()) {
+            appDatabase.customerDAO().insertItem(customer);
+        }
+
+        for (PassBook passBook :
+                HardCode.HardCodePassbook.getPassBooks()) {
+            appDatabase.passBookDAO().insertItem(passBook);
+        }
+
+        for (TransactionForm transactionForm :
+                HardCode.HardCodeTransactionForm.getTransactionForms()) {
+            appDatabase.transactionFormDAO().insertItem(transactionForm);
+        }
+    }
+
+    private void initBankRegulation() {
         if(appDatabase.bankRegulationDAO().getItems().size() == 0) {
             BankRegulation bankRegulation = new BankRegulation();
             bankRegulation.existedPassBookTypes = PassBookType.THREE_MONTH.getValue()
@@ -53,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void Init() {
+    private void init() {
         items = new ArrayList<>();
         rvMainFunction = findViewById(R.id.rvMainFunction);
         adapter = new MainFuncAdapter(getApplicationContext(), items);
@@ -73,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
         rvMainFunction.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 
         rvMainFunction.setLayoutManager(new GridLayoutManager(this, 3));
+
+        appDatabase = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name").allowMainThreadQueries().build();
     }
 
     private void handleItemClick(MainFuncModel item) {
@@ -100,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case CHANGE_REGULATIONS:
+                intent = new Intent(this, PickUpChangeRegulationTypeActivity.class);
                 break;
 
             default:

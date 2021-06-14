@@ -15,18 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
-import com.example.passbook.models.BaseFormModel;
-import com.example.passbook.models.DateTimeModel;
-import com.example.passbook.models.SpinnerModel;
-import com.example.passbook.models.TextFieldModel;
+import com.example.passbook.data.models.BaseFormModel;
+import com.example.passbook.data.models.DateTimeModel;
+import com.example.passbook.data.models.SpinnerModel;
+import com.example.passbook.data.models.TextFieldModel;
 import com.example.passbook.utils.Utils;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;

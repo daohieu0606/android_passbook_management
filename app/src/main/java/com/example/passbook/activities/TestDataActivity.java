@@ -1,17 +1,27 @@
 package com.example.passbook.activities;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.room.Room;
 
 import com.example.passbook.R;
+import com.example.passbook.customviews.DialogHaveListView;
 import com.example.passbook.daos.CustomerDAO;
-import com.example.passbook.data.entitys.Customer;
+import com.example.passbook.data.enums.PassBookType;
+import com.example.passbook.data.models.BaseFormModel;
+import com.example.passbook.data.models.DateTimeModel;
+import com.example.passbook.data.models.SpinnerModel;
+import com.example.passbook.data.models.TextFieldModel;
 import com.example.passbook.services.AppDatabase;
+import com.example.passbook.utils.Constant;
+import com.example.passbook.intefaces.OnDialogButtonClick;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TestDataActivity extends BaseActivity implements View.OnClickListener {
@@ -23,6 +33,7 @@ public class TestDataActivity extends BaseActivity implements View.OnClickListen
     private Button btnDeleteAll;
 
     private CustomerDAO customerDAO;
+    List<BaseFormModel> models = new ArrayList<>();
 
     public static final String TAG = "TestFormTag";
 
@@ -63,77 +74,44 @@ public class TestDataActivity extends BaseActivity implements View.OnClickListen
                 handleGetAll();
                 break;
             case R.id.btnGet:
-                handleGet();
                 break;
             case R.id.btnUpdate:
-                handleUpdate();
                 break;
             case R.id.btnDelete:
-                handleDelete();
                 break;
             case R.id.btnInsert:
-                handleInsert();
                 break;
             case R.id.btnDeleteAll:
-                handleDeleteAll();
                 break;
-        }
-    }
-
-    private void handleDelete() {
-        List<Customer> customerList = customerDAO.getItems();
-
-        if(customerList.size() > 0) {
-            customerDAO.deleteItem(customerList.get(0));
-            Log.i(TAG, "delete item success");
-        }
-    }
-
-    private void handleDeleteAll() {
-        customerDAO.deleteAll();
-        Log.i(TAG, "delete all success");
-    }
-
-    private void handleInsert() {
-       Customer customer = new Customer();
-       customer.fullName = "nguyen van a";
-       customer.address = "duong so 1";
-       customer.identifyNumber = java.util.UUID.randomUUID().toString();
-
-       customerDAO.insertItem(customer);
-       Log.i(TAG, "insert success: " +customer.identifyNumber);
-    }
-
-    private void handleUpdate() {
-        Customer customer = customerDAO.getItem(11);
-
-        if(customer != null) {
-            customer.identifyNumber = "abcfsadklfjklds";
-            customerDAO.updateOrInsertItem(customer);
-            Log.i(TAG, "update successfully");
-        }else {
-            Log.i(TAG, "Update failed");
-        }
-    }
-
-    private void handleGet() {
-        Customer customer = customerDAO.getItem(11);
-
-        if(customer != null) {
-            Log.i(TAG, "get success: " + customer.identifyNumber);
-        } else {
-            Log.i(TAG, "get fail");
         }
     }
 
     private void handleGetAll() {
-        List<Customer> customerList = customerDAO.getItems();
-        Log.i(TAG, "count: " + String.valueOf(customerList.size()));
+        List<String> passBookTypes = new ArrayList<>();
+        passBookTypes.add(PassBookType.THREE_MONTH.getText());
+        passBookTypes.add(PassBookType.SIX_MONTH.getText());
+        passBookTypes.add(PassBookType.INFINITE.getText());
 
-        for (Customer customer :
-                customerList) {
-            Log.i(TAG, String.valueOf(customer.Id));
-            Log.i(TAG, String.valueOf(customer.identifyNumber));
-        }
+        models.add(new TextFieldModel(Constant.PASSBOOK_ID, "", "", InputType.TYPE_CLASS_NUMBER));
+        models.add(new SpinnerModel(Constant.PASSBOOK_TYPE, null, "", passBookTypes));
+        models.add(new DateTimeModel(Constant.REGISTER_DATE, new Date(), ""));
+
+        DialogHaveListView dialogHaveListView = new DialogHaveListView(this, models);
+        dialogHaveListView.show();
+        dialogHaveListView.onDialogButtonClick = new OnDialogButtonClick() {
+            @Override
+            public void onNegativeClick() {
+                ;
+            }
+
+            @Override
+            public void onPositiveClick() {
+                handlePositiveClick();
+            }
+        };
+    }
+
+    private void handlePositiveClick() {
+        Toast.makeText(this.getApplicationContext(), "hello world", Toast.LENGTH_LONG).show();
     }
 }

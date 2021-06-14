@@ -8,6 +8,7 @@ import androidx.room.Room;
 import com.example.passbook.R;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.entitys.PassBook;
+import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.Constant;
 import com.example.passbook.utils.Utils;
@@ -58,16 +59,45 @@ public class DateReportActivity extends BaseActivity {
 
     private void initTableViewData(List<PassBook> passBooksByDate) {
         LegacyTableView.insertLegacyTitle(Constant.ID,
-                Constant.CREATION_DATE,
                 Constant.PASSBOOK_TYPE,
-                Constant.AMOUNT);
+                Constant.DEPOSIT_TOTAL,
+                Constant.WITHDRAWAL_TOTAL,
+                Constant.DIFFERENCE);
 
         for (PassBook passBook :
                 passBooksByDate) {
+            List<TransactionForm> transactionForms = appDatabase
+                    .transactionFormDAO()
+                    .getItemsByPassbookIdAndCustomerId(passBook.Id, passBook.customerId);
+
+            int depositTotal = 0;
+            int withdrawTotal = 0;
+            int difference = 0;
+
+            for (TransactionForm transactionForm :
+                    transactionForms) {
+                switch (transactionForm.transactionFormType) {
+                    case DEPOSIT:
+                        depositTotal += transactionForm.amount;
+                        break;
+
+                    case WITHDRAWAL:
+                        withdrawTotal += transactionForm.amount;
+                        break;
+                }
+            }
+
+            difference = depositTotal - withdrawTotal;
+
             LegacyTableView.insertLegacyContent(String.valueOf(passBook.Id));
-            LegacyTableView.insertLegacyContent(Utils.dataToString(passBook.creationDate));
             LegacyTableView.insertLegacyContent(passBook.passBookType.getText());
-            LegacyTableView.insertLegacyContent(String.valueOf(passBook.amount));
+            LegacyTableView.insertLegacyContent(String.valueOf(depositTotal));
+            LegacyTableView.insertLegacyContent(String.valueOf(withdrawTotal));
+            LegacyTableView.insertLegacyContent(String.valueOf(difference));
+        }
+
+        for(int i = 0; i< passBooksByDate.size(); i++) {
+
         }
 
         tbDateReport.setTitle(LegacyTableView.readLegacyTitle());
@@ -82,16 +112,13 @@ public class DateReportActivity extends BaseActivity {
     }
 
     private List<PassBook> getPassbooks(Date dateToGetPassbooks) {
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
-
         Date startDate = Utils.getStartDate(dateToGetPassbooks);
         Date endDate = Utils.getEndDate(dateToGetPassbooks);
 
         long from = DateConverter.dateToTimestamp(startDate);
         long to = DateConverter.dateToTimestamp(endDate);
 
-        List<PassBook> passBooksByDate = db.passBookDAO().
+        List<PassBook> passBooksByDate = appDatabase.passBookDAO().
                 getPassBooksByDate(from, to);
 
         return  passBooksByDate;

@@ -5,8 +5,8 @@ import android.text.InputType;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.data.entitys.WithdrawalSlip;
-import com.example.passbook.models.DateTimeModel;
-import com.example.passbook.models.TextFieldModel;
+import com.example.passbook.data.models.DateTimeModel;
+import com.example.passbook.data.models.TextFieldModel;
 import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;

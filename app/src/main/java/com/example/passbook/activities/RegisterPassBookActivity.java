@@ -12,9 +12,9 @@ import com.example.passbook.data.entitys.SixMonthPassBook;
 import com.example.passbook.data.entitys.ThreeMonthPassBook;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.enums.PassbookState;
-import com.example.passbook.models.DateTimeModel;
-import com.example.passbook.models.SpinnerModel;
-import com.example.passbook.models.TextFieldModel;
+import com.example.passbook.data.models.DateTimeModel;
+import com.example.passbook.data.models.SpinnerModel;
+import com.example.passbook.data.models.TextFieldModel;
 import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;

@@ -1,6 +1,4 @@
-package com.example.passbook.models;
-
-import android.text.InputType;
+package com.example.passbook.data.models;
 
 import com.example.passbook.utils.FormItemType;
 
