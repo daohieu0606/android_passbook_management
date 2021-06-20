@@ -20,7 +20,7 @@
             android:gravity="center_horizontal">
             <TextView
                 android:id="@+id/typeLabel"
-                android:text="Passbook Type: "
+                android:text="@string/passbook_type_labels"
                 android:textColor="@android:color/darker_gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -39,7 +39,7 @@
             android:gravity="center_horizontal">
             <TextView
                 android:id="@+id/monthLabel"
-                android:text="Month: "
+                android:text="@string/month_label"
                 android:textColor="@android:color/darker_gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

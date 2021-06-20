@@ -68,6 +68,13 @@ public abstract class BaseActivity extends AppCompatActivity implements PopupMen
                 showPopup(v);
             }
         });
+
+        txtTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override

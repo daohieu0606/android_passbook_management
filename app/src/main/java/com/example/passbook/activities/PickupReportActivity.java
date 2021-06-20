@@ -26,7 +26,7 @@ public class PickupReportActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         containerLayout = R.layout.activity_pickup_report;
-        title = Constant.REPORT;
+        title = getString(R.string.report);
         super.onCreate(savedInstanceState);
 
         init();
@@ -66,13 +66,13 @@ public class PickupReportActivity extends BaseActivity implements View.OnClickLi
         MaterialDatePicker datePicker = MaterialDatePicker
                 .Builder
                 .datePicker()
-                .setTitleText("Select date")
+                .setTitleText(getString(R.string.select_date))
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                 .build();
         datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
             @Override
             public void onPositiveButtonClick(Object selection) {
-                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(Constant.UTC));
                 calendar.setTimeInMillis((Long) selection);
 
                 Date value = calendar.getTime();

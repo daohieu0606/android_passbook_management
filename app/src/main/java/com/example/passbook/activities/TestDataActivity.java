@@ -11,7 +11,13 @@ import androidx.room.Room;
 import com.example.passbook.R;
 import com.example.passbook.customviews.DialogHaveListView;
 import com.example.passbook.daos.CustomerDAO;
+import com.example.passbook.data.HardCode;
+import com.example.passbook.data.entitys.Customer;
+import com.example.passbook.data.entitys.PassBook;
+import com.example.passbook.data.entitys.ThreeMonthPassBook;
+import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.data.enums.PassBookType;
+import com.example.passbook.data.enums.PassbookState;
 import com.example.passbook.data.models.BaseFormModel;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.SpinnerModel;
@@ -68,10 +74,41 @@ public class TestDataActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        hardcode();
+
+        PassBook passBook = new ThreeMonthPassBook();
+        passBook.Id = 11;
+        passBook.passbookState = PassbookState.OPENED;
+        passBook.amount = 1;
+        passBook.customerId = 2;
+
+        appDatabase.passBookDAO().insertItem(passBook);
+    }
+
+    private void hardcode() {
+        for (Customer customer:
+                HardCode.HardCodeCustomer.getCustomers()) {
+            appDatabase.customerDAO().insertItem(customer);
+        }
+
+        for (PassBook passBook :
+                HardCode.HardCodePassbook.getPassBooks()) {
+            appDatabase.passBookDAO().insertItem(passBook);
+        }
+
+        for (TransactionForm transactionForm :
+                HardCode.HardCodeTransactionForm.getTransactionForms()) {
+            appDatabase.transactionFormDAO().insertItem(transactionForm);
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnGetAll:
-                handleGetAll();
+                List<PassBook> passBooks = appDatabase.passBookDAO().getItemsById("%1%");
                 break;
             case R.id.btnGet:
                 break;
@@ -84,34 +121,5 @@ public class TestDataActivity extends BaseActivity implements View.OnClickListen
             case R.id.btnDeleteAll:
                 break;
         }
-    }
-
-    private void handleGetAll() {
-        List<String> passBookTypes = new ArrayList<>();
-        passBookTypes.add(PassBookType.THREE_MONTH.getText());
-        passBookTypes.add(PassBookType.SIX_MONTH.getText());
-        passBookTypes.add(PassBookType.INFINITE.getText());
-
-        models.add(new TextFieldModel(Constant.PASSBOOK_ID, "", "", InputType.TYPE_CLASS_NUMBER));
-        models.add(new SpinnerModel(Constant.PASSBOOK_TYPE, null, "", passBookTypes));
-        models.add(new DateTimeModel(Constant.REGISTER_DATE, new Date(), ""));
-
-        DialogHaveListView dialogHaveListView = new DialogHaveListView(this, models);
-        dialogHaveListView.show();
-        dialogHaveListView.onDialogButtonClick = new OnDialogButtonClick() {
-            @Override
-            public void onNegativeClick() {
-                ;
-            }
-
-            @Override
-            public void onPositiveClick() {
-                handlePositiveClick();
-            }
-        };
-    }
-
-    private void handlePositiveClick() {
-        Toast.makeText(this.getApplicationContext(), "hello world", Toast.LENGTH_LONG).show();
     }
 }

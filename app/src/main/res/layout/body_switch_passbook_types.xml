@@ -19,24 +19,24 @@
                 android:id="@+id/swThreeMonthsType"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Three Months Type"
-                android:minWidth="@dimen/_200sdp"
+                android:text="@string/three_months_type"
+                android:minWidth="@dimen/switcher_width"
                 android:background="@color/transparent"
                 android:layout_margin="@dimen/base_control_margin"/>
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/swSixMonthsType"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Three Months Type"
-                android:minWidth="@dimen/_200sdp"
+                android:text="@string/six_month_types"
+                android:minWidth="@dimen/switcher_width"
                 android:background="@color/transparent"
                 android:layout_margin="@dimen/base_control_margin"/>
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/swInfiniteType"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Three Months Type"
-                android:minWidth="@dimen/_200sdp"
+                android:text="@string/infinite_type"
+                android:minWidth="@dimen/switcher_width"
                 android:background="@color/transparent"
                 android:layout_margin="@dimen/base_control_margin"/>
         </LinearLayout>

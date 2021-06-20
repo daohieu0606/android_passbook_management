@@ -9,11 +9,9 @@ import android.widget.Toast;
 import androidx.room.Room;
 
 import com.example.passbook.R;
-import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.customviews.CustomDialog;
 import com.example.passbook.customviews.DialogHaveListView;
 import com.example.passbook.data.entitys.BankRegulation;
-import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.data.entitys.PassBookRegulation;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.models.BaseFormModel;
@@ -31,7 +29,7 @@ import java.util.List;
 public class PickUpChangeRegulationTypeActivity extends BaseActivity implements View.OnClickListener {
     private Button btnNumOfType;
     private Button btnMinDeposit;
-    private Button btnMinTime;
+    private Button btnTerm;
     private Button btnInterestRate;
 
     private DialogHaveListView dialog;
@@ -40,7 +38,7 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        title = Constant.REGULATIONS;
+        title = getString(R.string.regulations);
         containerLayout = R.layout.activity_pickup_regulation_change_type;
 
         super.onCreate(savedInstanceState);
@@ -51,12 +49,12 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
     private void init() {
         btnNumOfType = findViewById(R.id.btnNumOfType);
         btnMinDeposit = findViewById(R.id.btnMinDeposit);
-        btnMinTime = findViewById(R.id.btnMinTime);
+        btnTerm = findViewById(R.id.btnTerm);
         btnInterestRate = findViewById(R.id.btnInterestRate);
 
         btnNumOfType.setOnClickListener(this::onClick);
         btnMinDeposit.setOnClickListener(this::onClick);
-        btnMinTime.setOnClickListener(this::onClick);
+        btnTerm.setOnClickListener(this::onClick);
         btnInterestRate.setOnClickListener(this::onClick);
     }
 
@@ -84,8 +82,8 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
                 changeMinDepositAmount();
                 break;
 
-            case R.id.btnMinTime:
-                changeMinDepositTime();
+            case R.id.btnTerm:
+                changeTerm();
                 break;
 
             case R.id.btnInterestRate:
@@ -103,7 +101,7 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
 
         models.add(new SpinnerModel(Constant.PASSBOOK_TYPE, null, "", passBookTypes));
         models.add(new TextFieldModel(
-                Constant.INTEREST_RATE,
+                getString(R.string.interest_rate),
                 "",
                 "",
                 InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL));
@@ -118,16 +116,16 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
             public void onPositiveClick() {
                 Float interestRate = Float.valueOf((String) models.get(1).value);
 
-                if(isGreaterThanZero(interestRate)) {
+                if(interestRate >= PassBookRegulation.MIN_INTEREST_RATE) {
                     PassBookType passBookType = PassBookType.fromString((String) models.get(0).value);
 
                     updateInterestRate(passBookType, interestRate);
 
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 } else {
                     models.get(1).isError = true;
-                    models.get(1).errorSTr = "value must be greater than zero";
+                    models.get(1).errorSTr = getString(R.string.value_must_greater_the_zero);
                     dialog.notifyDataChanged();
                 }
             }
@@ -136,16 +134,16 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
         dialog.show();
     }
 
-    private void changeMinDepositTime() {
+    private void changeTerm() {   //TODO: change name to terms
         models.clear();
 
         List<String> passBookTypes = new ArrayList<>();
         passBookTypes.add(PassBookType.THREE_MONTH.getText());
         passBookTypes.add(PassBookType.SIX_MONTH.getText());
-        passBookTypes.add(PassBookType.INFINITE.getText());
+        //passBookTypes.add(PassBookType.INFINITE.getText());
 
         models.add(new SpinnerModel(Constant.PASSBOOK_TYPE, null, "", passBookTypes));
-        models.add(new TextFieldModel(Constant.MIN_DEPOSIT_TIME, "", "", InputType.TYPE_CLASS_NUMBER));
+        models.add(new TextFieldModel(getString(R.string.min_term), "", "", InputType.TYPE_CLASS_NUMBER));
 
         dialog.onDialogButtonClick = new OnDialogButtonClick() {
             @Override
@@ -157,16 +155,16 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
             public void onPositiveClick() {
                 Integer minTime = Integer.valueOf((String) models.get(1).value);
 
-                if(isGreaterThanZero(minTime)) {
+                if(minTime >= BankRegulation.MIN_DEPOSIT_TIME) {
                     PassBookType passBookType = PassBookType.fromString((String) models.get(0).value);
 
                     updateMinTime(passBookType, minTime);
 
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 } else {
                     models.get(1).isError = true;
-                    models.get(1).errorSTr = "value must be greater than zero";
+                    models.get(1).errorSTr = getString(R.string.value_must_greater_the_zero);
                     dialog.notifyDataChanged();
                 }
             }
@@ -177,7 +175,7 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
 
     private void changeMinDepositAmount() {
         models.clear();
-        models.add(new TextFieldModel(Constant.MIN_DEPOSIT_AMOUNT, "", "", InputType.TYPE_CLASS_NUMBER));
+        models.add(new TextFieldModel(getString(R.string.min_deposit), "", "", InputType.TYPE_CLASS_NUMBER));
 
         dialog.onDialogButtonClick = new OnDialogButtonClick() {
             @Override
@@ -189,14 +187,14 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
             public void onPositiveClick() {
                 Integer minDeposit = Integer.valueOf((String) models.get(0).value);
 
-                if(isGreaterThanZero(minDeposit)) {
+                if(minDeposit >= BankRegulation.MIN_DEPOSIT_AMOUNT) {
                     updateMinDeposit(Integer.valueOf((String) models.get(0).value));
 
                     dialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_LONG).show();
                 } else {
                     models.get(0).isError = true;
-                    models.get(0).errorSTr = "value must be greater than zero";
+                    models.get(0).errorSTr = getString(R.string.value_must_greater_the_zero);
                     dialog.notifyDataChanged();
                 }
             }
@@ -251,22 +249,12 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
                 bankRegulation.existedPassBookTypes = result;
 
                 appDatabase.bankRegulationDAO().updateOrInsertItem(bankRegulation);
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_LONG).show();
                 customDialog.dismiss();
             }
         };
 
         customDialog.show();
-    }
-
-    private boolean isGreaterThanZero(Object value) {
-        if (value instanceof Integer) {
-            return ((Integer)value) > 0? true: false;
-        } else if(value instanceof Float) {
-            return ((Float)value) > 0.0f? true: false;
-        }
-
-        return false;
     }
 
     private void updateInterestRate(PassBookType passBookType, Float value) {

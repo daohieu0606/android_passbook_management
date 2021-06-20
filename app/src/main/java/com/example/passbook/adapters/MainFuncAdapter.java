@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
@@ -18,19 +19,19 @@ import java.util.List;
 
 public class MainFuncAdapter extends RecyclerView.Adapter {
 
-    private Context context;
+    private AppCompatActivity activity;
     private List<MainFuncModel> items;
     private OnItemAdapterClickListener onItemAdapterClickListener;
 
-    public MainFuncAdapter(Context context, List<MainFuncModel> items) {
-        this.context = context;
+    public MainFuncAdapter(AppCompatActivity anotherActivity, List<MainFuncModel> items) {
+        this.activity = anotherActivity;
         this.items = items;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(activity);
 
         View view = layoutInflater.inflate(R.layout.item_adapter_main_function_button, null, false);
 

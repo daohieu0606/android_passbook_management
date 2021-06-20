@@ -5,10 +5,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/header_main_height"
+        android:background="@color/transparent"
+        android:paddingStart="@dimen/base_padding">
+        <TextView
+            android:id="@+id/appName"
+            android:text="@string/ipassbook"
+            android:textSize="@dimen/large_size"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_below="@id/appName"
+            android:text="@string/slogan"
+            android:textColor="@color/white"
+            android:padding="@dimen/base_control_margin"
+            android:background="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
     
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMainFunction"
+        android:layout_below="@id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_header"
+        android:background="@color/white"/>
 </RelativeLayout>

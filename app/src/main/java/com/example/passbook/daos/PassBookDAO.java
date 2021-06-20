@@ -56,4 +56,13 @@ public interface PassBookDAO extends IDAO<PassBook> {
             + Constant.WHERE + "(" + Constant.CREATION_DATE_COLUMN + " BETWEEN :from AND :to)"
             + Constant.AND + Constant.PASSBOOK_TYPE_COLUMN + Constant.LIKE + "passBookType")
     List<PassBook> getPassBooksByDateAndType(long from, long to, PassBookType passBookType);
+
+    @Query(Constant.SELECT_ALL + Constant.PASSBOOK_TABLE
+            + Constant.WHERE + Constant.ID + Constant.LIKE + "id")
+    List<PassBook> getItemsById(String id);
+
+    @Query(Constant.SELECT_ALL + Constant.PASSBOOK_TABLE
+            + Constant.WHERE + Constant.CUSTOMER_ID_COLUMN + Constant.LIKE + "customerId"
+            + Constant.LIMIT + "1")
+    PassBook getItemByCustomerId(int customerId);
 }

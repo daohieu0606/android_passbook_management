@@ -2,6 +2,7 @@ package com.example.passbook.activities;
 
 import android.content.Intent;
 
+import com.example.passbook.R;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.enums.PassBookType;
@@ -24,7 +25,7 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
         models = new ArrayList<>();
         models.add(new SpinnerModel(Constant.PASSBOOK_TYPE, null, "", passBookTypes));
         //TODO: pick up only month and year
-        models.add(new DateTimeModel(Constant.PICK_UP_DATE, new Date(), ""));
+        models.add(new DateTimeModel(getString(R.string.pick_up_date), new Date(), ""));
 
         adapter = new FormAdapter(this, models);
     }

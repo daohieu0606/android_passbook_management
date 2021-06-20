@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingStart="@dimen/base_padding"
     android:paddingEnd="@dimen/base_padding"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:orientation="vertical">
 
     <com.example.passbook.customviews.CustomButton
         android:id="@+id/btnNumOfType"
-        android:text="Passbook Types"
+        android:text="@string/passbook_types"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/base_margin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"/>
     <com.example.passbook.customviews.CustomButton
         android:id="@+id/btnMinDeposit"
-        android:text="Min Deposit Amount"
-        android:layout_below="@id/btnNumOfType"
+        android:text="@string/min_deposit"
         android:layout_marginBottom="@dimen/base_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="@dimen/button_height"/>
     <com.example.passbook.customviews.CustomButton
-        android:id="@+id/btnMinTime"
-        android:text="Min Deposit Time"
-        android:layout_below="@id/btnMinDeposit"
+        android:id="@+id/btnTerm"
+        android:text="@string/term"
         android:layout_marginBottom="@dimen/base_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="@dimen/button_height"/>
     <com.example.passbook.customviews.CustomButton
         android:id="@+id/btnInterestRate"
-        android:text="Interest Rate"
-        android:layout_below="@id/btnMinTime"
+        android:text="@string/interest_rate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="@dimen/button_height"/>
 
-</RelativeLayout>
+</LinearLayout>

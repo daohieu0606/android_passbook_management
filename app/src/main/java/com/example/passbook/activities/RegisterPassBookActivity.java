@@ -2,6 +2,7 @@ package com.example.passbook.activities;
 
 import android.text.InputType;
 
+import com.example.passbook.R;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.daos.PassBookDAO;
 import com.example.passbook.data.entitys.BankRegulation;
@@ -24,7 +25,7 @@ import java.util.List;
 public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
 
     public RegisterPassBookActivity() {
-        title = Constant.REGISTER_PASSBOOK;
+        title = getString(R.string.register_passbook);
     }
 
     @Override
@@ -33,13 +34,13 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
 
         List<String> passBookTypes = getPassbookType();
 
-        models.add(new TextFieldModel(Constant.PASSBOOK_ID, "", "", InputType.TYPE_CLASS_NUMBER));
+        models.add(new TextFieldModel(getString(R.string.passbook_id), "", "", InputType.TYPE_CLASS_NUMBER));
         models.add(new SpinnerModel(Constant.PASSBOOK_TYPE, null, "", passBookTypes));
-        models.add(new TextFieldModel(Constant.CUSTOMER_NAME, "", "", InputType.TYPE_CLASS_TEXT));
-        models.add(new TextFieldModel(Constant.IDENTITY_NUMBER, "", "", InputType.TYPE_CLASS_TEXT));
-        models.add(new TextFieldModel(Constant.ADDRESS, "", "", InputType.TYPE_CLASS_TEXT));
-        models.add(new DateTimeModel(Constant.REGISTER_DATE, new Date(), ""));
-        models.add(new TextFieldModel(Constant.AMOUNT, "", "", InputType.TYPE_CLASS_NUMBER));
+        models.add(new TextFieldModel(getString(R.string.customer_name), "", "", InputType.TYPE_CLASS_TEXT));
+        models.add(new TextFieldModel(getString(R.string.identify_number), "", "", InputType.TYPE_CLASS_TEXT));
+        models.add(new TextFieldModel(getString(R.string.address), "", "", InputType.TYPE_CLASS_TEXT));
+        models.add(new DateTimeModel(getString(R.string.register_date), new Date(), ""));
+        models.add(new TextFieldModel(getString(R.string.amount), "", "", InputType.TYPE_CLASS_NUMBER));
 
         adapter = new FormAdapter(this, models);
     }
@@ -95,7 +96,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
 
         if (passBook != null) {
             models.get(0).isError = true;
-            models.get(0).errorSTr = "Passbook Id was existed";
+            models.get(0).errorSTr = getString(R.string.passbook_id_is_existed);
             result = false;
         }
 
@@ -104,7 +105,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
 
         if(Integer.valueOf((String) models.get(6).value) < minDepositAmount) {
             models.get(6).isError = true;
-            models.get(6).errorSTr = "amount must greater then " + String.valueOf(minDepositAmount);
+            models.get(6).errorSTr = getString(R.string.amount_must_greater_than) + String.valueOf(minDepositAmount);
             result = false;
         }
 

@@ -29,7 +29,9 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.cardview:cardview:1.0.0'
     def room_version = "2.3.0"
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"

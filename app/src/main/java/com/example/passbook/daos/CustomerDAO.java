@@ -44,4 +44,8 @@ public interface CustomerDAO extends IDAO<Customer> {
     @Override
     @Query(Constant.DELETE_ALL + Constant.CUSTOMER_TABLE)
     void deleteAll();
+
+    @Query(Constant.SELECT_ALL + Constant.CUSTOMER_TABLE
+            + Constant.WHERE + Constant.CUSTOMER_FULL_NAME_COLUMN + Constant.LIKE + "customerName")
+    List<Customer> getItemsByName(String customerName);
 }

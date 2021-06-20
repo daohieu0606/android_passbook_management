@@ -3,6 +3,7 @@ package com.example.passbook.customviews;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.example.passbook.R;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class CustomButton extends androidx.appcompat.widget.AppCompatButton {
     public CustomButton(@NonNull Context context) {
@@ -37,6 +40,18 @@ public class CustomButton extends androidx.appcompat.widget.AppCompatButton {
 
         this.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         this.setTextColor(Color.WHITE);
-        this.setTextSize(25.0f);
+        this.setTextSize(25.0f);        //TODO: remove hard code
+        this.setGravity(Gravity.CENTER_VERTICAL);
+
+        upTextUpper();
+    }
+
+    private void upTextUpper() {
+        String text = this.getText().toString();
+
+        if(!StringUtils.isEmpty(text)) {
+            text = text.toUpperCase();
+            this.setText(text);
+        }
     }
 }

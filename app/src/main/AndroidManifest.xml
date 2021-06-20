@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
-        <activity android:name=".activities.TestLibActivity">
+        <activity android:name=".activities.SearchPassBookActivity">
+
         </activity>
+        <activity android:name=".activities.TestLibActivity"></activity>
         <activity android:name=".activities.PickUpChangeRegulationTypeActivity" />
         <activity android:name=".activities.SelectMonthToGetReportActivity" />
         <activity android:name=".activities.PickupReportActivity" />
@@ -19,7 +21,7 @@
         <activity android:name=".activities.RegisterPassBookActivity" />
         <activity android:name=".activities.EditDepositActivity" />
         <activity android:name=".activities.EditWithdrawalActivity" />
-        <activity android:name=".activities.TestDataActivity" >
+        <activity android:name=".activities.TestDataActivity">
 
         </activity>
         <activity android:name=".activities.BaseActivity" />

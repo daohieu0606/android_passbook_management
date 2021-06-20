@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/button_corner"
+    app:cardElevation="@dimen/_10sdp">
     <RelativeLayout
-        android:background="@drawable/bg_white_corner"
         android:layout_width="@dimen/main_function_size"
-        android:layout_height="@dimen/main_function_size">
+        android:layout_height="@dimen/main_function_size"
+        android:background="@color/transparent">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:background="@color/transparent">
             <com.example.passbook.customviews.IconLabel
                 android:id="@+id/icDisplay"
                 android:textSize="@dimen/main_function_text_size"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:background="@color/transparent"/>
             <TextView
                 android:id="@+id/txtName"
                 android:textColor="@color/colorPrimary"
@@ -26,7 +32,8 @@
                 android:gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/base_control_margin"/>
+                android:layout_margin="@dimen/base_control_margin"
+                android:background="@color/transparent"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -35,4 +42,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </RelativeLayout>
-</RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

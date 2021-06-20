@@ -13,12 +13,11 @@
 
     <com.example.passbook.customviews.CustomButton
         android:id="@+id/btnSubmit"
-        android:text="Submit"
+        android:text="@string/submit"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_margin="@dimen/base_margin"
+        android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
         android:background="@color/colorPrimary"/>

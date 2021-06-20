@@ -2,6 +2,8 @@ package com.example.passbook.utils;
 
 import android.provider.ContactsContract;
 
+import com.example.passbook.converters.DateConverter;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -87,9 +89,17 @@ public class Utils {
     public static Date getNextDate(Date date) {
         Date result = null;
 
+        result = plusDays(date, 1);
+
+        return result;
+    }
+
+    public static Date plusDays(Date date, int numOfDays) {
+        Date result = null;
+
         Calendar calendar = toCalendar(date);
 
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        calendar.add(Calendar.DAY_OF_YEAR, numOfDays);
 
         result = calendar.getTime();
 

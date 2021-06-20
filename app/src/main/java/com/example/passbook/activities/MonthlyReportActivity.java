@@ -29,7 +29,7 @@ public class MonthlyReportActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         containerLayout = R.layout.activity_monthly_report;
-        title = Constant.MONTH_REPORT;
+        title = getString(R.string.month_report);
         super.onCreate(savedInstanceState);
 
         initView();
@@ -69,11 +69,11 @@ public class MonthlyReportActivity extends BaseActivity {
     //TODO: refactor this func to clean
     private void initTable() {
         LegacyTableView.insertLegacyTitle(
-                Constant.ORDINAL_NUMBER,
-                Constant.CREATION_DATE,
-                Constant.OPENED_PASSBOOK,
-                Constant.CLOSED_PASSBOOK,
-                Constant.DIFFERENCE);
+                getString(R.string.ordinal_number),
+                getString(R.string.creation_date),
+                getString(R.string.opened_passbook),
+                getString(R.string.closed_passbook),
+                getString(R.string.difference));
 
         Date currentDay = startMonth;
         while (!currentDay.after(endMonth)) {

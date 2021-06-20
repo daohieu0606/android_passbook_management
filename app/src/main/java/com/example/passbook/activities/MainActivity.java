@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         items = new ArrayList<>();
         rvMainFunction = findViewById(R.id.rvMainFunction);
-        adapter = new MainFuncAdapter(getApplicationContext(), items);
+        adapter = new MainFuncAdapter(this, items);
 
         loadDataToAdapter();
 
@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case SEARCH_PASSBOOKS:
+                intent = new Intent(this, SearchPassBookActivity.class);
                 break;
 
             case REPORT:

@@ -24,7 +24,7 @@ public class DateReportActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         containerLayout = R.layout.activity_date_report;
-        title = Constant.DATE_REPORT;
+        title = getString(R.string.date_report);
         super.onCreate(savedInstanceState);
 
         initView();
@@ -59,10 +59,10 @@ public class DateReportActivity extends BaseActivity {
 
     private void initTableViewData(List<PassBook> passBooksByDate) {
         LegacyTableView.insertLegacyTitle(Constant.ID,
-                Constant.PASSBOOK_TYPE,
-                Constant.DEPOSIT_TOTAL,
-                Constant.WITHDRAWAL_TOTAL,
-                Constant.DIFFERENCE);
+                getString(R.string.passbook_type),
+                getString(R.string.deposit_total),
+                getString(R.string.withdraw_total),
+                getString(R.string.difference));
 
         for (PassBook passBook :
                 passBooksByDate) {

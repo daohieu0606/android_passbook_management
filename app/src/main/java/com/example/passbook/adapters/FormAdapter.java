@@ -19,6 +19,7 @@ import com.example.passbook.data.models.BaseFormModel;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.SpinnerModel;
 import com.example.passbook.data.models.TextFieldModel;
+import com.example.passbook.utils.Constant;
 import com.example.passbook.utils.Utils;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -220,13 +221,13 @@ public class FormAdapter extends RecyclerView.Adapter {
             MaterialDatePicker datePicker = MaterialDatePicker
                     .Builder
                     .datePicker()
-                    .setTitleText("Select date")
+                    .setTitleText(activity.getString(R.string.select_date))
                     .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                     .build();
             datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
                 @Override
                 public void onPositiveButtonClick(Object selection) {
-                    Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                    Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(Constant.UTC));
                     calendar.setTimeInMillis((Long) selection);
 
                     Date value = calendar.getTime();

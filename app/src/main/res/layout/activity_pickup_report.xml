@@ -8,16 +8,16 @@
 
     <com.example.passbook.customviews.CustomButton
         android:id="@+id/btnReportByDate"
-        android:text="By Date"
+        android:text="@string/by_date"
         android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/base_margin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"/>
     <com.example.passbook.customviews.CustomButton
         android:id="@+id/btnReportByMonth"
-        android:text="By Month"
+        android:text="@string/by_month"
         android:layout_below="@id/btnReportByDate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="@dimen/button_height"/>
 
 </RelativeLayout>
