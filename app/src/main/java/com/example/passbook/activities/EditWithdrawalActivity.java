@@ -1,5 +1,6 @@
 package com.example.passbook.activities;
 
+import android.os.Bundle;
 import android.text.InputType;
 
 import com.example.passbook.R;
@@ -16,7 +17,9 @@ import java.util.Date;
 
 public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
 
-    public EditWithdrawalActivity() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         title = getString(R.string.withdraw_slip);
     }
 

@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="custom"
-        app:endIconDrawable="@drawable/ic_baseline_calendar_today_24">
+        app:endIconDrawable="@drawable/ic_baseline_calendar_today_24"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtValue"

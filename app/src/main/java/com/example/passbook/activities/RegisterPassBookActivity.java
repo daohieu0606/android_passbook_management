@@ -1,5 +1,6 @@
 package com.example.passbook.activities;
 
+import android.os.Bundle;
 import android.text.InputType;
 
 import com.example.passbook.R;
@@ -24,7 +25,9 @@ import java.util.List;
 
 public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
 
-    public RegisterPassBookActivity() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         title = getString(R.string.register_passbook);
     }
 
@@ -35,7 +38,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
         List<String> passBookTypes = getPassbookType();
 
         models.add(new TextFieldModel(getString(R.string.passbook_id), "", "", InputType.TYPE_CLASS_NUMBER));
-        models.add(new SpinnerModel(Constant.PASSBOOK_TYPE, null, "", passBookTypes));
+        models.add(new SpinnerModel(getString(R.string.passbook_type), null, "", passBookTypes));
         models.add(new TextFieldModel(getString(R.string.customer_name), "", "", InputType.TYPE_CLASS_TEXT));
         models.add(new TextFieldModel(getString(R.string.identify_number), "", "", InputType.TYPE_CLASS_TEXT));
         models.add(new TextFieldModel(getString(R.string.address), "", "", InputType.TYPE_CLASS_TEXT));

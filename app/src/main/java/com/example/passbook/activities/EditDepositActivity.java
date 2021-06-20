@@ -1,5 +1,6 @@
 package com.example.passbook.activities;
 
+import android.os.Bundle;
 import android.text.InputType;
 
 import com.example.passbook.R;
@@ -18,7 +19,9 @@ import java.util.Date;
 
 public class EditDepositActivity extends FormHaveSubmitButtonActivity {
 
-    public EditDepositActivity() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         title = getString(R.string.deposit_slip);
     }
 
