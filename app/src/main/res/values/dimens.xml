@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="base_margin">@dimen/_8sdp</dimen>
+    <dimen name="edt_margin">@dimen/_4sdp</dimen>
     <dimen name="margin_back_button">@dimen/_15sdp</dimen>
     <dimen name="padding_header_controls">@dimen/_12sdp</dimen>
     <dimen name="base_control_margin">@dimen/_2sdp</dimen>
@@ -8,4 +9,18 @@
     <dimen name="spacing">@dimen/_10sdp</dimen>
     <dimen name="main_function_size">@dimen/_80sdp</dimen>
     <dimen name="main_function_text_size">@dimen/_27sdp</dimen>
+    <dimen name="button_corner">@dimen/_5sdp</dimen>
+    <dimen name="bg_corner">@dimen/_3sdp</dimen>
+    <dimen name="button_height">@dimen/_40sdp</dimen>
+    <dimen name="dialog_width">@dimen/_250sdp</dimen>
+    <dimen name="image_dimen">@dimen/_50sdp</dimen>
+    <dimen name="line_height">@dimen/_1sdp</dimen>
+    <dimen name="header_main_height">@dimen/_100sdp</dimen>
+    <dimen name="search_height">@dimen/_30sdp</dimen>
+    <dimen name="switcher_width">@dimen/_200sdp</dimen>
+    <dimen name="margin_header">@dimen/_80sdp</dimen>
+    <dimen name="small_size">14sp</dimen>
+    <dimen name="medium_size">18sp</dimen>
+    <dimen name="large_size">24sp</dimen>
+    <dimen name="icon_size">18sp</dimen>
 </resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/base_padding"
+    android:paddingEnd="@dimen/base_padding"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <com.example.passbook.customviews.CustomButton
+        android:id="@+id/btnNumOfType"
+        android:text="@string/passbook_types"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/base_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"/>
+    <com.example.passbook.customviews.CustomButton
+        android:id="@+id/btnMinDeposit"
+        android:text="@string/min_deposit"
+        android:layout_marginBottom="@dimen/base_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"/>
+    <com.example.passbook.customviews.CustomButton
+        android:id="@+id/btnTerm"
+        android:text="@string/term"
+        android:layout_marginBottom="@dimen/base_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"/>
+    <com.example.passbook.customviews.CustomButton
+        android:id="@+id/btnInterestRate"
+        android:text="@string/interest_rate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"/>
+
+</LinearLayout>

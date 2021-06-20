@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SearchPassBookActivity"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/base_padding"
+        android:paddingEnd="@dimen/base_padding">
+
+        <com.example.passbook.customviews.IconLabel
+            android:id="@+id/btnBack"
+            android:text="@string/fi_back"
+            android:textColor="@color/white"
+            android:textSize="@dimen/icon_size"
+            android:layout_margin="@dimen/base_margin"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edtSearchKey"
+            android:hint="Enter passbook id"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:layout_margin="@dimen/edt_margin"
+            android:paddingStart="@dimen/base_padding"
+            android:paddingEnd="@dimen/base_padding"
+            android:layout_toRightOf="@id/btnBack"
+            android:layout_toLeftOf="@id/txtMenu"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_height"
+            android:layout_centerVertical="true"
+            android:drawableRight="@drawable/ic_baseline_search_24"
+            android:background="@drawable/bg_edt"/>
+
+        <com.example.passbook.customviews.IconLabel
+            android:id="@+id/txtMenu"
+            android:text="@string/fi_menu"
+            android:textColor="@color/white"
+            android:textSize="@dimen/icon_size"
+            android:layout_margin="@dimen/base_margin"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtNothing"
+        android:text="@string/nothing_to_display"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/large_size"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPassbook"
+        android:background="@color/white"
+        android:layout_below="@id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/base_margin"/>
+</RelativeLayout>

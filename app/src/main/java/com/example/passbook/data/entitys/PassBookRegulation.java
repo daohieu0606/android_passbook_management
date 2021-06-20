@@ -10,6 +10,8 @@ import java.util.Date;
 
 @Entity(tableName = Constant.PASSBOOK_REGULATION_TABLE)
 public class PassBookRegulation extends BaseEntity {
+    public static final float MIN_INTEREST_RATE = 0.0015f;
+
     public PassBookType passBookType;
     public Date creationDateTime;
     public int term;

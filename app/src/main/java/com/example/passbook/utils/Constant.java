@@ -1,5 +1,7 @@
 package com.example.passbook.utils;
 
+import com.example.passbook.R;
+
 public class Constant {
     public static String layout = "layout";
     public static String title = "title";
@@ -14,4 +16,20 @@ public class Constant {
     public static final String LIKE = " LIKE :";
     public static final String LIMIT = " LIMIT ";
     public static final String ID = "Id";
+    public static final String IDENTIFY_NUMBER_COLUMN = "identifyNumber";
+    public static final String ORDER_BY = " ORDER BY ";
+    public static final String DESC = " DESC ";
+    public static final String DATE_TO_GET_REPORT = "DATE_TO_GET_REPORT";
+    public static final String CREATION_DATE_COLUMN = "creationDate";
+    public static final String CUSTOMER_ID_COLUMN = "customerId";
+    public static final String PASSBOOK_ID_COLUMN = "passBookId";
+    public static final String AND = " AND ";
+    public static final String PASSBOOK_TYPE_COLUMN = "passBookType";
+    public static final String CREATION_DATE_TIME_COLUMN = "creationDateTime";
+    public static final String CUSTOMER_FULL_NAME_COLUMN = "fullName";
+    public static final String UTC = "UTC";
+    public static final String PASSBOOK_TYPE = "PASSBOOK_TYPE";
+    public static final String THREE_MONTHS = "3 Months";
+    public static final String SIX_MONTHS = "6 Months";
+    public static final String INFINITE = "Infinite";
 }
