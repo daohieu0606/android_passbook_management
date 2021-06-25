@@ -3,13 +3,11 @@ package com.example.passbook.activities;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import androidx.room.Room;
-
 import com.example.passbook.R;
+import com.example.passbook.activities.base.BaseActivity;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.data.entitys.TransactionForm;
-import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.Constant;
 import com.example.passbook.utils.Utils;
 import com.levitnudi.legacytableview.LegacyTableView;

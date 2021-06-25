@@ -1,4 +1,4 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.base;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

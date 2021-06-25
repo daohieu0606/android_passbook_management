@@ -18,13 +18,13 @@
         <activity android:name=".activities.PickupReportActivity" />
         <activity android:name=".activities.MonthlyReportActivity" />
         <activity android:name=".activities.DateReportActivity" />
-        <activity android:name=".activities.RegisterPassBookActivity" />
-        <activity android:name=".activities.EditDepositActivity" />
-        <activity android:name=".activities.EditWithdrawalActivity" />
+        <activity android:name=".activities.registerpassbook.RegisterPassBookActivity" />
+        <activity android:name=".activities.editdepositslip.EditDepositActivity" />
+        <activity android:name=".activities.editwithdrawslip.EditWithdrawalActivity" />
         <activity android:name=".activities.TestDataActivity">
 
         </activity>
-        <activity android:name=".activities.BaseActivity" />
+        <activity android:name=".activities.base.BaseActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,19 +1,20 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.editwithdrawslip;
 
 import android.os.Bundle;
 import android.text.InputType;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.base.FormHaveSubmitButtonActivity;
 import com.example.passbook.adapters.FormAdapter;
-import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.PassBook;
+import com.example.passbook.data.entitys.PassBookRegulation;
 import com.example.passbook.data.entitys.WithdrawalSlip;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.TextFieldModel;
-import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
 
@@ -47,6 +48,11 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
     }
 
     @Override
+    protected void getDataFromViewAndCallPresenterHandle() {
+
+    }
+
+   /* @Override
     protected void HandleSubmit() {
         WithdrawalSlip withdrawalSlip = getWithdrawalSlip();
 
@@ -62,7 +68,7 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
                 appDatabase.passBookDAO().updateOrInsertItem(refPassBook);
             }
         }
-    }
+    }*/
 
     private WithdrawalSlip getWithdrawalSlip() {
         WithdrawalSlip withdrawalSlip = new WithdrawalSlip();
@@ -92,6 +98,26 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
 
     private boolean checkInfor() {
         boolean result = false;
+
+        return result;
+    }
+
+    private float getAmount(PassBook passBook) {
+        float result = 0.0f;
+        List<PassBookRegulation> passBookRegulations = appDatabase
+                                                .passBookRegulationDAO()
+                                                .getItemsByType(passBook.passBookType);
+
+        PassBookRegulation lastPassBookRegulation = appDatabase
+                                                .passBookRegulationDAO()
+                                                .getLastPassBookByType(passBook.passBookType);
+
+        Date currentDate = new Date(passBook.creationDate.getTime());
+
+        while (currentDate.before(lastPassBookRegulation.creationDateTime)){
+            //get passbook regulation
+            PassBookRegulation curPassBookRegulation = null;
+        }
 
         return result;
     }

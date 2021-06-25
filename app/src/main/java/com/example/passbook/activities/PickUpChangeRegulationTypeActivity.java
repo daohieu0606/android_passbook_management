@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.room.Room;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.base.BaseActivity;
 import com.example.passbook.customviews.CustomDialog;
 import com.example.passbook.customviews.DialogHaveListView;
 import com.example.passbook.data.entitys.BankRegulation;

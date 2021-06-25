@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.Window;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.editdepositslip.EditDepositActivity;
+import com.example.passbook.activities.editwithdrawslip.EditWithdrawalActivity;
+import com.example.passbook.activities.registerpassbook.RegisterPassBookActivity;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.adapters.MainFuncAdapter;
 import com.example.passbook.data.HardCode;

@@ -46,4 +46,8 @@ public interface PassBookRegulationDAO extends IDAO<PassBookRegulation> {
             + Constant.ORDER_BY + Constant.CREATION_DATE_TIME_COLUMN + Constant.DESC
             + Constant.LIMIT + "1")
     PassBookRegulation getLastPassBookByType(PassBookType passBookType);
+
+    @Query(Constant.SELECT_ALL + Constant.PASSBOOK_REGULATION_TABLE
+            + Constant.WHERE + Constant.PASSBOOK_TYPE_COLUMN + Constant.LIKE + "passBookType")
+    List<PassBookRegulation> getItemsByType(PassBookType passBookType);
 }

@@ -1,4 +1,4 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.base;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,13 +7,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.base.BaseActivity;
+import com.example.passbook.activities.base.FormContract;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.adapters.SpacesItemDecoration;
+import com.example.passbook.customviews.NotificationPopup;
 import com.example.passbook.data.models.BaseFormModel;
+import com.example.passbook.intefaces.OnDismissListener;
 
 import java.util.List;
 
-public abstract class FormHaveSubmitButtonActivity extends BaseActivity {
+public abstract class FormHaveSubmitButtonActivity
+        extends BaseActivity
+        implements FormContract.View {
     protected Button btnSubmit;
     protected RecyclerView lst_input;
     protected FormAdapter adapter;
@@ -58,6 +64,40 @@ public abstract class FormHaveSubmitButtonActivity extends BaseActivity {
         }
     }
 
+    private void HandleSubmit(){
+        resetValid();
+
+        if(isValidData()) {
+            getDataFromViewAndCallPresenterHandle();
+        }
+
+        adapter.notifyDataSetChanged();
+    }
+
     protected abstract void initModelAndAdapter();
-    protected abstract void HandleSubmit();
+
+    protected abstract void getDataFromViewAndCallPresenterHandle();
+
+    @Override
+    public void handleSuccess() {
+        NotificationPopup notificationPopup = new NotificationPopup(
+                this,
+                "Notification",
+                "Handle Success",
+                new OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        finish();
+                    }
+                });
+
+        notificationPopup.show();
+    }
+
+    @Override
+    public void handleFailed() {
+
+    }
+
+
 }

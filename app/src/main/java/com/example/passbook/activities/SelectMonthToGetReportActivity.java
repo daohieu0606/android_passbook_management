@@ -3,6 +3,7 @@ package com.example.passbook.activities;
 import android.content.Intent;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.base.FormHaveSubmitButtonActivity;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.enums.PassBookType;
@@ -31,6 +32,11 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
     }
 
     @Override
+    protected void getDataFromViewAndCallPresenterHandle() {
+
+    }
+/*
+    @Override
     protected void HandleSubmit() {
         resetValid();
 
@@ -45,5 +51,5 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
 
             startActivity(intent);
         }
-    }
+    }*/
 }

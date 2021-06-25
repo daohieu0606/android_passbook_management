@@ -1,11 +1,11 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.registerpassbook;
 
 import android.os.Bundle;
 import android.text.InputType;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.base.FormHaveSubmitButtonActivity;
 import com.example.passbook.adapters.FormAdapter;
-import com.example.passbook.daos.PassBookDAO;
 import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.Customer;
 import com.example.passbook.data.entitys.InfinitePassBook;
@@ -17,16 +17,18 @@ import com.example.passbook.data.enums.PassbookState;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.SpinnerModel;
 import com.example.passbook.data.models.TextFieldModel;
-import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
+public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity implements RegisterPassbookContract.View {
+    private RegisterPassbookContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        presenter = new RegisterPassbookPresenter(this);
+
         super.onCreate(savedInstanceState);
         title = getString(R.string.register_passbook);
     }
@@ -46,6 +48,14 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
         models.add(new TextFieldModel(getString(R.string.amount), "", "", InputType.TYPE_CLASS_NUMBER));
 
         adapter = new FormAdapter(this, models);
+    }
+
+    @Override
+    protected void getDataFromViewAndCallPresenterHandle() {
+        Customer customer = getCustomerFromView();
+        PassBook passBook = getPassBookFromView();
+
+        presenter.handleSubmit(customer, passBook);
     }
 
     private List<String> getPassbookType() {
@@ -70,70 +80,17 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
         return passBookTypes;
     }
 
-    @Override
-    protected void HandleSubmit() {
-        resetValid();
+    private Customer getCustomerFromView() {
+        Customer customer = new Customer();
 
-        if(isValidData()) {
-            if(manualCheck()) {
-                Customer customer = getCustomer();
-                PassBook passBook = getPassBook();
-
-                passBook.customerId = customer.Id;
-
-                PassBookDAO passBookDAO = appDatabase.passBookDAO();
-                passBookDAO.insertItem(passBook);
-
-                //TODO: show dialog
-                this.finish();
-            }
-        }
-
-        adapter.notifyDataSetChanged();
-    }
-
-    private boolean manualCheck() {
-        boolean result = true;
-
-        PassBook passBook = appDatabase.passBookDAO().getItem(Integer.valueOf((String) models.get(0).value));
-
-        if (passBook != null) {
-            models.get(0).isError = true;
-            models.get(0).errorSTr = getString(R.string.passbook_id_is_existed);
-            result = false;
-        }
-
-        BankRegulation bankRegulation = appDatabase.bankRegulationDAO().getItem(1);
-        int minDepositAmount = bankRegulation != null? bankRegulation.minDepositAmount: 100000;
-
-        if(Integer.valueOf((String) models.get(6).value) < minDepositAmount) {
-            models.get(6).isError = true;
-            models.get(6).errorSTr = getString(R.string.amount_must_greater_than) + String.valueOf(minDepositAmount);
-            result = false;
-        }
-
-        return result;
-    }
-
-    private Customer getCustomer() {
-        Customer customer = null;
-        customer = appDatabase.customerDAO().getCustomerByIdentifyNumber((String) models.get(3).value);
-
-        if (customer == null) {
-            customer = new Customer();
-            customer.fullName = (String) models.get(2).value;
-            customer.identifyNumber = (String) models.get(3).value;
-            customer.address = (String) models.get(4).value;
-
-            customer.Id = (int) appDatabase.customerDAO().insertItem(customer);
-        } else {
-            //do nothing
-        }
+        customer.fullName = (String) models.get(2).value;
+        customer.identifyNumber = (String) models.get(3).value;
+        customer.address = (String) models.get(4).value;
 
         return customer;
     }
 
-    private PassBook getPassBook() {
+    private PassBook getPassBookFromView() {
         PassBook passBook = null;
         PassBookType passBookType = PassBookType.fromString((String) models.get(1).value);
 
@@ -151,10 +108,23 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity {
                 passBook = new InfinitePassBook();
         }
 
+        passBook.Id = Integer.valueOf((String) models.get(0).value);
         passBook.passbookState = PassbookState.OPENED;
         passBook.creationDate = (Date) models.get(5).value;
         passBook.amount = Integer.valueOf((String) models.get(6).value);
 
         return passBook;
+    }
+
+    @Override
+    public void setPassBookIsExistedError() {
+        models.get(0).isError = true;
+        models.get(0).errorSTr = getString(R.string.passbook_id_is_existed);
+    }
+
+    @Override
+    public void setAmountIsSmallThanRegulationError(int minDepositAmount) {
+        models.get(6).isError = true;
+        models.get(6).errorSTr = getString(R.string.amount_must_greater_than) + String.valueOf(minDepositAmount);
     }
 }
