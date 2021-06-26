@@ -1,4 +1,4 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.pickupchangeregulation;
 
 import android.os.Bundle;
 import android.text.InputType;
@@ -10,6 +10,7 @@ import androidx.room.Room;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.base.BaseActivity;
+import com.example.passbook.activities.pickupreport.PickupReportContract;
 import com.example.passbook.customviews.CustomDialog;
 import com.example.passbook.customviews.DialogHaveListView;
 import com.example.passbook.data.entitys.BankRegulation;
@@ -27,7 +28,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PickUpChangeRegulationTypeActivity extends BaseActivity implements View.OnClickListener {
+public class PickUpChangeRegulationTypeActivity extends BaseActivity
+        implements View.OnClickListener, PickUpChangeRegulationTypeContract.View {
     private Button btnNumOfType;
     private Button btnMinDeposit;
     private Button btnTerm;
@@ -35,7 +37,8 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
 
     private DialogHaveListView dialog;
     private List<BaseFormModel> models;
-    private AppDatabase db;
+
+    private PickUpChangeRegulationTypeContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
 
         super.onCreate(savedInstanceState);
 
+        presenter = new PickUpChangeRegulationTypePresenter(this);
         init();
     }
 
@@ -65,8 +69,6 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
 
         models = new ArrayList<>();
         dialog = new DialogHaveListView(this, models);
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
     }
 
     @Override
@@ -262,14 +264,14 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
         PassBookRegulation passBookRegulation = getPassBookRegulation(passBookType);
         passBookRegulation.interestRate = value;
 
-        db.passBookRegulationDAO().insertItem(passBookRegulation);
+        appDatabase.passBookRegulationDAO().insertItem(passBookRegulation);
     }
 
     private void updateMinTime(PassBookType passBookType, Integer value) {
         PassBookRegulation passBookRegulation = getPassBookRegulation(passBookType);
         passBookRegulation.term = value;
 
-        db.passBookRegulationDAO().insertItem(passBookRegulation);
+        appDatabase.passBookRegulationDAO().insertItem(passBookRegulation);
     }
 
     private void updateMinDeposit(Integer value) {
@@ -277,11 +279,11 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
 
         bankRegulation.minDepositAmount = value;
 
-        db.bankRegulationDAO().updateOrInsertItem(bankRegulation);
+        appDatabase.bankRegulationDAO().updateOrInsertItem(bankRegulation);
     }
 
     private PassBookRegulation getPassBookRegulation(PassBookType passBookType) {
-        PassBookRegulation passBookRegulation = db.passBookRegulationDAO().getLastPassBookByType(passBookType);
+        PassBookRegulation passBookRegulation = appDatabase.passBookRegulationDAO().getLastPassBookByType(passBookType);
 
         if(passBookRegulation == null) {
             passBookRegulation = new PassBookRegulation();
@@ -297,7 +299,7 @@ public class PickUpChangeRegulationTypeActivity extends BaseActivity implements 
     }
 
     private BankRegulation getBankRegulation() {
-        BankRegulation bankRegulation = db.bankRegulationDAO().getItem(1);
+        BankRegulation bankRegulation = appDatabase.bankRegulationDAO().getItem(1);
 
         if (bankRegulation == null) {
             bankRegulation = new BankRegulation();

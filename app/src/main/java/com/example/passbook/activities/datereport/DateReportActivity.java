@@ -1,4 +1,4 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.datereport;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -7,7 +7,6 @@ import com.example.passbook.R;
 import com.example.passbook.activities.base.BaseActivity;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.utils.Constant;
 import com.example.passbook.utils.Utils;
 import com.levitnudi.legacytableview.LegacyTableView;
@@ -15,9 +14,10 @@ import com.levitnudi.legacytableview.LegacyTableView;
 import java.util.Date;
 import java.util.List;
 
-public class DateReportActivity extends BaseActivity {
+public class DateReportActivity extends BaseActivity implements DateReportContract.View {
     private LegacyTableView tbDateReport;
     private TextView txtDateValue;
+    private DateReportContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,8 @@ public class DateReportActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         initView();
+
+        presenter = new DateReportPresenter(this);
     }
 
     private void initView() {
@@ -47,7 +49,7 @@ public class DateReportActivity extends BaseActivity {
 
             txtDateValue.setText(Utils.dataToString(dateToGetReport));
 
-            List<PassBook> passBooksByDate = getPassbooks(dateToGetReport);
+            List<PassBook> passBooksByDate = presenter.getPassbooks(dateToGetReport);
 
             initTableViewData(passBooksByDate);
         } else {
@@ -62,42 +64,11 @@ public class DateReportActivity extends BaseActivity {
                 getString(R.string.withdraw_total),
                 getString(R.string.difference));
 
-        for (PassBook passBook :
-                passBooksByDate) {
-            List<TransactionForm> transactionForms = appDatabase
-                    .transactionFormDAO()
-                    .getItemsByPassbookIdAndCustomerId(passBook.Id, passBook.customerId);
+        presenter.initTableViewData(passBooksByDate);
+    }
 
-            int depositTotal = 0;
-            int withdrawTotal = 0;
-            int difference = 0;
-
-            for (TransactionForm transactionForm :
-                    transactionForms) {
-                switch (transactionForm.transactionFormType) {
-                    case DEPOSIT:
-                        depositTotal += transactionForm.amount;
-                        break;
-
-                    case WITHDRAWAL:
-                        withdrawTotal += transactionForm.amount;
-                        break;
-                }
-            }
-
-            difference = depositTotal - withdrawTotal;
-
-            LegacyTableView.insertLegacyContent(String.valueOf(passBook.Id));
-            LegacyTableView.insertLegacyContent(passBook.passBookType.getText());
-            LegacyTableView.insertLegacyContent(String.valueOf(depositTotal));
-            LegacyTableView.insertLegacyContent(String.valueOf(withdrawTotal));
-            LegacyTableView.insertLegacyContent(String.valueOf(difference));
-        }
-
-        for(int i = 0; i< passBooksByDate.size(); i++) {
-
-        }
-
+    @Override
+    public void setDataToView() {
         tbDateReport.setTitle(LegacyTableView.readLegacyTitle());
         tbDateReport.setContent(LegacyTableView.readLegacyContent());
 
@@ -107,18 +78,5 @@ public class DateReportActivity extends BaseActivity {
         tbDateReport.setShowZoomControls(true);
 
         tbDateReport.build();
-    }
-
-    private List<PassBook> getPassbooks(Date dateToGetPassbooks) {
-        Date startDate = Utils.getStartDate(dateToGetPassbooks);
-        Date endDate = Utils.getEndDate(dateToGetPassbooks);
-
-        long from = DateConverter.dateToTimestamp(startDate);
-        long to = DateConverter.dateToTimestamp(endDate);
-
-        List<PassBook> passBooksByDate = appDatabase.passBookDAO().
-                getPassBooksByDate(from, to);
-
-        return  passBooksByDate;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.passbook.activities.editdepositslip;
 
-import com.example.passbook.activities.base.FormContract;
+import com.example.passbook.activities.form.FormContract;
 
 public interface EditDepositSlipContract {
     interface View extends FormContract.View {

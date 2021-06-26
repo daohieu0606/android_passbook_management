@@ -1,9 +1,6 @@
 package com.example.passbook.activities.editdepositslip;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.passbook.R;
-import com.example.passbook.activities.base.FormPresenter;
+import com.example.passbook.activities.form.FormPresenter;
 import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.DepositSlip;
 import com.example.passbook.data.entitys.PassBook;
@@ -14,31 +11,28 @@ public class EditDepositSlipPresenter extends FormPresenter implements EditDepos
     private EditDepositSlipContract.View view;
 
     public EditDepositSlipPresenter(EditDepositSlipContract.View view) {
-        super((AppCompatActivity) view);
+        super(view);
 
         this.view = view;
     }
 
     @Override
-    public void handleSubmit(Object... objects) {
+    protected void saveData(Object... objects) {
         DepositSlip depositSlip = (DepositSlip) objects[0];
 
-        if(manualCheck(depositSlip)) {
-            long id = appDatabase.transactionFormDAO().insertItem(depositSlip);
+        long id = appDatabase.transactionFormDAO().insertItem(depositSlip);
 
-            PassBook refPassbook = appDatabase.passBookDAO().getItem(depositSlip.passBookId);
+        PassBook refPassbook = appDatabase.passBookDAO().getItem(depositSlip.passBookId);
 
-            int newAmount = refPassbook.amount + depositSlip.amount;
-            refPassbook.amount = newAmount;
-            appDatabase.passBookDAO().updateOrInsertItem(refPassbook);
-
-            view.handleSuccess();
-        } else {
-            view.handleFailed();
-        }
+        int newAmount = refPassbook.amount + depositSlip.amount;
+        refPassbook.amount = newAmount;
+        appDatabase.passBookDAO().updateOrInsertItem(refPassbook);
     }
 
-    private boolean manualCheck(DepositSlip depositSlip) {
+    @Override
+    protected boolean manualCheck(Object... objects) {
+        DepositSlip depositSlip = (DepositSlip) objects[0];
+
         boolean result = true;
 
         PassBook refPassbook = appDatabase.passBookDAO().getItem(depositSlip.passBookId);

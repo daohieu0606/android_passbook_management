@@ -1,11 +1,10 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.selectmonthtogetreport;
 
-import android.content.Intent;
+import android.os.Bundle;
 
 import com.example.passbook.R;
-import com.example.passbook.activities.base.FormHaveSubmitButtonActivity;
+import com.example.passbook.activities.form.FormHaveSubmitButtonActivity;
 import com.example.passbook.adapters.FormAdapter;
-import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.SpinnerModel;
@@ -15,7 +14,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity {
+public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
+        implements SelectMonthToGetReportContract.View {
+
+    private SelectMonthToGetReportContract.Presenter presenter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter = new SelectMonthToGetReportPresenter(this);
+    }
+
     @Override
     protected void initModelAndAdapter() {
         List<String> passBookTypes = new ArrayList<>();
@@ -33,23 +42,9 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
 
     @Override
     protected void getDataFromViewAndCallPresenterHandle() {
+        PassBookType passBookType = PassBookType.fromString((String) models.get(0).value);
+        Date date = (Date) models.get(1).value;
 
+        presenter.handleSubmit(passBookType, date);
     }
-/*
-    @Override
-    protected void HandleSubmit() {
-        resetValid();
-
-        if(isValidData()) {
-            PassBookType passBookType = PassBookType.fromString((String) models.get(0).value);
-            Date date = (Date) models.get(1).value;
-            long dataValue = DateConverter.dateToTimestamp(date);
-
-            Intent intent = new Intent(this, MonthlyReportActivity.class);
-            intent.putExtra(Constant.DATE_TO_GET_REPORT, dataValue);
-            intent.putExtra(Constant.PASSBOOK_TYPE, passBookType.getText());
-
-            startActivity(intent);
-        }
-    }*/
 }

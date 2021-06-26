@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
-        <activity android:name=".activities.SearchPassBookActivity">
+        <activity android:name=".activities.searchpassbook.SearchPassBookActivity">
 
         </activity>
         <activity android:name=".activities.TestLibActivity"></activity>
-        <activity android:name=".activities.PickUpChangeRegulationTypeActivity" />
-        <activity android:name=".activities.SelectMonthToGetReportActivity" />
-        <activity android:name=".activities.PickupReportActivity" />
-        <activity android:name=".activities.MonthlyReportActivity" />
-        <activity android:name=".activities.DateReportActivity" />
+        <activity android:name=".activities.pickupchangeregulation.PickUpChangeRegulationTypeActivity" />
+        <activity android:name=".activities.selectmonthtogetreport.SelectMonthToGetReportActivity" />
+        <activity android:name=".activities.pickupreport.PickupReportActivity" />
+        <activity android:name=".activities.monthlyreport.MonthlyReportActivity" />
+        <activity android:name=".activities.datereport.DateReportActivity" />
         <activity android:name=".activities.registerpassbook.RegisterPassBookActivity" />
         <activity android:name=".activities.editdepositslip.EditDepositActivity" />
         <activity android:name=".activities.editwithdrawslip.EditWithdrawalActivity" />
@@ -25,7 +25,7 @@
 
         </activity>
         <activity android:name=".activities.base.BaseActivity" />
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

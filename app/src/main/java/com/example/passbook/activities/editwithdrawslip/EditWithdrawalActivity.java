@@ -4,24 +4,24 @@ import android.os.Bundle;
 import android.text.InputType;
 
 import com.example.passbook.R;
-import com.example.passbook.activities.base.FormHaveSubmitButtonActivity;
+import com.example.passbook.activities.form.FormHaveSubmitButtonActivity;
 import com.example.passbook.adapters.FormAdapter;
-import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.data.entitys.PassBookRegulation;
 import com.example.passbook.data.entitys.WithdrawalSlip;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.TextFieldModel;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
+public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity implements EditWithdrawSlipContract.View {
+    private EditWithdrawSlipContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title = getString(R.string.withdraw_slip);
+
+        presenter = new EditWithdrawSlipPresenter(this);
     }
 
     @Override
@@ -49,26 +49,9 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
 
     @Override
     protected void getDataFromViewAndCallPresenterHandle() {
-
-    }
-
-   /* @Override
-    protected void HandleSubmit() {
         WithdrawalSlip withdrawalSlip = getWithdrawalSlip();
-
-        if (withdrawalSlip != null) {
-            int id = (int) appDatabase.transactionFormDAO().insertItem(withdrawalSlip);
-            withdrawalSlip.Id = id;
-
-            PassBook refPassBook = appDatabase.passBookDAO().getItem(withdrawalSlip.passBookId);
-
-            if (refPassBook != null) {
-                int newAmount = refPassBook.amount - withdrawalSlip.amount;
-                refPassBook.amount = newAmount;
-                appDatabase.passBookDAO().updateOrInsertItem(refPassBook);
-            }
-        }
-    }*/
+        presenter.handleSubmit(withdrawalSlip);
+    }
 
     private WithdrawalSlip getWithdrawalSlip() {
         WithdrawalSlip withdrawalSlip = new WithdrawalSlip();
@@ -80,28 +63,7 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
 
         return withdrawalSlip;
     }
-
-    private boolean manualCheck() {
-        boolean result = false;
-
-        checkMinNumOfDays();
-        checkInfor();
-
-        return result;
-    }
-
-    private boolean checkMinNumOfDays() {
-        boolean result = false;
-
-        return result;
-    }
-
-    private boolean checkInfor() {
-        boolean result = false;
-
-        return result;
-    }
-
+/*
     private float getAmount(PassBook passBook) {
         float result = 0.0f;
         List<PassBookRegulation> passBookRegulations = appDatabase
@@ -120,5 +82,5 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity {
         }
 
         return result;
-    }
+    }*/
 }

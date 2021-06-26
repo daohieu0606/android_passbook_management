@@ -1,8 +1,6 @@
 package com.example.passbook.activities.registerpassbook;
 
-import com.example.passbook.activities.base.FormContract;
-import com.example.passbook.data.entitys.Customer;
-import com.example.passbook.data.entitys.PassBook;
+import com.example.passbook.activities.form.FormContract;
 
 public interface RegisterPassbookContract {
     interface View extends FormContract.View {

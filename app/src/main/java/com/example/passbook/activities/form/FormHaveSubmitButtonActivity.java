@@ -1,4 +1,4 @@
-package com.example.passbook.activities.base;
+package com.example.passbook.activities.form;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.base.BaseActivity;
-import com.example.passbook.activities.base.FormContract;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.customviews.NotificationPopup;

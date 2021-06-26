@@ -1,8 +1,8 @@
-package com.example.passbook.activities.editwithdrawslip;
+package com.example.passbook.activities.selectmonthtogetreport;
 
 import com.example.passbook.activities.form.FormContract;
 
-public interface EditWithdrawSlipContract {
+public interface SelectMonthToGetReportContract {
     interface View extends FormContract.View {
     }
 

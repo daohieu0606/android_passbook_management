@@ -1,52 +1,46 @@
 package com.example.passbook.activities.registerpassbook;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
-import com.example.passbook.activities.base.FormPresenter;
+import com.example.passbook.activities.form.FormPresenter;
 import com.example.passbook.daos.PassBookDAO;
 import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.Customer;
 import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.services.AppDatabase;
 
 public class RegisterPassbookPresenter extends FormPresenter implements RegisterPassbookContract.Presenter {
     private RegisterPassbookContract.View view;
 
     public RegisterPassbookPresenter(RegisterPassbookContract.View anotherView) {
-        super((AppCompatActivity) anotherView);
+        super(anotherView);
         this.view = anotherView;
     }
 
     @Override
-    public void handleSubmit(Object... objects) {
+    protected void saveData(Object... objects) {
         Customer customer = (Customer) objects[0];
         PassBook passBook = (PassBook) objects[1];
 
-        if(manualCheck(passBook)) {
-            Customer existedCustomer = appDatabase
-                    .customerDAO()
-                    .getCustomerByIdentifyNumberAndName(customer.identifyNumber, customer.fullName);
+        Customer existedCustomer = appDatabase
+                .customerDAO()
+                .getCustomerByIdentifyNumberAndName(customer.identifyNumber, customer.fullName);
 
-            if(existedCustomer == null) {
-                int id = (int) appDatabase.customerDAO().insertItem(customer);
+        if(existedCustomer == null) {
+            int id = (int) appDatabase.customerDAO().insertItem(customer);
 
-                customer.Id = id;
-            } else {
-                customer.Id = existedCustomer.Id;
-            }
-
-            passBook.customerId = customer.Id;
-            PassBookDAO passBookDAO = appDatabase.passBookDAO();
-            passBookDAO.insertItem(passBook);
-
-            view.handleSuccess();
+            customer.Id = id;
         } else {
-            view.handleFailed();
+            customer.Id = existedCustomer.Id;
         }
+
+        passBook.customerId = customer.Id;
+        PassBookDAO passBookDAO = appDatabase.passBookDAO();
+        passBookDAO.insertItem(passBook);
     }
 
-    private boolean manualCheck(PassBook passBook) {
+    @Override
+    protected boolean manualCheck(Object... objects) {
+        Customer customer = (Customer) objects[0];
+        PassBook passBook = (PassBook) objects[1];
+
         boolean result = true;
 
         if (appDatabase.passBookDAO().getItem(passBook.Id) != null) {

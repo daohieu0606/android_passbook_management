@@ -5,11 +5,12 @@ import androidx.room.Room;
 
 import com.example.passbook.services.AppDatabase;
 
-public abstract class FormPresenter {
+public abstract class BasePresenter implements BaseContract.Presenter {
     protected AppDatabase appDatabase;
+    private BaseContract.View view;
 
-    public FormPresenter(AppCompatActivity activity) {
-        appDatabase = Room.databaseBuilder(activity.getApplicationContext(),
+    public BasePresenter(BaseContract.View view) {
+        appDatabase = Room.databaseBuilder(((AppCompatActivity)view).getApplicationContext(),
                 AppDatabase.class, "database-name").allowMainThreadQueries().build();
     }
 }

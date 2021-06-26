@@ -20,7 +20,8 @@ import com.example.passbook.customviews.IconLabel;
 import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.Constant;
 
-public abstract class BaseActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener,
+BaseContract.View{
 
     protected int containerLayout = 0;
 
@@ -108,6 +109,13 @@ public abstract class BaseActivity extends AppCompatActivity implements PopupMen
                 return true;
             default:
                 return false;
+        }
+    }
+
+    @Override
+    public void moveToAnotherActivity(Intent intent) {
+        if(intent != null){
+            this.startActivity(intent);
         }
     }
 }
