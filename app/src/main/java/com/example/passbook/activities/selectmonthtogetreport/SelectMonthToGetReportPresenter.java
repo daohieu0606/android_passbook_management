@@ -26,7 +26,7 @@ public class SelectMonthToGetReportPresenter extends FormPresenter
     }
 
     @Override
-    protected void saveData(Object... objects) {
+    protected boolean saveData(Object... objects) {
         PassBookType passBookType = (PassBookType) objects[0];
         Date date = (Date) objects[1];
 
@@ -37,6 +37,7 @@ public class SelectMonthToGetReportPresenter extends FormPresenter
         intent.putExtra(Constant.PASSBOOK_TYPE, passBookType.getText());
 
         view.moveToAnotherActivity(intent);
+        return false;
     }
 
     @Override

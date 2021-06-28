@@ -1,10 +1,16 @@
 package com.example.passbook.activities.selectmonthtogetreport;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.DatePicker;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.form.FormHaveSubmitButtonActivity;
 import com.example.passbook.adapters.FormAdapter;
+import com.example.passbook.customviews.MonthYearPickerDialog;
+import com.example.passbook.data.enums.DatePickerType;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.SpinnerModel;
@@ -21,6 +27,7 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        title = getString(R.string.select_month_title);
         super.onCreate(savedInstanceState);
         presenter = new SelectMonthToGetReportPresenter(this);
     }
@@ -33,9 +40,9 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
         passBookTypes.add(PassBookType.INFINITE.getText());
 
         models = new ArrayList<>();
-        models.add(new SpinnerModel(Constant.PASSBOOK_TYPE, null, "", passBookTypes));
+        models.add(new SpinnerModel(getResources().getString(R.string.passbook_type), null, "", passBookTypes));
         //TODO: pick up only month and year
-        models.add(new DateTimeModel(getString(R.string.pick_up_date), new Date(), ""));
+        models.add(new DateTimeModel(getString(R.string.pick_up_date), new Date(), "", DatePickerType.MONTH_YEAR_ONLY));
 
         adapter = new FormAdapter(this, models);
     }
@@ -46,5 +53,10 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
         Date date = (Date) models.get(1).value;
 
         presenter.handleSubmit(passBookType, date);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

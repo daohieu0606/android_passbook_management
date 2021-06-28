@@ -49,7 +49,6 @@ public class PickupReportActivity extends BaseActivity
         switch (v.getId()) {
             case R.id.btnReportByDate:
                 getDateReportActivity();
-
                 break;
 
             case R.id.btnReportByMonth:

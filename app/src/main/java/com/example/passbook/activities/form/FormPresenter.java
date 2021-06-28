@@ -16,15 +16,16 @@ public abstract class FormPresenter extends BasePresenter implements FormContrac
 
     @Override
     public void handleSubmit(Object... objects) {
-        if(manualCheck()) {
-            saveData();
-            view.handleSuccess();
+        if(manualCheck(objects)) {
+            if(saveData(objects)) {
+                view.handleSuccess();
+            }
         } else {
             view.handleFailed();
         }
     }
 
-    protected abstract void saveData(Object... objects);
+    protected abstract boolean saveData(Object... objects);
 
     protected abstract boolean manualCheck(Object... objects);
 }

@@ -32,4 +32,13 @@ public class Constant {
     public static final String THREE_MONTHS = "3 Months";
     public static final String SIX_MONTHS = "6 Months";
     public static final String INFINITE = "Infinite";
+    public static final String SMALLER_OR_EQUAL = " <= :";
+    public static final String SETTING = "SETTING";
+    public static final String THEME = "THEME";
+    public static final String STYLE = "style";
+    public static final String PINK_THEME = "PinkTheme";
+    public static final String BLUE_THEME = "BlueTheme";
+    public static final String YELLOW_THEME = "YellowTheme";
+    public static final String SHORT_DATE = "dd/MM/yyyy";
+    public static final String MONTH_YEAR_FORMAT = "MMM yyyy";
 }

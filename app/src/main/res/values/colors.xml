@@ -10,10 +10,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#f06292</color>
     <color name="colorPrimaryVariant">#ba2d65</color>
+<!--    <color name="bluePrimary">#448aff</color>-->
+<!--    <color name="blueVariant">#005ecb</color>-->
+<!--    <color name="yellowPrimary">#ffff00</color>-->
+<!--    <color name="yellowVariant">#c7cc00</color>-->
     <color name="colorOnPrimary">@color/white</color>
     <!-- Secondary brand color. -->
     <color name="colorSecondary">#ab47bc</color>
     <color name="colorSecondaryVariant">#790e8b</color>
     <color name="colorOnSecondary">@color/black</color>
     <color name="transparent">@android:color/transparent</color>
+    <color name="disable_bg_color">#80FFFFFF</color>
 </resources>

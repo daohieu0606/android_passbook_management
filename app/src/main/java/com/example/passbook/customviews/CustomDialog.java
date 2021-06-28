@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +19,11 @@ public class CustomDialog extends Dialog implements View.OnClickListener{
     protected RelativeLayout body;
     protected Button btnYes;
     protected Button btnNo;
+    protected TextView txtTitle;
 
     public OnDialogButtonClick onDialogButtonClick;
 
-    public CustomDialog(@NonNull AppCompatActivity activity,@NonNull Integer bodyView) {
+    public CustomDialog(@NonNull AppCompatActivity activity,@NonNull Integer bodyView, String title) {
         super(activity);
 
         this.activity = activity;
@@ -30,7 +32,9 @@ public class CustomDialog extends Dialog implements View.OnClickListener{
         setContentView(R.layout.dialog_two_button);
         btnYes = (Button) findViewById(R.id.btnYes);
         btnNo = (Button) findViewById(R.id.btnNo);
+        txtTitle = findViewById(R.id.txtTitle);
 
+        txtTitle.setText(title);
         body = findViewById(R.id.body);
 
         LayoutInflater layoutInflater = LayoutInflater.from(activity);

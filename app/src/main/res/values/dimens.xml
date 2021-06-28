@@ -23,4 +23,5 @@
     <dimen name="medium_size">18sp</dimen>
     <dimen name="large_size">24sp</dimen>
     <dimen name="icon_size">18sp</dimen>
+    <dimen name="item_adapter_height">@dimen/_48sdp</dimen>
 </resources>

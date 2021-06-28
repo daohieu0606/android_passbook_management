@@ -47,7 +47,7 @@ public class DateReportActivity extends BaseActivity implements DateReportContra
         if(dateToGetReportLong != -1) {
             Date dateToGetReport = DateConverter.fromTimestamp(dateToGetReportLong);
 
-            txtDateValue.setText(Utils.dataToString(dateToGetReport));
+            txtDateValue.setText(Utils.dateToString(dateToGetReport));
 
             List<PassBook> passBooksByDate = presenter.getPassbooks(dateToGetReport);
 

@@ -9,5 +9,6 @@ public interface RegisterPassbookContract {
     }
 
     interface Presenter extends FormContract.Presenter {
+        int getNextPassbookId();
     }
 }

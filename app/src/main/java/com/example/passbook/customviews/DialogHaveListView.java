@@ -17,8 +17,8 @@ public class DialogHaveListView extends CustomDialog {
     private List<BaseFormModel> models;
     private FormAdapter adapter;
 
-    public DialogHaveListView(@NonNull AppCompatActivity activity, @NonNull List<BaseFormModel> models) {
-        super(activity, R.layout.view_contain_only_listview);
+    public DialogHaveListView(@NonNull AppCompatActivity activity, @NonNull List<BaseFormModel> models, String title) {
+        super(activity, R.layout.view_contain_only_listview, title);
         lst_input = body.findViewById(R.id.lst_input);
 
         this.activity = activity;

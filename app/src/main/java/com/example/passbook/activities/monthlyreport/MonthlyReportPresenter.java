@@ -1,7 +1,5 @@
 package com.example.passbook.activities.monthlyreport;
 
-import com.example.passbook.activities.base.BaseActivity;
-import com.example.passbook.activities.base.BaseContract;
 import com.example.passbook.activities.base.BasePresenter;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.entitys.PassBook;
@@ -57,7 +55,7 @@ public class MonthlyReportPresenter extends BasePresenter implements MonthlyRepo
                 difference = numOfOpenedPassbook - numOfClosedPassbook;
 
                 LegacyTableView.insertLegacyContent(String.valueOf(ordinalNumber));
-                LegacyTableView.insertLegacyContent(Utils.dataToString(currentDay));
+                LegacyTableView.insertLegacyContent(Utils.dateToString(currentDay));
                 LegacyTableView.insertLegacyContent(String.valueOf(numOfOpenedPassbook));
                 LegacyTableView.insertLegacyContent(String.valueOf(numOfClosedPassbook));
                 LegacyTableView.insertLegacyContent(String.valueOf(difference));

@@ -10,6 +10,7 @@ import com.example.passbook.data.entitys.PassBookRegulation;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.utils.Constant;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -50,4 +51,10 @@ public interface PassBookRegulationDAO extends IDAO<PassBookRegulation> {
     @Query(Constant.SELECT_ALL + Constant.PASSBOOK_REGULATION_TABLE
             + Constant.WHERE + Constant.PASSBOOK_TYPE_COLUMN + Constant.LIKE + "passBookType")
     List<PassBookRegulation> getItemsByType(PassBookType passBookType);
+
+    @Query(Constant.SELECT_ALL + Constant.PASSBOOK_REGULATION_TABLE
+            + Constant.WHERE + Constant.PASSBOOK_TYPE_COLUMN + Constant.LIKE + "passBookType"
+            + Constant.AND + Constant.CREATION_DATE_TIME_COLUMN + Constant.SMALLER_OR_EQUAL + "beginDate"
+            + Constant.ORDER_BY + Constant.CREATION_DATE_TIME_COLUMN + Constant.DESC + Constant.LIMIT + "1")
+    PassBookRegulation getItemForCalInterestRate(PassBookType passBookType, long beginDate);
 }

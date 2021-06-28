@@ -20,6 +20,7 @@ import com.example.passbook.data.entitys.PassBookRegulation;
 import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.models.MainFuncModel;
+import com.example.passbook.utils.Utils;
 
 import java.util.Date;
 
@@ -43,21 +44,21 @@ public class MainPresenter extends BasePresenter implements MainContract.Present
         if (appDatabase.passBookRegulationDAO().getItems().size() < 3) {
             PassBookRegulation threeMonthsRegulation = new PassBookRegulation();
             threeMonthsRegulation.passBookType = PassBookType.THREE_MONTH;
-            threeMonthsRegulation.creationDateTime = new Date();
+            threeMonthsRegulation.creationDateTime = Utils.parseDate("2020-01-01");
             threeMonthsRegulation.term = 3 * 30;
             threeMonthsRegulation.Id = 1;
             threeMonthsRegulation.interestRate = 0.005f;
 
             PassBookRegulation sixMonthsRegulation = new PassBookRegulation();
             sixMonthsRegulation.passBookType = PassBookType.SIX_MONTH;
-            sixMonthsRegulation.creationDateTime = new Date();
+            sixMonthsRegulation.creationDateTime = Utils.parseDate("2020-01-01");
             sixMonthsRegulation.term = 6 * 30;
             sixMonthsRegulation.Id = 2;
             sixMonthsRegulation.interestRate = 0.0055f;
 
             PassBookRegulation infiniteRegulation = new PassBookRegulation();
             infiniteRegulation.passBookType = PassBookType.INFINITE;
-            infiniteRegulation.creationDateTime = new Date();
+            infiniteRegulation.creationDateTime = Utils.parseDate("2020-01-01");
             infiniteRegulation.term = 0;
             infiniteRegulation.Id = 3;
             infiniteRegulation.interestRate = 0.0015f;

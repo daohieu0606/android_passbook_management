@@ -12,6 +12,7 @@ import com.example.passbook.data.entitys.InfinitePassBook;
 import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.data.entitys.SixMonthPassBook;
 import com.example.passbook.data.entitys.ThreeMonthPassBook;
+import com.example.passbook.data.enums.DatePickerType;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.enums.PassbookState;
 import com.example.passbook.data.models.DateTimeModel;
@@ -39,12 +40,14 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
 
         List<String> passBookTypes = getPassbookType();
 
-        models.add(new TextFieldModel(getString(R.string.passbook_id), "", "", InputType.TYPE_CLASS_NUMBER));
+        int nextPassbookId = presenter.getNextPassbookId();
+
+        models.add(new TextFieldModel(getString(R.string.passbook_id), String.valueOf(nextPassbookId), "", InputType.TYPE_CLASS_NUMBER));
         models.add(new SpinnerModel(getString(R.string.passbook_type), null, "", passBookTypes));
         models.add(new TextFieldModel(getString(R.string.customer_name), "", "", InputType.TYPE_CLASS_TEXT));
         models.add(new TextFieldModel(getString(R.string.identify_number), "", "", InputType.TYPE_CLASS_TEXT));
         models.add(new TextFieldModel(getString(R.string.address), "", "", InputType.TYPE_CLASS_TEXT));
-        models.add(new DateTimeModel(getString(R.string.register_date), new Date(), ""));
+        models.add(new DateTimeModel(getString(R.string.register_date), new Date(), "", DatePickerType.NORMAL));
         models.add(new TextFieldModel(getString(R.string.amount), "", "", InputType.TYPE_CLASS_NUMBER));
 
         adapter = new FormAdapter(this, models);

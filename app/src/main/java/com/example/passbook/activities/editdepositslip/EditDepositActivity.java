@@ -2,13 +2,20 @@ package com.example.passbook.activities.editdepositslip;
 
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.form.FormHaveSubmitButtonActivity;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.data.entitys.DepositSlip;
+import com.example.passbook.data.entitys.PassBook;
+import com.example.passbook.data.enums.DatePickerType;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.TextFieldModel;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +34,38 @@ implements EditDepositSlipContract.View{
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        adapter.setItemChangeListener(position -> {
+            Log.i("mytag", String.valueOf(position));
+
+            if(position == 0){
+                String passBookIdStr = (String) models.get(0).value;
+                models.get(1).value = "";
+                models.get(1).isEnable = true;
+
+                if(!StringUtils.isEmpty(passBookIdStr)) {
+                    int passBookId = Integer.valueOf(passBookIdStr);
+                    PassBook passBook = appDatabase.passBookDAO().getItem(passBookId);
+
+                    if(passBook != null) {
+                        models.get(1).value = String.valueOf(passBook.customerId);
+                        models.get(1).isEnable = false;
+                    }
+                }
+
+                lst_input.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyItemChanged(1);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
     protected void initModelAndAdapter() {
         models = new ArrayList<>();
         models.add(new TextFieldModel(getString(R.string.passbook_id),
@@ -39,7 +78,8 @@ implements EditDepositSlipContract.View{
                 InputType.TYPE_CLASS_NUMBER));
         models.add(new DateTimeModel(getString(R.string.deposit_date),
                 null,
-                ""));
+                "",
+                DatePickerType.NORMAL));
         models.add(new TextFieldModel(getString(R.string.amount),
                 null,
                 "",

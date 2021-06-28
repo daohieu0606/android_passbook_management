@@ -6,6 +6,8 @@ import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.Customer;
 import com.example.passbook.data.entitys.PassBook;
 
+import java.util.Random;
+
 public class RegisterPassbookPresenter extends FormPresenter implements RegisterPassbookContract.Presenter {
     private RegisterPassbookContract.View view;
 
@@ -15,7 +17,7 @@ public class RegisterPassbookPresenter extends FormPresenter implements Register
     }
 
     @Override
-    protected void saveData(Object... objects) {
+    protected boolean saveData(Object... objects) {
         Customer customer = (Customer) objects[0];
         PassBook passBook = (PassBook) objects[1];
 
@@ -34,6 +36,8 @@ public class RegisterPassbookPresenter extends FormPresenter implements Register
         passBook.customerId = customer.Id;
         PassBookDAO passBookDAO = appDatabase.passBookDAO();
         passBookDAO.insertItem(passBook);
+
+        return true;
     }
 
     @Override
@@ -57,5 +61,22 @@ public class RegisterPassbookPresenter extends FormPresenter implements Register
         }
 
         return result;
+    }
+
+    @Override
+    public int getNextPassbookId() {
+        int nextId = 0;
+        PassBook passBook = null;
+
+        Random random = new Random();
+        do {
+            nextId = 0;
+            passBook = null;
+
+            nextId = random.nextInt();
+            passBook = appDatabase.passBookDAO().getItem(nextId);
+        }while (passBook != null ||  nextId < 0);
+
+        return nextId;
     }
 }

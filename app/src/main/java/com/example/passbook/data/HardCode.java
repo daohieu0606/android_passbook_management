@@ -49,7 +49,7 @@ public class HardCode {
             passBook8.customerId = 6;
             passBook9.customerId = 6;
 
-            passBook1.creationDate = new Date();
+            passBook1.creationDate = Utils.parseDate("2021-02-01");
             passBook2.creationDate = new Date();
             passBook3.creationDate = new Date();
             passBook4.creationDate = new Date();
@@ -59,7 +59,7 @@ public class HardCode {
             passBook8.creationDate = new Date();
             passBook9.creationDate = Utils.getNextDate(new Date());
 
-            passBook1.amount = 1123;
+            passBook1.amount = 520313;
             passBook2.amount = 421;
             passBook3.amount = 23213;
             passBook4.amount = 21231;

@@ -17,7 +17,7 @@ public class EditDepositSlipPresenter extends FormPresenter implements EditDepos
     }
 
     @Override
-    protected void saveData(Object... objects) {
+    protected boolean saveData(Object... objects) {
         DepositSlip depositSlip = (DepositSlip) objects[0];
 
         long id = appDatabase.transactionFormDAO().insertItem(depositSlip);
@@ -27,6 +27,8 @@ public class EditDepositSlipPresenter extends FormPresenter implements EditDepos
         int newAmount = refPassbook.amount + depositSlip.amount;
         refPassbook.amount = newAmount;
         appDatabase.passBookDAO().updateOrInsertItem(refPassbook);
+
+        return true;
     }
 
     @Override
