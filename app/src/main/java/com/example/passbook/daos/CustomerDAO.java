@@ -34,8 +34,9 @@ public interface CustomerDAO extends IDAO<Customer> {
 
     @Query(Constant.SELECT_ALL + Constant.CUSTOMER_TABLE
             + Constant.WHERE + Constant.IDENTIFY_NUMBER_COLUMN + Constant.LIKE + "identifyNumber"
+            + Constant.AND + Constant.CUSTOMER_FULL_NAME_COLUMN + Constant.LIKE + "name"
             + Constant.LIMIT + "1")
-    Customer getCustomerByIdentifyNumber(String identifyNumber);
+    Customer getCustomerByIdentifyNumberAndName(String identifyNumber, String name);
 
     @Override
     @Delete

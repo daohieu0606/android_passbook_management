@@ -1,33 +1,24 @@
 package com.example.passbook.activities;
 
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.room.Room;
 
 import com.example.passbook.R;
-import com.example.passbook.customviews.DialogHaveListView;
+import com.example.passbook.activities.base.BaseActivity;
 import com.example.passbook.daos.CustomerDAO;
 import com.example.passbook.data.HardCode;
 import com.example.passbook.data.entitys.Customer;
 import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.data.entitys.ThreeMonthPassBook;
 import com.example.passbook.data.entitys.TransactionForm;
-import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.enums.PassbookState;
 import com.example.passbook.data.models.BaseFormModel;
-import com.example.passbook.data.models.DateTimeModel;
-import com.example.passbook.data.models.SpinnerModel;
-import com.example.passbook.data.models.TextFieldModel;
 import com.example.passbook.services.AppDatabase;
-import com.example.passbook.utils.Constant;
-import com.example.passbook.intefaces.OnDialogButtonClick;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class TestDataActivity extends BaseActivity implements View.OnClickListener {

@@ -9,12 +9,14 @@ public class BaseFormModel extends BaseModel {
     public FormItemType formItemType;
     public boolean isError;
     public String errorSTr;
+    public boolean isEnable;
 
     public BaseFormModel(String title, Object value, String hint) {
         this.title = title;
         this.value = value;
         this.hint = hint;
         isError = false;
+        isEnable = true;
     }
 
     public boolean isValueEmpty() {

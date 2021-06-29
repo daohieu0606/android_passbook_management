@@ -15,10 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
+import com.example.passbook.customviews.MonthYearPickerDialog;
+import com.example.passbook.data.enums.DatePickerType;
 import com.example.passbook.data.models.BaseFormModel;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.SpinnerModel;
 import com.example.passbook.data.models.TextFieldModel;
+import com.example.passbook.intefaces.OnFormItemChangeListener;
+import com.example.passbook.intefaces.OnItemAdapterChangeListener;
+import com.example.passbook.intefaces.OnValueChanged;
 import com.example.passbook.utils.Constant;
 import com.example.passbook.utils.Utils;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -35,6 +40,8 @@ public class FormAdapter extends RecyclerView.Adapter {
 
     private List<BaseFormModel> items;
     private AppCompatActivity activity;
+    private OnItemAdapterChangeListener onAdapterChangeListener;
+    private OnItemAdapterChangeListener onClientListener;
 
     public FormAdapter(AppCompatActivity activity, List<BaseFormModel> items) {
         this.activity = activity;
@@ -94,10 +101,13 @@ public class FormAdapter extends RecyclerView.Adapter {
                 DatetimeViewHolder datetimeViewHolder = (DatetimeViewHolder) holder;
                 DateTimeModel dateTimeModel = (DateTimeModel) items.get(position);
 
-                String strDate = Utils.dataToString((Date) dateTimeModel.value);
+                String datePattern = dateTimeModel.datePickerType == DatePickerType.MONTH_YEAR_ONLY?
+                                        Constant.MONTH_YEAR_FORMAT: Constant.SHORT_DATE;
+                String strDate = Utils.dateToString((Date) dateTimeModel.value, datePattern);
 
                 datetimeViewHolder.txtLayout.setHint(dateTimeModel.title);
                 datetimeViewHolder.txtValue.setText(strDate);
+                datetimeViewHolder.datePickerType = dateTimeModel.datePickerType;
 
                 if(dateTimeModel.isError) {
                     datetimeViewHolder.txtLayout.setError(dateTimeModel.errorSTr);
@@ -147,6 +157,27 @@ public class FormAdapter extends RecyclerView.Adapter {
                 items.get(position).value = value;      //TODO: check valid value here
             }
         };
+
+        baseViewHolder.onAdapterChangeListener = new OnFormItemChangeListener() {
+            @Override
+            public void onChange() {
+                if(onClientListener != null) {
+                    onClientListener.onItemAdapterChanged(position);
+                }
+            }
+        };
+
+        if (!items.get(position).isEnable) {
+            baseViewHolder.bg.setBackgroundColor(activity.getResources().getColor(R.color.disable_bg_color));
+            baseViewHolder.bg.setClickable(true);
+            baseViewHolder.bg.setOnClickListener(v -> {
+                //do nothing
+            });
+        }
+    }
+
+    public void setItemChangeListener(OnItemAdapterChangeListener onAdapterChangeListener) {
+        this.onClientListener = onAdapterChangeListener;
     }
 
     @Override
@@ -155,12 +186,14 @@ public class FormAdapter extends RecyclerView.Adapter {
     }
 
     public abstract class BaseViewHolder extends RecyclerView.ViewHolder{
-
+        public View bg;
         public int position;
         public OnValueChanged onValueChanged;
+        public OnFormItemChangeListener onAdapterChangeListener;
 
         public BaseViewHolder(@NonNull View itemView) {
             super(itemView);
+            bg = itemView.findViewById(R.id.bg);
         }
     }
 
@@ -191,15 +224,19 @@ public class FormAdapter extends RecyclerView.Adapter {
                     if (onValueChanged != null) {
                         onValueChanged.OnChanged(value);
                     }
+
+                    if(onAdapterChangeListener != null) {
+                        onAdapterChangeListener.onChange();
+                    }
                 }
             });
         }
     }
 
     public class DatetimeViewHolder extends BaseViewHolder {
-
         public TextInputLayout txtLayout;
         public TextInputEditText txtValue;
+        public DatePickerType datePickerType;
 
         public DatetimeViewHolder(@NonNull View itemView, AppCompatActivity activity) {
             super(itemView);
@@ -212,12 +249,39 @@ public class FormAdapter extends RecyclerView.Adapter {
             ll_datetime.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showDateDialog();
+                    showDateDialog(activity, datePickerType);
                 }
             });
         }
 
-        private void showDateDialog() {
+        private void showDateDialog(AppCompatActivity activity, DatePickerType datePickerType) {
+            switch (datePickerType) {
+                case NORMAL:
+                    showDatePicker();
+                    break;
+
+                case MONTH_YEAR_ONLY:
+                    showMonthYearPicker(activity);
+                    break;
+            }
+        }
+
+        private void showMonthYearPicker(AppCompatActivity activity) {
+            MonthYearPickerDialog pd = new MonthYearPickerDialog();
+
+            pd.setListener((view, year, month, dayOfMonth) -> {
+                Date date = Utils.createDate(year, month, 1);
+
+                if (date != null) {
+                    invokeValue(date);
+                    txtValue.setText(Utils.dateToString(date, Constant.MONTH_YEAR_FORMAT));
+                }
+            });
+
+            pd.show(activity.getSupportFragmentManager(), "MonthYearPickerDialog");
+        }
+
+        private void showDatePicker() {
             MaterialDatePicker datePicker = MaterialDatePicker
                     .Builder
                     .datePicker()
@@ -231,15 +295,22 @@ public class FormAdapter extends RecyclerView.Adapter {
                     calendar.setTimeInMillis((Long) selection);
 
                     Date value = calendar.getTime();
-                    if (onValueChanged != null) {
-                        onValueChanged.OnChanged(value);
-                    }
-
+                    invokeValue(value);
                     txtValue.setText(datePicker.getHeaderText());
                 }
             });
 
             datePicker.show(activity.getSupportFragmentManager(), "tag");
+        }
+
+        private void invokeValue(Date date) {
+            if (onValueChanged != null) {
+                onValueChanged.OnChanged(date);
+            }
+
+            if(onAdapterChangeListener != null) {
+                onAdapterChangeListener.onChange();
+            }
         }
     }
 
@@ -271,13 +342,13 @@ public class FormAdapter extends RecyclerView.Adapter {
                     if (onValueChanged != null) {
                         onValueChanged.OnChanged(value);
                     }
+
+                    if(onAdapterChangeListener != null) {
+                        onAdapterChangeListener.onChange();
+                    }
                 }
             });
         }
     }
 
-}
-
-interface OnValueChanged{
-    void OnChanged(Object value);
 }

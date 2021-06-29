@@ -43,15 +43,15 @@ public class CustomButton extends androidx.appcompat.widget.AppCompatButton {
         this.setTextSize(25.0f);        //TODO: remove hard code
         this.setGravity(Gravity.CENTER_VERTICAL);
 
-        upTextUpper();
+        //upTextUpper();
     }
 
-    private void upTextUpper() {
-        String text = this.getText().toString();
-
-        if(!StringUtils.isEmpty(text)) {
-            text = text.toUpperCase();
-            this.setText(text);
-        }
-    }
+//    private void upTextUpper() {
+//        String text = this.getText().toString();
+//
+//        if(!StringUtils.isEmpty(text)) {
+//            text = text.toUpperCase();
+//            this.setText(text);
+//        }
+//    }
 }

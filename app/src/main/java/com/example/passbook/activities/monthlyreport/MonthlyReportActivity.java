@@ -1,24 +1,19 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.monthlyreport;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.widget.TextView;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.base.BaseActivity;
 import com.example.passbook.converters.DateConverter;
-import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.utils.Constant;
 import com.example.passbook.utils.Utils;
 import com.levitnudi.legacytableview.LegacyTableView;
 
-import org.w3c.dom.Text;
-
 import java.util.Date;
-import java.util.List;
 
-public class MonthlyReportActivity extends BaseActivity {
+public class MonthlyReportActivity extends BaseActivity implements MonthlyReportContract.View {
     private TextView txtPassBookType;
     private TextView txtMonth;
     private LegacyTableView tbPassbook;
@@ -26,11 +21,15 @@ public class MonthlyReportActivity extends BaseActivity {
     private Date endMonth;
     private PassBookType passBookType;
 
+    private MonthlyReportContract.Presenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         containerLayout = R.layout.activity_monthly_report;
         title = getString(R.string.month_report);
         super.onCreate(savedInstanceState);
+
+        presenter = new MonthlyReportPresenter(this);
 
         initView();
     }
@@ -61,7 +60,7 @@ public class MonthlyReportActivity extends BaseActivity {
             endMonth = Utils.getEndMonth(monthToGetReport);
 
             //TODO: refactor below codes to new func
-            txtMonth.setText(Utils.dataToString(monthToGetReport));
+            txtMonth.setText(Utils.dateToString(monthToGetReport));
             txtPassBookType.setText(passBookType.getText());
         }
     }
@@ -75,51 +74,12 @@ public class MonthlyReportActivity extends BaseActivity {
                 getString(R.string.closed_passbook),
                 getString(R.string.difference));
 
-        Date currentDay = startMonth;
-        while (!currentDay.after(endMonth)) {
-            Date startDate = Utils.getStartDate(currentDay);
-            Date endDate = Utils.getEndDate(currentDay);
-            long from = DateConverter.dateToTimestamp(startDate);
-            long to = DateConverter.dateToTimestamp(endDate);
-            int numOfOpenedPassbook = 0;
-            int numOfClosedPassbook = 0;
-            int difference = 0;
-            int ordinalNumber = 1;
+        presenter.initTableViewData(startMonth, endMonth, passBookType);
 
-            List<PassBook> tempPassbooks = appDatabase.passBookDAO().getItems();
+    }
 
-            List<PassBook> passBooks = appDatabase
-                    .passBookDAO()
-                    .getPassBooksByDateAndType(from, to, passBookType);
-
-            for (PassBook passBook:
-                 passBooks) {
-                switch (passBook.passbookState) {
-                    case CLOSED:
-                        numOfClosedPassbook += 1;
-                        break;
-
-                    case OPENED:
-                        numOfOpenedPassbook += 1;
-                        break;
-                }
-            }
-
-            if(passBooks.size() > 0) {
-                difference = numOfOpenedPassbook - numOfClosedPassbook;
-
-                LegacyTableView.insertLegacyContent(String.valueOf(ordinalNumber));
-                LegacyTableView.insertLegacyContent(Utils.dataToString(currentDay));
-                LegacyTableView.insertLegacyContent(String.valueOf(numOfOpenedPassbook));
-                LegacyTableView.insertLegacyContent(String.valueOf(numOfClosedPassbook));
-                LegacyTableView.insertLegacyContent(String.valueOf(difference));
-
-                ordinalNumber +=1;
-            }
-
-            currentDay = Utils.getNextDate(currentDay);
-        }
-
+    @Override
+    public void setDataToView() {
         tbPassbook.setTitle(LegacyTableView.readLegacyTitle());
         tbPassbook.setContent(LegacyTableView.readLegacyContent());
 

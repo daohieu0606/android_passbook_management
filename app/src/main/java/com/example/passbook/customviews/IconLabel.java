@@ -3,12 +3,9 @@ package com.example.passbook.customviews;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
-
-import androidx.core.content.ContextCompat;
 
 import com.example.passbook.R;
 

@@ -1,27 +1,29 @@
-package com.example.passbook.activities;
+package com.example.passbook.activities.pickupreport;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.selectmonthtogetreport.SelectMonthToGetReportActivity;
+import com.example.passbook.activities.base.BaseActivity;
+import com.example.passbook.activities.datereport.DateReportActivity;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.customviews.CustomButton;
 import com.example.passbook.utils.Constant;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class PickupReportActivity extends BaseActivity implements View.OnClickListener {
+public class PickupReportActivity extends BaseActivity
+        implements View.OnClickListener, PickupReportContract.View {
     private CustomButton btnReportByDate;
     private CustomButton btnReportByMonth;
+
+    private PickupReportContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class PickupReportActivity extends BaseActivity implements View.OnClickLi
         title = getString(R.string.report);
         super.onCreate(savedInstanceState);
 
+        presenter = new PickupReportPresenter(this);
         init();
         Date date = new Date();
     }
@@ -46,7 +49,6 @@ public class PickupReportActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.btnReportByDate:
                 getDateReportActivity();
-
                 break;
 
             case R.id.btnReportByMonth:
