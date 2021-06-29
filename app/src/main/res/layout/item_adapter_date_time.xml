@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_adapter_height"
+    android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_10sdp"
     android:layout_marginStart="@dimen/base_margin"
     android:layout_marginEnd="@dimen/base_margin">
@@ -28,11 +28,13 @@
         android:id="@+id/ll_datetime"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/item_adapter_height"
+        android:layout_alignParentTop="true"
         android:background="@color/transparent"/>
     <RelativeLayout
         android:id="@+id/bg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="@dimen/item_adapter_height"
+        android:layout_alignParentTop="true"/>
 
 </RelativeLayout>

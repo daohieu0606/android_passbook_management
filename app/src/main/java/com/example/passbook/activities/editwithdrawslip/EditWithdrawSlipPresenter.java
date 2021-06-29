@@ -33,7 +33,7 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
         PassBook refPassBook = appDatabase.passBookDAO().getItem(withdrawalSlip.passBookId);
         refPassBook.amount -= withdrawalSlip.amount;
 
-        if(refPassBook.amount <= 0) {
+        if(refPassBook.amount <= 1) {   //change 1 to 0
             refPassBook.passbookState = PassbookState.CLOSED;
         }
 
@@ -59,8 +59,7 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
             view.setPassbookIsClosedError();
             result = false;
 
-        } else if(!checkMinNumOfDates(refPassbook)) {
-            view.setMinPeriodError();
+        } else if(!checkMinNumOfDates(refPassbook, withdrawalSlip.transactionDateTime)) {
             result = false;
         } else if(amount > refPassbook.amount) {
             view.setOverDepositError(refPassbook.amount);
@@ -70,13 +69,27 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
         return result;
     }
 
-    private boolean checkMinNumOfDates(PassBook refPassbook) {
+    private boolean checkMinNumOfDates(PassBook refPassbook, Date withDrawDate) {
         boolean result = true;
+        long period = Utils.subDates(refPassbook.creationDate, withDrawDate);
 
-        long period = Utils.subDates(refPassbook.creationDate, new Date());
+        if(refPassbook.passBookType == PassBookType.INFINITE) {
+            if(period < 15) {
+                view.setMinPeriodError(15);
+                result = false;
+            }
+        } else {
+            PassBookRegulation passBookRegulation = appDatabase
+                    .passBookRegulationDAO()
+                    .getItemForCalInterestRate(
+                            refPassbook.passBookType,
+                            DateConverter.dateToTimestamp(refPassbook.creationDate));
 
-        if(period < 15) {
-            result = false;
+            long term = passBookRegulation != null? passBookRegulation.term : 15;
+            if(period < term) {
+                result = false;
+                view.setMinPeriodError((int) term);
+            }
         }
 
         return result;
@@ -86,7 +99,7 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
     private float getInterest(WithdrawalSlip withdrawalSlip) {
         PassBook passBook = appDatabase.passBookDAO().getItem(withdrawalSlip.passBookId);
         Date iterate = passBook.creationDate;
-        Date current = new Date();
+        Date current = withdrawalSlip.transactionDateTime;
         float interest = 0.0f;
 
         while (!iterate.after(current)) {

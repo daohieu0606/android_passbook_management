@@ -21,7 +21,6 @@ public class BaseFormModel extends BaseModel {
 
     public boolean isValueEmpty() {
         if (value == null || value == ""){
-            errorSTr = "not empty";
             return false;
         } else {
             errorSTr = null;

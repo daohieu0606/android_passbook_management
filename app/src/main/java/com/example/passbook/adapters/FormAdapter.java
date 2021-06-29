@@ -154,6 +154,16 @@ public class FormAdapter extends RecyclerView.Adapter {
         baseViewHolder.onValueChanged = new OnValueChanged() {
             @Override
             public void OnChanged(Object value) {
+                if(items.get(position).isError && (items.get(position).value == value)) {
+                    items.get(position).isError = false;
+                    items.get(position).errorSTr = "";
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            notifyItemChanged(position);
+                        }
+                    });
+                }
                 items.get(position).value = value;      //TODO: check valid value here
             }
         };
