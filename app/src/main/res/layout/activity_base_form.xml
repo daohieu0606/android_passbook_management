@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:id="@+id/tabBarArea"
-        android:background="@color/colorPrimary"
+        android:background="?android:attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_header_controls">

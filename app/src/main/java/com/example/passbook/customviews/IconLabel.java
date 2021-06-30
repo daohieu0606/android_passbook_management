@@ -3,11 +3,13 @@ package com.example.passbook.customviews;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
 import com.example.passbook.R;
+import com.google.android.material.color.MaterialColors;
 
 public class IconLabel extends androidx.appcompat.widget.AppCompatTextView {
 
@@ -35,7 +37,8 @@ public class IconLabel extends androidx.appcompat.widget.AppCompatTextView {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.IconLabel);
 
             int txtColor = typedArray.getColor(R.styleable.IconLabel_android_textColor,
-                    context.getResources().getColor(R.color.colorPrimary));
+                    MaterialColors.getColor(context, R.attr.colorPrimary, Color.BLACK));
+
             this.setTextColor(txtColor);
 
             int backgroundAttr = typedArray.getInt(R.styleable.IconLabel_bg_color, context.getResources().getColor(R.color.transparent));
@@ -44,7 +47,7 @@ public class IconLabel extends androidx.appcompat.widget.AppCompatTextView {
             typedArray.recycle();
 
         } else {
-            this.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            this.setTextColor(MaterialColors.getColor(context, R.attr.colorPrimary, Color.BLACK));
             this.setBackgroundColor(context.getResources().getColor(R.color.transparent));
         }
     }

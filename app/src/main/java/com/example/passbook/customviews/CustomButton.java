@@ -42,7 +42,7 @@ public class CustomButton extends androidx.appcompat.widget.AppCompatButton {
         this.setTextColor(Color.WHITE);
         this.setTextSize(25.0f);        //TODO: remove hard code
         this.setGravity(Gravity.CENTER_VERTICAL);
-
+        this.setBackgroundTintList(null);
         //upTextUpper();
     }
 

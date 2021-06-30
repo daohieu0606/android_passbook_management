@@ -41,9 +41,9 @@ BaseContract.View{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
         ThemeExtension.setTheme(this);
+
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_base_form);
 

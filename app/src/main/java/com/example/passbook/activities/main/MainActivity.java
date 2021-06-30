@@ -29,6 +29,7 @@ import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.models.MainFuncModel;
 import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.ApplicationFunction;
+import com.example.passbook.utils.ThemeExtension;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +46,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeExtension.setTheme(this);
+
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_main);
 
         presenter = new MainPresenter(this);
