@@ -31,10 +31,10 @@ public abstract class FormHaveSubmitButtonActivity
 
         super.onCreate(savedInstanceState);
 
-        initModelAndAdapter();
-
         btnSubmit = findViewById(R.id.btnSubmit);
         lst_input = findViewById(R.id.lst_input);
+
+        initModelAndAdapter();
 
         lst_input.setAdapter(adapter);
         lst_input.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));

@@ -2,6 +2,8 @@ package com.example.passbook.data.models;
 
 import com.example.passbook.utils.FormItemType;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class BaseFormModel extends BaseModel {
     public String title;
     public Object value;
@@ -20,7 +22,7 @@ public class BaseFormModel extends BaseModel {
     }
 
     public boolean isValueEmpty() {
-        if (value == null || value == ""){
+        if (value == null || StringUtils.isEmpty(value.toString())){
             return false;
         } else {
             errorSTr = null;

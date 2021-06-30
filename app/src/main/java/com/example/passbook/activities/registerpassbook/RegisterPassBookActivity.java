@@ -50,7 +50,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
         models.add(new DateTimeModel(getString(R.string.register_date), new Date(), "", DatePickerType.NORMAL));
         models.add(new TextFieldModel(getString(R.string.amount), "", "", InputType.TYPE_CLASS_NUMBER));
 
-        adapter = new FormAdapter(this, models);
+        adapter = new FormAdapter(this, models, lst_input);
     }
 
     @Override

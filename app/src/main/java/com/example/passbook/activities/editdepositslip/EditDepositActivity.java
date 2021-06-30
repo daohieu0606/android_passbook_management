@@ -85,7 +85,7 @@ implements EditDepositSlipContract.View{
                 "",
                 InputType.TYPE_CLASS_NUMBER));
 
-        adapter = new FormAdapter(this, models);
+        adapter = new FormAdapter(this, models, lst_input);
     }
 
     @Override

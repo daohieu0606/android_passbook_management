@@ -24,7 +24,7 @@ public class DialogHaveListView extends CustomDialog {
         this.activity = activity;
         this.models = models;
 
-        adapter = new FormAdapter(activity, models);
+        adapter = new FormAdapter(activity, models, lst_input);
 
         lst_input.setAdapter(adapter);
         lst_input.setLayoutManager(new LinearLayoutManager(activity.getApplicationContext()));
