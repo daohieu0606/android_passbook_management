@@ -44,7 +44,7 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
         //TODO: pick up only month and year
         models.add(new DateTimeModel(getString(R.string.pick_up_date), new Date(), "", DatePickerType.MONTH_YEAR_ONLY));
 
-        adapter = new FormAdapter(this, models);
+        adapter = new FormAdapter(this, models, lst_input);
     }
 
     @Override

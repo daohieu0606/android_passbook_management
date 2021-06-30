@@ -98,8 +98,8 @@ public class SearchPassBookActivity extends AppCompatActivity implements SearchP
         models.clear();
         adapter.notifyDataSetChanged();
 
-        models = presenter.getPassbook(edtSearchKey.getText().toString());
-
+        models.addAll(presenter.getPassbook(edtSearchKey.getText().toString()));
+        
         if(models.size() == 0) {
             changeVisibleListView(true);
         } else {

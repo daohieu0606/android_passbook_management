@@ -7,7 +7,7 @@ public interface EditWithdrawSlipContract {
         void setPassbookIsNotExistError();
         void setPassbookIsClosedError();
         void setCustomerIdWrongError();
-        void setMinPeriodError();
+        void setMinPeriodError(int term);
         void setOverDepositError(int currentDeposit);
         void notifyInterest(float interest);
     }

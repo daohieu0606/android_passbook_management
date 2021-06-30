@@ -33,6 +33,8 @@
         android:layout_marginStart="@dimen/base_margin">
         <TextView
             android:id="@+id/txtCustomerName"
+            android:textStyle="bold"
+            android:textSize="@dimen/title_text_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
@@ -49,5 +51,5 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
         android:background="@android:color/darker_gray"
-        android:layout_marginTop="@dimen/base_margin"/>
+        android:layout_marginTop="@dimen/base_control_margin"/>
 </RelativeLayout>

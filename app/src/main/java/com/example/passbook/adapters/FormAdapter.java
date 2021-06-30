@@ -1,7 +1,10 @@
 package com.example.passbook.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,11 +28,14 @@ import com.example.passbook.intefaces.OnFormItemChangeListener;
 import com.example.passbook.intefaces.OnItemAdapterChangeListener;
 import com.example.passbook.intefaces.OnValueChanged;
 import com.example.passbook.utils.Constant;
+import com.example.passbook.utils.InputFilterMinMax;
 import com.example.passbook.utils.Utils;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -42,10 +48,12 @@ public class FormAdapter extends RecyclerView.Adapter {
     private AppCompatActivity activity;
     private OnItemAdapterChangeListener onAdapterChangeListener;
     private OnItemAdapterChangeListener onClientListener;
+    private RecyclerView recyclerView;
 
-    public FormAdapter(AppCompatActivity activity, List<BaseFormModel> items) {
+    public FormAdapter(AppCompatActivity activity, List<BaseFormModel> items, RecyclerView recyclerView) {
         this.activity = activity;
         this.items = items;
+        this.recyclerView = recyclerView;
     }
 
     @Override
@@ -135,6 +143,16 @@ public class FormAdapter extends RecyclerView.Adapter {
                 textFieldViewHolder.edt.setText((String)textFieldModel.value);
                 textFieldViewHolder.edt.setInputType(textFieldModel.inputType);
 
+                if((textFieldModel.inputType & InputType.TYPE_CLASS_NUMBER) != 0) {
+                    textFieldViewHolder.edt.setFilters(
+                            new InputFilter[]{
+                                    new InputFilterMinMax(Integer.MIN_VALUE, Integer.MAX_VALUE)
+                            });
+                }
+
+                String val = (String) textFieldModel.value;
+                textFieldViewHolder.edt.setSelection(val != null? val.length(): 0);
+
                 textFieldViewHolder.textField.setErrorEnabled(false);
 
                 if(textFieldModel.isError) {
@@ -154,6 +172,20 @@ public class FormAdapter extends RecyclerView.Adapter {
         baseViewHolder.onValueChanged = new OnValueChanged() {
             @Override
             public void OnChanged(Object value) {
+                if(items.get(position).isError
+                        && value != null
+                        && !StringUtils.isEmpty(value.toString())
+                        && !value.equals(items.get(position).value)) {
+                    items.get(position).isError = false;
+                    items.get(position).errorSTr = "";
+
+                    recyclerView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            notifyItemChanged(position);
+                        }
+                    });
+                }
                 items.get(position).value = value;      //TODO: check valid value here
             }
         };
@@ -173,6 +205,9 @@ public class FormAdapter extends RecyclerView.Adapter {
             baseViewHolder.bg.setOnClickListener(v -> {
                 //do nothing
             });
+        } else {
+            baseViewHolder.bg.setBackgroundColor(Color.TRANSPARENT);
+            baseViewHolder.bg.setClickable(false);
         }
     }
 

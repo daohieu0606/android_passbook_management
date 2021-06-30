@@ -62,7 +62,7 @@
     <string name="regulations">Regulations</string>
     <string name="min_term">Min Term</string>
     <string name="amount">Amount</string>
-    <string name="you_must_deposit_15_days">You must deposit at least 15 dates</string>
+    <string name="you_must_deposit_0_days">You must deposit at least %d dates</string>
     <string name="handle_success">handle successfully</string>
     <string name="handle_failed">handle failed</string>
     <string name="enable_passbook_types">Enable Passbook Types</string>
@@ -70,4 +70,5 @@
     <string name="select_month_title">Select Month And Passbook Type</string>
     <string name="amount_over_current_deposit_error">\"Amount must be smaller than current deposit: \"</string>
     <string name="ok">OK</string>
+    <string name="you_must_fill_out_this_field">You must fill out this field</string>
 </resources>

@@ -31,16 +31,26 @@ public abstract class FormHaveSubmitButtonActivity
 
         super.onCreate(savedInstanceState);
 
-        initModelAndAdapter();
-
         btnSubmit = findViewById(R.id.btnSubmit);
         lst_input = findViewById(R.id.lst_input);
+
+        initModelAndAdapter();
 
         lst_input.setAdapter(adapter);
         lst_input.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         lst_input.addItemDecoration(new SpacesItemDecoration(20));
 
         btnSubmit.setOnClickListener(v -> HandleSubmit());
+    }
+
+    private void HandleSubmit(){
+        resetValid();
+
+        if(isValidData()) {
+            getDataFromViewAndCallPresenterHandle();
+        }
+
+        adapter.notifyDataSetChanged();
     }
 
     protected boolean isValidData() {
@@ -51,6 +61,7 @@ public abstract class FormHaveSubmitButtonActivity
             if(!baseFormModel.isValueEmpty()){
                 result = false;
                 baseFormModel.isError = true;
+                baseFormModel.errorSTr =  getString(R.string.you_must_fill_out_this_field);
             }
         }
 
@@ -64,34 +75,12 @@ public abstract class FormHaveSubmitButtonActivity
         }
     }
 
-    private void HandleSubmit(){
-        resetValid();
-
-        if(isValidData()) {
-            getDataFromViewAndCallPresenterHandle();
-        }
-
-        adapter.notifyDataSetChanged();
-    }
-
     protected abstract void initModelAndAdapter();
 
     protected abstract void getDataFromViewAndCallPresenterHandle();
 
     @Override
     public void handleSuccess() {
-        /*NotificationPopup notificationPopup = new NotificationPopup(
-                this,
-                "Notification",
-                "Handle Success",
-                new OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-
-                    }
-                });
-
-        notificationPopup.show();*/
         showMessage(getString(R.string.handle_success));
         finish();
     }

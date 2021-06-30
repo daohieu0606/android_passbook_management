@@ -54,7 +54,7 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
                         models.get(1).value = String.valueOf(passBook.customerId);
                         models.get(1).isEnable = false;
 
-                        if(passBook.passBookType == PassBookType.INFINITE) {
+                        if(passBook.passBookType != PassBookType.INFINITE) {
                             models.get(3).value = String.valueOf(passBook.amount);
                             models.get(3).isEnable = false;
                         }
@@ -93,7 +93,7 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
                 "",
                 InputType.TYPE_CLASS_NUMBER));
 
-        adapter = new FormAdapter(this, models);
+        adapter = new FormAdapter(this, models, lst_input);
     }
 
     @Override
@@ -132,9 +132,9 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
     }
 
     @Override
-    public void setMinPeriodError() {
+    public void setMinPeriodError(int term) {
         models.get(2).isError = true;
-        models.get(2).errorSTr = getString(R.string.you_must_deposit_15_days);
+        models.get(2).errorSTr = String.format(getString(R.string.you_must_deposit_0_days), term);
     }
 
     @Override
