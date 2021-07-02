@@ -71,4 +71,8 @@
     <string name="amount_over_current_deposit_error">\"Amount must be smaller than current deposit: \"</string>
     <string name="ok">OK</string>
     <string name="you_must_fill_out_this_field">You must fill out this field</string>
+    <string name="select_theme">Select Theme</string>
+    <string name="pink">Pink</string>
+    <string name="blue">Blue</string>
+    <string name="yellow">Yellow</string>
 </resources>

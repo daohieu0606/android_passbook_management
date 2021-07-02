@@ -11,10 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.example.passbook.R;
+import com.google.android.material.button.MaterialButton;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class CustomButton extends androidx.appcompat.widget.AppCompatButton {
+public class CustomButton extends MaterialButton {
     public CustomButton(@NonNull Context context) {
         super(context);
         init(context);
@@ -40,18 +41,7 @@ public class CustomButton extends androidx.appcompat.widget.AppCompatButton {
 
         this.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         this.setTextColor(Color.WHITE);
-        this.setTextSize(25.0f);        //TODO: remove hard code
+        this.setTextSize(23.0f);
         this.setGravity(Gravity.CENTER_VERTICAL);
-        this.setBackgroundTintList(null);
-        //upTextUpper();
     }
-
-//    private void upTextUpper() {
-//        String text = this.getText().toString();
-//
-//        if(!StringUtils.isEmpty(text)) {
-//            text = text.toUpperCase();
-//            this.setText(text);
-//        }
-//    }
 }

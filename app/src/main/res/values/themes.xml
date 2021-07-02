@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.MyApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="themeName">default</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">#f06292</item>
         <item name="colorPrimaryVariant">#ba2d65</item>
@@ -14,6 +15,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="PinkTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="themeName">PinkTheme</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">#f06292</item>
         <item name="colorPrimaryVariant">#ba2d65</item>
@@ -27,6 +29,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="BlueTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="themeName">BlueTheme</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">#448aff</item>
         <item name="colorPrimaryVariant">#005ecb</item>
@@ -40,6 +43,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="YellowTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="themeName">YELLOW</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">#ffff00</item>
         <item name="colorPrimaryVariant">#c7cc00</item>

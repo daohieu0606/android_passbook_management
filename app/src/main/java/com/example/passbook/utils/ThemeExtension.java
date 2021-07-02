@@ -3,6 +3,8 @@ package com.example.passbook.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 
 import androidx.appcompat.app.AppCompatActivity;

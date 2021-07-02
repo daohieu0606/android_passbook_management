@@ -18,17 +18,13 @@ import com.example.passbook.activities.base.BaseActivity;
 import com.example.passbook.adapters.SearchPassBookAdapter;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.customviews.IconLabel;
-import com.example.passbook.data.entitys.Customer;
-import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.data.models.PassBookItem;
 import com.example.passbook.services.AppDatabase;
-
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchPassBookActivity extends AppCompatActivity implements SearchPassbookContract.View {
+public class SearchPassBookActivity extends BaseActivity implements SearchPassbookContract.View {
     private IconLabel btnBack;
     private IconLabel btnMenu;
     private EditText edtSearchKey;
@@ -37,8 +33,6 @@ public class SearchPassBookActivity extends AppCompatActivity implements SearchP
 
     private List<PassBookItem> models;
     private SearchPassBookAdapter adapter;
-    private AppDatabase appDatabase;
-
     private boolean isListViewEmpty;
 
     private SearchPassbookContract.Presenter presenter;
@@ -57,8 +51,6 @@ public class SearchPassBookActivity extends AppCompatActivity implements SearchP
     protected void onStart() {
         super.onStart();
         changeVisibleListView(true);
-        appDatabase = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
     }
 
     private void bindingView() {

@@ -11,43 +11,25 @@ import android.view.Window;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.base.BaseActivity;
-import com.example.passbook.activities.pickupchangeregulation.PickUpChangeRegulationTypeActivity;
-import com.example.passbook.activities.pickupreport.PickupReportActivity;
-import com.example.passbook.activities.searchpassbook.SearchPassBookActivity;
-import com.example.passbook.activities.editdepositslip.EditDepositActivity;
-import com.example.passbook.activities.editwithdrawslip.EditWithdrawalActivity;
-import com.example.passbook.activities.registerpassbook.RegisterPassBookActivity;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.adapters.MainFuncAdapter;
-import com.example.passbook.data.HardCode;
-import com.example.passbook.data.entitys.BankRegulation;
-import com.example.passbook.data.entitys.Customer;
-import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.data.entitys.PassBookRegulation;
-import com.example.passbook.data.entitys.TransactionForm;
-import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.models.MainFuncModel;
 import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.ApplicationFunction;
 import com.example.passbook.utils.ThemeExtension;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainContract.View {
+public class MainActivity extends BaseActivity implements MainContract.View {
     private MainContract.Presenter presenter;
     private RecyclerView rvMainFunction;
     private MainFuncAdapter adapter;
     private List<MainFuncModel> items;
 
-    private AppDatabase appDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeExtension.setTheme(this);
-
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_main);
@@ -78,9 +60,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         rvMainFunction.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 
         rvMainFunction.setLayoutManager(new GridLayoutManager(this, 3));
-
-        appDatabase = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
     }
 
     private void loadDataToAdapter() {

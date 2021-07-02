@@ -1,78 +1,54 @@
 package com.example.passbook.services;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import com.example.passbook.activities.searchpassbook.SearchPassBookActivity;
+import com.example.passbook.activities.searchpassbook.SearchPassbookContract;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.Map;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class ServiceLocator {
-    public interface IService {
+    private static ServiceLocator instance;
+    private HashMap<Class, Object> services;
+
+    private ServiceLocator() {
+        services = new HashMap<>();
     }
 
-    private static final Map<String, Object> sServicesInstances = new HashMap<>();
-    private static final Map<String, Class> sServicesImplementationsMapping = new HashMap<>();
-
-    @SuppressLint("StaticFieldLeak")
-    private static Context mContext;
-
-    private static final Object sServicesInstancesLock = new Object();
-
-    public static void init(@NonNull Context context) {
-        mContext = context.getApplicationContext();
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public static <T> T get(@NonNull Class<T> clazz) {
-        @SuppressWarnings("ResourceType") T instance = (T) getService(clazz.getName(), mContext);
+    public static synchronized ServiceLocator getInstance(){
+        if(instance == null){
+            instance = new ServiceLocator();
+        }
         return instance;
     }
 
-    public static void bindCustomServiceImplementation(@NonNull Class interfaceClass, @NonNull Class implementationClass) {
-        synchronized (sServicesInstancesLock) {
-            sServicesImplementationsMapping.put(interfaceClass.getName(), implementationClass);
+    public Object getService(Class interfaceName) {
+        if(services.containsKey(interfaceName)) {
+            return services.get(interfaceName);
+        } else {
+            return null;
         }
     }
 
-    @NonNull
-    private static Object getService(@NonNull String name, @Nullable Context applicationContext) {
-        synchronized (sServicesInstancesLock) {
-            Object o = sServicesInstances.get(name);
-            if (o != null) {
-                return o;
-            } else {
+    public void registerService(Class interfaceName, final Class<?> className, Object ... args) {
+        if(!services.containsKey(interfaceName)) {
+            try {
+                Constructor constructor = className.getConstructor(args.getClass());
                 try {
-                    Object serviceInstance;
-                    final Class<?> clazz;
-                    if (sServicesImplementationsMapping.containsKey(name)) {
-                        clazz = sServicesImplementationsMapping.get(name);
-                    } else {
-                        clazz = Class.forName(name);
-                    }
-
-                    try {
-                        Constructor e1 = clazz.getConstructor(Context.class);
-                        serviceInstance = e1.newInstance(applicationContext);
-                    } catch (NoSuchMethodException var6) {
-                        Constructor constructor = clazz.getConstructor();
-                        serviceInstance = constructor.newInstance();
-                    }
-
-                    if (!(serviceInstance instanceof ServiceLocator.IService)) {
-                        throw new IllegalArgumentException("Requested service must implement IService interface");
-                    }
-                    sServicesInstances.put(name, serviceInstance);
-                    return serviceInstance;
-                } catch (ClassNotFoundException e) {
-                    throw new IllegalArgumentException("Requested service class was not found: " + name, e);
-                } catch (Exception e) {
-                    throw new IllegalArgumentException("Cannot initialize requested service: " + name, e);
+                    Object myService = constructor.newInstance(args);
+                    services.put(interfaceName, myService);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
                 }
+            } catch (NoSuchMethodException e) {
+                return;
             }
         }
     }

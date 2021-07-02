@@ -10,6 +10,5 @@ public class MyApplication extends Application {
     }
 
     private void RegisterServices() {
-        ServiceLocator.init(getApplicationContext());
     }
 }
