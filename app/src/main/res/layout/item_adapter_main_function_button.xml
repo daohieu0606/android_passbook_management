@@ -26,7 +26,7 @@
                 android:background="@color/transparent"/>
             <TextView
                 android:id="@+id/txtName"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?android:attr/colorPrimary"
                 android:layout_below="@id/icDisplay"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.passbook.R;
-import com.example.passbook.activities.base.BaseActivity;
+import com.example.passbook.activities.base.TabBarActivity;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.utils.Constant;
@@ -13,7 +13,7 @@ import com.levitnudi.legacytableview.LegacyTableView;
 
 import java.util.Date;
 
-public class MonthlyReportActivity extends BaseActivity implements MonthlyReportContract.View {
+public class MonthlyReportActivity extends TabBarActivity implements MonthlyReportContract.View {
     private TextView txtPassBookType;
     private TextView txtMonth;
     private LegacyTableView tbPassbook;

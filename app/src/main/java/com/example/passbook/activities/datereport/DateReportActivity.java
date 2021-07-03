@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.passbook.R;
-import com.example.passbook.activities.base.BaseActivity;
+import com.example.passbook.activities.base.TabBarActivity;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.utils.Constant;
@@ -14,7 +14,7 @@ import com.levitnudi.legacytableview.LegacyTableView;
 import java.util.Date;
 import java.util.List;
 
-public class DateReportActivity extends BaseActivity implements DateReportContract.View {
+public class DateReportActivity extends TabBarActivity implements DateReportContract.View {
     private LegacyTableView tbDateReport;
     private TextView txtDateValue;
     private DateReportContract.Presenter presenter;

@@ -4,4 +4,5 @@
         <attr name="android:textColor" format="color"/>
         <attr name="bg_color" format="integer"/>
     </declare-styleable>
+    <attr name="themeName" format="string"/>
 </resources>

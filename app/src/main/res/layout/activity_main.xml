@@ -19,7 +19,7 @@
             android:text="@string/ipassbook"
             android:textSize="@dimen/large_size"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
+            android:textColor="?android:attr/colorPrimary"
             android:layout_centerVertical="true"
             android:background="@color/transparent"
             android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
             android:text="@string/slogan"
             android:textColor="@color/white"
             android:padding="@dimen/base_control_margin"
-            android:background="@color/colorPrimary"
+            android:background="?android:attr/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>

@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.passbook.R;
-import com.example.passbook.activities.base.BaseActivity;
+import com.example.passbook.activities.base.TabBarActivity;
 import com.example.passbook.customviews.CustomDialog;
 import com.example.passbook.customviews.DialogHaveListView;
 import com.example.passbook.data.entitys.BankRegulation;
@@ -17,14 +17,13 @@ import com.example.passbook.data.models.BaseFormModel;
 import com.example.passbook.data.models.SpinnerModel;
 import com.example.passbook.data.models.TextFieldModel;
 import com.example.passbook.intefaces.OnDialogButtonClick;
-import com.example.passbook.utils.Constant;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PickUpChangeRegulationTypeActivity extends BaseActivity
+public class PickUpChangeRegulationTypeActivity extends TabBarActivity
         implements View.OnClickListener, PickUpChangeRegulationTypeContract.View {
     private Button btnNumOfType;
     private Button btnMinDeposit;

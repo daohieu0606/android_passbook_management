@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.selectmonthtogetreport.SelectMonthToGetReportActivity;
-import com.example.passbook.activities.base.BaseActivity;
+import com.example.passbook.activities.base.TabBarActivity;
 import com.example.passbook.activities.datereport.DateReportActivity;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.customviews.CustomButton;
@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class PickupReportActivity extends BaseActivity
+public class PickupReportActivity extends TabBarActivity
         implements View.OnClickListener, PickupReportContract.View {
     private CustomButton btnReportByDate;
     private CustomButton btnReportByMonth;

@@ -25,7 +25,7 @@
         <activity android:name=".activities.TestDataActivity">
 
         </activity>
-        <activity android:name=".activities.base.BaseActivity" />
+        <activity android:name=".activities.base.TabBarActivity" />
         <activity android:name=".activities.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
