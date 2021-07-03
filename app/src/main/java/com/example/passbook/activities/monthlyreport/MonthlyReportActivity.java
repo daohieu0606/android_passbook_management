@@ -59,13 +59,11 @@ public class MonthlyReportActivity extends TabBarActivity implements MonthlyRepo
             startMonth = Utils.getStartMonth(monthToGetReport);
             endMonth = Utils.getEndMonth(monthToGetReport);
 
-            //TODO: refactor below codes to new func
-            txtMonth.setText(Utils.dateToString(monthToGetReport));
+            txtMonth.setText(Utils.dateToString(monthToGetReport, Constant.MONTH_YEAR_FORMAT));
             txtPassBookType.setText(passBookType.getText());
         }
     }
 
-    //TODO: refactor this func to clean
     private void initTable() {
         LegacyTableView.insertLegacyTitle(
                 getString(R.string.ordinal_number),
