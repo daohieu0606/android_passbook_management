@@ -11,21 +11,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.passbook.data.enums.ThemeType;
+import com.example.passbook.services.ICurrentStateService;
+import com.example.passbook.services.ServiceLocator;
 
 import org.apache.commons.lang3.StringUtils;
+
+import javax.xml.transform.sax.TemplatesHandler;
 
 public class ThemeExtension {
     public static void setTheme(AppCompatActivity activity) {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(Constant.SETTING, Context.MODE_PRIVATE);
-        String stringTheme = sharedPreferences.getString(Constant.THEME, "");
+        String stringTheme = sharedPreferences.getString(Constant.THEME, Constant.DEFAULT_THEME);
 
         if(!StringUtils.isEmpty(stringTheme)) {
             activity.setTheme(activity.getResources().getIdentifier(stringTheme, Constant.STYLE, activity.getPackageName()));
+
+            ThemeType themeType = ThemeType.fromTextString(stringTheme);
+            ServiceLocator.getInstance().getService(ICurrentStateService.class).setCurrentTheme(themeType);
         }
     }
 
     public static void changeTheme(AppCompatActivity activity, ThemeType themeType) {
-        String stringTheme = getThemeString(themeType);
+        String stringTheme = ThemeType.toTextString(themeType);
 
         if(!StringUtils.isEmpty(stringTheme)) {
             saveThem(activity, stringTheme);
@@ -34,7 +41,7 @@ public class ThemeExtension {
         }
     }
 
-    private static void reloadActivity(AppCompatActivity activity) {
+    public static void reloadActivity(AppCompatActivity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) activity.recreate();
         else {
             Intent i = activity.getPackageManager().getLaunchIntentForPackage(activity.getPackageName());
@@ -47,25 +54,5 @@ public class ThemeExtension {
         SharedPreferences.Editor editor = context.getSharedPreferences(Constant.SETTING, Context.MODE_PRIVATE).edit();
         editor.putString(Constant.THEME, stringTheme);
         editor.apply();
-    }
-
-    private static String getThemeString(ThemeType themeType) {
-        String stringTheme = "";
-
-        switch (themeType) {
-            case BLUE:
-                stringTheme = Constant.BLUE_THEME;
-                break;
-
-            case PINK:
-                stringTheme = Constant.PINK_THEME;
-                break;
-
-            case YELLOW:
-                stringTheme = Constant.YELLOW_THEME;
-                break;
-        }
-
-        return stringTheme;
     }
 }

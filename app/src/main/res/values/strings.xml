@@ -75,4 +75,6 @@
     <string name="pink">Pink</string>
     <string name="blue">Blue</string>
     <string name="yellow">Yellow</string>
+    <string name="cancel">Cancel</string>
+    <string name="theme">Theme</string>
 </resources>

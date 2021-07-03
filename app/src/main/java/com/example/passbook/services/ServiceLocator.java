@@ -25,30 +25,40 @@ public class ServiceLocator {
         return instance;
     }
 
-    public Object getService(Class interfaceName) {
+    public <T> T getService(Class<T> interfaceName) {
         if(services.containsKey(interfaceName)) {
-            return services.get(interfaceName);
+            return (T) services.get(interfaceName);
         } else {
             return null;
         }
     }
 
-    public void registerService(Class interfaceName, final Class<?> className, Object ... args) {
+    public void registerService(Class interfaceName, final Class<?> className, Object ... args)
+            throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
         if(!services.containsKey(interfaceName)) {
             try {
-                Constructor constructor = className.getConstructor(args.getClass());
-                try {
-                    Object myService = constructor.newInstance(args);
-                    services.put(interfaceName, myService);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
+                Constructor constructor = null;
+
+                if(args == null) {
+                    constructor = className.getConstructor();
+                }else {
+                    constructor = className.getConstructor(args.getClass());
                 }
-            } catch (NoSuchMethodException e) {
-                return;
+
+                try {
+                    Object myService = null;
+
+                    if(args == null) {
+                        myService = constructor.newInstance();
+                    } else {
+                        myService = constructor.newInstance(args);
+                    }
+                    services.put(interfaceName, myService);
+                } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
+                    throw e;
+                }
+            } catch (NoSuchMethodException | InstantiationException | InvocationTargetException e) {
+                throw e;
             }
         }
     }

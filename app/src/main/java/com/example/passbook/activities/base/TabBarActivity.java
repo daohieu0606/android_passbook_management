@@ -1,15 +1,7 @@
 package com.example.passbook.activities.base;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,11 +15,8 @@ import com.example.passbook.customviews.CustomDialog;
 import com.example.passbook.customviews.IconLabel;
 import com.example.passbook.data.enums.ThemeType;
 import com.example.passbook.intefaces.OnDialogButtonClick;
-import com.example.passbook.services.AppDatabase;
-import com.example.passbook.utils.Constant;
-import com.example.passbook.utils.ThemeExtension;
-
-import org.apache.commons.lang3.StringUtils;
+import com.example.passbook.services.ICurrentStateService;
+import com.example.passbook.services.ServiceLocator;
 
 public abstract class TabBarActivity extends BaseActivity implements PopupMenu.OnMenuItemClickListener{
     protected int containerLayout = 0;
@@ -105,7 +94,7 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
             case R.id.btnLanguage:
                 //TODO: handle change language
                 return true;
-            case R.id.btnColor:
+            case R.id.btnTheme:
                 performChangeTheme();
                 return true;
 
@@ -122,16 +111,25 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
                 this,
                 R.layout.body_select_theme,
                 getString(R.string.select_theme));
+
+        RadioGroup rgTheme = customDialog.getBody().findViewById(R.id.rgTheme);
+
+        setSelectedThemeRadioButton(rgTheme);
+
+        setOnThemeRadioGroupSelected(customDialog, rgTheme);
+
+        customDialog.show();
+    }
+
+    private void setOnThemeRadioGroupSelected(CustomDialog customDialog, RadioGroup rgTheme) {
         customDialog.onDialogButtonClick = new OnDialogButtonClick() {
             @Override
             public void onNegativeClick() {
-
+                //do nothing
             }
 
             @Override
             public void onPositiveClick() {
-                RadioGroup rgTheme = customDialog.getBody().findViewById(R.id.rgTheme);
-
                 int selectedId = rgTheme.getCheckedRadioButtonId();
 
                 switch (selectedId) {
@@ -146,12 +144,27 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
                     case R.id.rbYellow:
                         presenter.changeTheme(ThemeType.YELLOW);
                         break;
-
                 }
             }
         };
-
-        customDialog.show();
     }
 
+    private void setSelectedThemeRadioButton(RadioGroup rgTheme) {
+        ThemeType themeType = ServiceLocator.getInstance().getService(ICurrentStateService.class).getCurrentThemeType();
+        switch (themeType) {
+            case PINK:
+                rgTheme.check(R.id.rbPink);
+                break;
+
+            case BLUE:
+                rgTheme.check(R.id.rbBlue);
+                break;
+
+            case YELLOW:
+                rgTheme.check(R.id.rbYellow);
+                break;
+
+            case DEFAULT:
+        }
+    }
 }

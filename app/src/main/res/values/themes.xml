@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.MyApp" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="themeName">default</item>
+        <item name="themeName">DEFAULT</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">#f06292</item>
         <item name="colorPrimaryVariant">#ba2d65</item>
@@ -43,7 +43,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="YellowTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="themeName">YELLOW</item>
+        <item name="themeName">YellowTheme</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">#ffff00</item>
         <item name="colorPrimaryVariant">#c7cc00</item>

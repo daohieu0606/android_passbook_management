@@ -36,6 +36,7 @@ public class Constant {
     public static final String SETTING = "SETTING";
     public static final String THEME = "THEME";
     public static final String STYLE = "style";
+    public static final String DEFAULT_THEME = "DEFAULT";
     public static final String PINK_THEME = "PinkTheme";
     public static final String BLUE_THEME = "BlueTheme";
     public static final String YELLOW_THEME = "YellowTheme";
