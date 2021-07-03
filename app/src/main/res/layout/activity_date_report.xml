@@ -11,7 +11,7 @@
         android:layout_margin="@dimen/base_margin">
         <TextView
             android:id="@+id/dateLabel"
-            android:text="@string/date_label"
+            android:text="@string/date"
             android:textColor="@android:color/darker_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

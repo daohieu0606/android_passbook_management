@@ -61,7 +61,7 @@ public class DateReportActivity extends TabBarActivity implements DateReportCont
         LegacyTableView.insertLegacyTitle(Constant.ID,
                 getString(R.string.passbook_type),
                 getString(R.string.deposit_total),
-                getString(R.string.withdraw_total),
+                getString(R.string.withdrawal_total),
                 getString(R.string.difference));
 
         presenter.initTableViewData(passBooksByDate);

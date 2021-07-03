@@ -92,7 +92,7 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.btnLanguage:
-                //TODO: handle change language
+                performChangeLanguage();
                 return true;
             case R.id.btnTheme:
                 performChangeTheme();
@@ -104,6 +104,21 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
             default:
                 return false;
         }
+    }
+
+    private void performChangeLanguage() {
+        CustomDialog customDialog = new CustomDialog(
+                this,
+                R.layout.body_select_language,
+                getString(R.string.select_language));
+
+        RadioGroup rgTheme = customDialog.getBody().findViewById(R.id.rgLanguage);
+
+//        setSelectedThemeRadioButton(rgTheme);
+//
+//        setOnThemeRadioGroupSelected(customDialog, rgTheme);
+
+        customDialog.show();
     }
 
     private void performChangeTheme() {
@@ -150,7 +165,9 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
     }
 
     private void setSelectedThemeRadioButton(RadioGroup rgTheme) {
-        ThemeType themeType = ServiceLocator.getInstance().getService(ICurrentStateService.class).getCurrentThemeType();
+        ThemeType themeType = ServiceLocator.getInstance()
+                            .getService(ICurrentStateService.class)
+                            .getCurrentThemeType();
         switch (themeType) {
             case PINK:
                 rgTheme.check(R.id.rbPink);

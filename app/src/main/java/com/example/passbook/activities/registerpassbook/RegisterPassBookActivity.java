@@ -122,12 +122,12 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
     @Override
     public void setPassBookIsExistedError() {
         models.get(0).isError = true;
-        models.get(0).errorSTr = getString(R.string.passbook_id_is_existed);
+        models.get(0).errorSTr = getString(R.string.passbook_id_was_existed);
     }
 
     @Override
     public void setAmountIsSmallThanRegulationError(int minDepositAmount) {
         models.get(6).isError = true;
-        models.get(6).errorSTr = getString(R.string.amount_must_greater_than) + String.valueOf(minDepositAmount);
+        models.get(6).errorSTr = getString(R.string.amount_must_greater_then) + String.valueOf(minDepositAmount);
     }
 }

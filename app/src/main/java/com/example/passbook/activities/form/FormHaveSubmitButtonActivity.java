@@ -79,7 +79,7 @@ public abstract class FormHaveSubmitButtonActivity
 
     @Override
     public void handleSuccess() {
-        showMessage(getString(R.string.handle_success));
+        showMessage(getString(R.string.handle_successfully));
         finish();
     }
 
