@@ -1,9 +1,7 @@
 package com.example.passbook.activities.main;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +12,7 @@ import com.example.passbook.activities.base.BaseActivity;
 import com.example.passbook.adapters.SpacesItemDecoration;
 import com.example.passbook.adapters.MainFuncAdapter;
 import com.example.passbook.data.models.MainFuncModel;
-import com.example.passbook.services.AppDatabase;
 import com.example.passbook.utils.ApplicationFunction;
-import com.example.passbook.utils.ThemeExtension;
 
 import java.util.ArrayList;
 import java.util.List;

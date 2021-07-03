@@ -13,10 +13,13 @@ import android.widget.TextView;
 import com.example.passbook.R;
 import com.example.passbook.customviews.CustomDialog;
 import com.example.passbook.customviews.IconLabel;
+import com.example.passbook.data.enums.LanguageType;
 import com.example.passbook.data.enums.ThemeType;
 import com.example.passbook.intefaces.OnDialogButtonClick;
 import com.example.passbook.services.ICurrentStateService;
 import com.example.passbook.services.ServiceLocator;
+import com.example.passbook.utils.LocaleHelper;
+import com.example.passbook.utils.ThemeHelper;
 
 public abstract class TabBarActivity extends BaseActivity implements PopupMenu.OnMenuItemClickListener{
     protected int containerLayout = 0;
@@ -92,7 +95,7 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.btnLanguage:
-                performChangeLanguage();
+                showChangeLanguageDialog();
                 return true;
             case R.id.btnTheme:
                 performChangeTheme();
@@ -106,19 +109,61 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
         }
     }
 
-    private void performChangeLanguage() {
+    private void showChangeLanguageDialog() {
         CustomDialog customDialog = new CustomDialog(
                 this,
                 R.layout.body_select_language,
                 getString(R.string.select_language));
 
-        RadioGroup rgTheme = customDialog.getBody().findViewById(R.id.rgLanguage);
+        RadioGroup rgLanguage = customDialog.getBody().findViewById(R.id.rgLanguage);
 
-//        setSelectedThemeRadioButton(rgTheme);
-//
-//        setOnThemeRadioGroupSelected(customDialog, rgTheme);
+        setSelectedLanguageRadioButton(rgLanguage);
+
+        customDialog.onDialogButtonClick = new OnDialogButtonClick() {
+            @Override
+            public void onNegativeClick() {
+
+            }
+
+            @Override
+            public void onPositiveClick() {
+                performChangeLanguage(rgLanguage);
+                customDialog.dismiss();
+            }
+        };
 
         customDialog.show();
+    }
+
+    private void setSelectedLanguageRadioButton(RadioGroup rgLanguage) {
+        LanguageType languageType = currentStateService.getCurrentLanguageType();
+
+        switch (languageType) {
+            case VIETNAMESE:
+                rgLanguage.check(R.id.rbVietnamese);
+                break;
+
+            case ENGLISH:
+            default:
+                rgLanguage.check(R.id.rbEnglish);
+        }
+    }
+
+    private void performChangeLanguage(RadioGroup rgLanguage){
+        int selectedId = rgLanguage.getCheckedRadioButtonId();
+
+        switch (selectedId) {
+            case R.id.rbVietnamese:
+                LocaleHelper.setLocale(this, LanguageType.VIETNAMESE);
+                break;
+
+            case R.id.rbEnglish:
+            default:
+                LocaleHelper.setLocale(this, LanguageType.ENGLISH);
+                break;
+        }
+
+        ThemeHelper.reloadActivity(this);
     }
 
     private void performChangeTheme() {

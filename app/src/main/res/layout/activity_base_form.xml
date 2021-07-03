@@ -10,15 +10,14 @@
         android:id="@+id/tabBarArea"
         android:background="?android:attr/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_header_controls">
+        android:layout_height="wrap_content">
 
         <com.example.passbook.customviews.IconLabel
             android:id="@+id/btnBack"
             android:text="@string/fi_back"
             android:textColor="@color/white"
             android:textSize="@dimen/icon_size"
-            android:layout_marginStart="@dimen/base_control_margin"
+            android:padding="@dimen/padding_header_controls"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -38,6 +37,7 @@
             android:text="@string/fi_menu"
             android:textColor="@color/white"
             android:textSize="@dimen/icon_size"
+            android:padding="@dimen/padding_header_controls"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"

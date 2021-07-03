@@ -3,12 +3,9 @@ package com.example.passbook.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Build;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.example.passbook.data.enums.ThemeType;
 import com.example.passbook.services.ICurrentStateService;
@@ -16,9 +13,7 @@ import com.example.passbook.services.ServiceLocator;
 
 import org.apache.commons.lang3.StringUtils;
 
-import javax.xml.transform.sax.TemplatesHandler;
-
-public class ThemeExtension {
+public class ThemeHelper {
     public static void setTheme(AppCompatActivity activity) {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(Constant.SETTING, Context.MODE_PRIVATE);
         String stringTheme = sharedPreferences.getString(Constant.THEME, Constant.DEFAULT_THEME);
@@ -35,7 +30,7 @@ public class ThemeExtension {
         String stringTheme = ThemeType.toTextString(themeType);
 
         if(!StringUtils.isEmpty(stringTheme)) {
-            saveThem(activity, stringTheme);
+            persistTheme(activity, stringTheme);
 
             reloadActivity(activity);
         }
@@ -50,7 +45,7 @@ public class ThemeExtension {
         }
     }
 
-    private static void saveThem(Context context, String stringTheme) {
+    private static void persistTheme(Context context, String stringTheme) {
         SharedPreferences.Editor editor = context.getSharedPreferences(Constant.SETTING, Context.MODE_PRIVATE).edit();
         editor.putString(Constant.THEME, stringTheme);
         editor.apply();

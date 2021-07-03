@@ -5,7 +5,7 @@ import androidx.room.Room;
 
 import com.example.passbook.data.enums.ThemeType;
 import com.example.passbook.services.AppDatabase;
-import com.example.passbook.utils.ThemeExtension;
+import com.example.passbook.utils.ThemeHelper;
 
 public class BasePresenter implements BaseContract.Presenter {
     protected AppDatabase appDatabase;
@@ -19,6 +19,6 @@ public class BasePresenter implements BaseContract.Presenter {
 
     @Override
     public void changeTheme(ThemeType themeType) {
-        ThemeExtension.changeTheme((AppCompatActivity) view, themeType);
+        ThemeHelper.changeTheme((AppCompatActivity) view, themeType);
     }
 }

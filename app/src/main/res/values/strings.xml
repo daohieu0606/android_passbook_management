@@ -35,7 +35,7 @@
     <string name="customer_id_is_wrong">Customer Id is wrong</string>
     <string name="amount_must_greater_then">Amount must greater then</string>
     <string name="value_must_be_greater_than_zero">Value must be greater than zero</string>
-    <string name="success">Success</string>
+    <string name="succeed">Succeed</string>
     <string name="select_date">Select date</string>
     <string name="passbook_id_was_existed">Passbook Id was existed</string>
     <string name="address">Address</string>

@@ -35,6 +35,7 @@ public class Constant {
     public static final String SMALLER_OR_EQUAL = " <= :";
     public static final String SETTING = "SETTING";
     public static final String THEME = "THEME";
+    public static final String LANGUAGE = "LANGUAGE";
     public static final String STYLE = "style";
     public static final String DEFAULT_THEME = "DEFAULT";
     public static final String PINK_THEME = "PinkTheme";
@@ -42,4 +43,6 @@ public class Constant {
     public static final String YELLOW_THEME = "YellowTheme";
     public static final String SHORT_DATE = "dd/MM/yyyy";
     public static final String MONTH_YEAR_FORMAT = "MMM yyyy";
+    public static final String ENGLISH_TYPE_STRING = "en";
+    public static final String VIETNAMESE_TYPE_STRING = "vi";
 }
