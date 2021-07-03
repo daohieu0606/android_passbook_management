@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Passbook</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">iPassbook</string>
     <string name="back">Trở lại</string>
     <string name="register_passbook">Đăng ký Sổ tiết kiệm</string>
     <string name="get_deposit_form">Phiếu gửi tiền</string>
@@ -82,5 +82,17 @@
     <string name="english">Tiếng Anh</string>
     <string name="vietnamese">Tiếng Việt</string>
     <string name="select_language">Chọn ngôn ngữ</string>
+    <string name="application_for_managing_passbooks">Ứng dụng quản lý sổ tiết kiệm</string>
+    <string name="product">Sản phẩm</string>
+    <string name="product_name_colon_">Tên sản phẩm: </string>
+    <string name="version_colon__">Phiên bản: </string>
+    <string name="min_android_version_colon__">Phiên bản Android tối thiểu: </string>
+    <string name="source_code_colon__">Mã nguồn: </string>
+    <string name="description_colon__">Mô tả: </string>
+    <string name="author">Tác giả</string>
+    <string name="author_name_colon__">Tên tác giả: </string>
+    <string name="email_colon__">E-mail: </string>
+    <string name="github_colon__">Github: </string>
+    <string name="mtrl_picker_confirm" tools:override="true">Đồng ý</string>
 
 </resources>

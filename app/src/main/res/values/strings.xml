@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Passbook</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">iPassbook</string>
     <string name="back">Back</string>
     <string name="register_passbook">Register Passbook</string>
     <string name="get_deposit_form">Get Deposit Form</string>
@@ -76,10 +76,22 @@
     <string name="yellow">Yellow</string>
     <string name="cancel">Cancel</string>
     <string name="theme">Theme</string>
-    <string name="passbook_type_colon">PassBook Type:</string>
+    <string name="passbook_type_colon">PassBook Type: </string>
     <string name="month_colon">Month: </string>
     <string name="english">English</string>
     <string name="vietnamese">Vietnamese</string>
     <string name="select_language">Select Language</string>
+    <string name="application_for_managing_passbooks">Application for managing passbooks</string>
+    <string name="product">Product</string>
+    <string name="product_name_colon_">Product Name:</string>
+    <string name="version_colon__">Version: </string>
+    <string name="min_android_version_colon__">Min Android Version: </string>
+    <string name="source_code_colon__">Source Code: </string>
+    <string name="description_colon__">Description: </string>
+    <string name="author">Author</string>
+    <string name="author_name_colon__">Author Name: </string>
+    <string name="email_colon__">Email: </string>
+    <string name="github_colon__">Github: </string>
+    <string name="mtrl_picker_confirm" tools:override="true">Ok</string>
 
 </resources>

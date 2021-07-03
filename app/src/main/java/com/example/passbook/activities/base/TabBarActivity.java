@@ -1,5 +1,6 @@
 package com.example.passbook.activities.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.about.AboutActivity;
 import com.example.passbook.customviews.CustomDialog;
 import com.example.passbook.customviews.IconLabel;
 import com.example.passbook.data.enums.LanguageType;
@@ -97,16 +99,23 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
             case R.id.btnLanguage:
                 showChangeLanguageDialog();
                 return true;
+
             case R.id.btnTheme:
                 performChangeTheme();
                 return true;
 
             case R.id.btnAbout:
-                //TODO: handle show about activity
+                goToAboutActivity();
                 return true;
+
             default:
                 return false;
         }
+    }
+
+    private void goToAboutActivity() {
+        Intent intent = new Intent(this, AboutActivity.class);
+        moveToAnotherActivity(intent);
     }
 
     private void showChangeLanguageDialog() {
