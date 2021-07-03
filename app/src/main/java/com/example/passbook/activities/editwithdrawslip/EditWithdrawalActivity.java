@@ -27,7 +27,7 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title = getString(R.string.withdraw_slip);
+        title = getString(R.string.withdrawal_slip);
 
         presenter = new EditWithdrawSlipPresenter(this);
     }
@@ -116,7 +116,7 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
     @Override
     public void setPassbookIsNotExistError() {
         models.get(0).isError = true;
-        models.get(0).errorSTr = getString(R.string.passbook_is_not_existed);
+        models.get(0).errorSTr = getString(R.string.passbook_id_is_not_existed);
     }
 
     @Override
@@ -128,19 +128,19 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
     @Override
     public void setCustomerIdWrongError() {
         models.get(1).isError = true;
-        models.get(1).errorSTr = getString(R.string.cus_id_is_wrong);
+        models.get(1).errorSTr = getString(R.string.customer_id_is_wrong);
     }
 
     @Override
     public void setMinPeriodError(int term) {
         models.get(2).isError = true;
-        models.get(2).errorSTr = String.format(getString(R.string.you_must_deposit_0_days), term);
+        models.get(2).errorSTr = String.format(getString(R.string.you_must_deposit_at_least_dates), term);
     }
 
     @Override
     public void setOverDepositError(int currentDeposit) {
         models.get(3).isError = true;
-        models.get(3).errorSTr = getString(R.string.amount_over_current_deposit_error) + String.valueOf(currentDeposit);
+        models.get(3).errorSTr = getString(R.string.amount_must_be_smaller_than_current_deposit) + String.valueOf(currentDeposit);
     }
 
     @Override

@@ -119,11 +119,11 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
 
                     updateInterestRate(passBookType, interestRate);
 
-                    Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 } else {
                     models.get(1).isError = true;
-                    models.get(1).errorSTr = getString(R.string.value_must_greater_the_zero);
+                    models.get(1).errorSTr = getString(R.string.value_must_be_greater_than_zero);
                     dialog.notifyDataChanged();
                 }
             }
@@ -158,11 +158,11 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
 
                     updateMinTime(passBookType, minTime);
 
-                    Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 } else {
                     models.get(1).isError = true;
-                    models.get(1).errorSTr = getString(R.string.value_must_greater_the_zero);
+                    models.get(1).errorSTr = getString(R.string.value_must_be_greater_than_zero);
                     dialog.notifyDataChanged();
                 }
             }
@@ -189,10 +189,10 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
                     updateMinDeposit(Integer.valueOf((String) models.get(0).value));
 
                     dialog.dismiss();
-                    Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
                 } else {
                     models.get(0).isError = true;
-                    models.get(0).errorSTr = getString(R.string.value_must_greater_the_zero);
+                    models.get(0).errorSTr = getString(R.string.value_must_be_greater_than_zero);
                     dialog.notifyDataChanged();
                 }
             }
@@ -250,7 +250,7 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
                 bankRegulation.existedPassBookTypes = result;
 
                 appDatabase.bankRegulationDAO().updateOrInsertItem(bankRegulation);
-                Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
                 customDialog.dismiss();
             }
         };

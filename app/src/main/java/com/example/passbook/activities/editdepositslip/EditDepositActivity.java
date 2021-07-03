@@ -109,13 +109,13 @@ implements EditDepositSlipContract.View{
     @Override
     public void setPassbookIsNotExistError() {
         models.get(0).isError = true;
-        models.get(0).errorSTr = getString(R.string.passbook_is_not_existed);
+        models.get(0).errorSTr = getString(R.string.passbook_id_is_not_existed);
     }
 
     @Override
     public void setPassbookMustBeInfiniteTypeError() {
         models.get(0).isError = true;
-        models.get(0).errorSTr = getString(R.string.passbook_must_be_infinite_type);
+        models.get(0).errorSTr = getString(R.string.passbook_type_must_be_infinite_type);
     }
 
     @Override
@@ -127,12 +127,12 @@ implements EditDepositSlipContract.View{
     @Override
     public void setCustomerIdWrongError() {
         models.get(1).isError = true;
-        models.get(1).errorSTr = getString(R.string.cus_id_is_wrong);
+        models.get(1).errorSTr = getString(R.string.customer_id_is_wrong);
     }
 
     @Override
     public void setAmountIsSmallThanRegulationError(int minDepositAmount) {
         models.get(3).isError = true;
-        models.get(3).errorSTr = getString(R.string.amount_must_greater_than) + String.valueOf(minDepositAmount);
+        models.get(3).errorSTr = getString(R.string.amount_must_greater_then) + String.valueOf(minDepositAmount);
     }
 }

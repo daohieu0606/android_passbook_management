@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_below="@id/appName"
-            android:text="@string/slogan"
+            android:text="@string/passbook_management"
             android:textColor="@color/white"
             android:padding="@dimen/base_control_margin"
             android:background="?android:attr/colorPrimary"

@@ -27,7 +27,7 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        title = getString(R.string.select_month_title);
+        title = getString(R.string.select_month_and_passbook_type);
         super.onCreate(savedInstanceState);
         presenter = new SelectMonthToGetReportPresenter(this);
     }
