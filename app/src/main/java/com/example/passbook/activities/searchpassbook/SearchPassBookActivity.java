@@ -7,11 +7,15 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.base.BaseActivity;
@@ -24,7 +28,8 @@ import com.example.passbook.services.AppDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchPassBookActivity extends BaseActivity implements SearchPassbookContract.View {
+public class SearchPassBookActivity extends BaseActivity
+        implements SearchPassbookContract.View, PopupMenu.OnMenuItemClickListener {
     private IconLabel btnBack;
     private IconLabel btnMenu;
     private EditText edtSearchKey;
@@ -116,5 +121,11 @@ public class SearchPassBookActivity extends BaseActivity implements SearchPassbo
         if(intent != null) {
             this.startActivity(intent);
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        Log.i(MyTag, "on item menu clicked");
+        return false;
     }
 }

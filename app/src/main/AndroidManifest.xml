@@ -15,7 +15,7 @@
         </activity>
         <activity android:name=".activities.TestLibActivity"></activity>
         <activity android:name=".activities.about.AboutActivity"></activity>
-        <activity android:name=".activities.pickupchangeregulation.PickUpChangeRegulationTypeActivity" />
+        <activity android:name=".activities.changeregulation.ChangeRegulationTypeActivity" />
         <activity android:name=".activities.selectmonthtogetreport.SelectMonthToGetReportActivity" />
         <activity android:name=".activities.pickupreport.PickupReportActivity" />
         <activity android:name=".activities.monthlyreport.MonthlyReportActivity" />

@@ -35,7 +35,7 @@
     <string name="passbook_have_not_closed_yet">Sổ tiết kiệm vẫn chưa đóng!</string>
     <string name="customer_id_is_wrong">Id khách hàng sai</string>
     <string name="amount_must_greater_then">Số tiền phải lớn hơn </string>
-    <string name="value_must_be_greater_than_zero">Giá trị phải lớn hơn 0</string>
+    <string name="value_must_be_greater_than_0">Giá trị phải lớn hơn %d</string>
     <string name="succeed">Thành công</string>
     <string name="select_date">Chọn ngày</string>
     <string name="passbook_id_was_existed">Id Sổ tiết kiệm đã tồn tại</string>

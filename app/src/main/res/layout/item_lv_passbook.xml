@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/item_passbook"
     android:padding="@dimen/base_padding">
 
     <RelativeLayout
@@ -35,17 +36,26 @@
             android:id="@+id/txtCustomerName"
             android:textStyle="bold"
             android:textSize="@dimen/title_text_size"
+            android:maxLines="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/txtPassBookId"
+            android:maxLines="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/txtAmount"
+            android:maxLines="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rlMenu"
+        android:layout_toRightOf="@id/content"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <View
         android:layout_below="@id/rlPassBookType"
         android:layout_width="match_parent"

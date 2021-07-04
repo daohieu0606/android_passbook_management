@@ -3,6 +3,8 @@ package com.example.passbook.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,15 +13,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
+import com.example.passbook.activities.searchpassbook.SearchPassBookActivity;
 import com.example.passbook.data.models.PassBookItem;
 
 import java.util.List;
 
 public class SearchPassBookAdapter extends RecyclerView.Adapter<SearchPassBookAdapter.SearchPassBookViewHolder> {
-    private AppCompatActivity activity;
+    private SearchPassBookActivity activity;
     private List<PassBookItem> models;
 
-    public SearchPassBookAdapter(AppCompatActivity activity, List<PassBookItem> models) {
+    public SearchPassBookAdapter(SearchPassBookActivity activity, List<PassBookItem> models) {
         this.activity = activity;
         this.models = models;
     }
@@ -48,6 +51,14 @@ public class SearchPassBookAdapter extends RecyclerView.Adapter<SearchPassBookAd
             holder.txtCustomerName.setText(passBookItem.customerName);
             holder.txtPassBookId.setText(passBookItem.passBookId);
             holder.txtAmount.setText(passBookItem.amount);
+
+            holder.item_passbook.setOnLongClickListener(v -> {
+                PopupMenu popup = new PopupMenu(activity, holder.rlMenu);
+                popup.setOnMenuItemClickListener(activity);
+                popup.inflate(R.menu.search_passbook_menu);
+                popup.show();
+                return true;
+            });
         }
     }
 
@@ -62,6 +73,9 @@ public class SearchPassBookAdapter extends RecyclerView.Adapter<SearchPassBookAd
         private TextView txtPassBookId;
         private TextView txtAmount;
 
+        public RelativeLayout item_passbook;
+        public RelativeLayout rlMenu;
+
         public SearchPassBookViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -69,6 +83,9 @@ public class SearchPassBookAdapter extends RecyclerView.Adapter<SearchPassBookAd
             txtCustomerName = itemView.findViewById(R.id.txtCustomerName);
             txtPassBookId = itemView.findViewById(R.id.txtPassBookId);
             txtAmount = itemView.findViewById(R.id.txtAmount);
+
+            item_passbook = itemView.findViewById(R.id.item_passbook);
+            rlMenu = itemView.findViewById(R.id.rlMenu);
         }
     }
 }
