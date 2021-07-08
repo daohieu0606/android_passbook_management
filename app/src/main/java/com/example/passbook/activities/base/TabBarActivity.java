@@ -32,7 +32,6 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
 
     protected String title;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

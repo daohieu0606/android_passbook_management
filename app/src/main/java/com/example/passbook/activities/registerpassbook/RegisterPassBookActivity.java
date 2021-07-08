@@ -15,9 +15,11 @@ import com.example.passbook.data.entitys.ThreeMonthPassBook;
 import com.example.passbook.data.enums.DatePickerType;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.enums.PassbookState;
+import com.example.passbook.data.enums.RegisterPassbookScreenType;
 import com.example.passbook.data.models.DateTimeModel;
 import com.example.passbook.data.models.SpinnerModel;
 import com.example.passbook.data.models.TextFieldModel;
+import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +27,7 @@ import java.util.List;
 
 public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity implements RegisterPassbookContract.View {
     private RegisterPassbookContract.Presenter presenter;
+    private RegisterPassbookScreenType registerPassbookScreenType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +41,48 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
     protected void initModelAndAdapter() {
         models = new ArrayList<>();
 
+        if(!getIntent().hasExtra(Constant.PASSBOOK_ID)) {
+            registerPassbookScreenType = RegisterPassbookScreenType.CREATE_NEW;
+            initModelForCreateNewPassbook();
+        } else {
+            registerPassbookScreenType = RegisterPassbookScreenType.EDIT;
+            initModelForEditPassbook();
+        }
+
+        adapter = new FormAdapter(this, models, lst_input);
+    }
+
+    private void initModelForEditPassbook() {
+        String idStr = getIntent().getStringExtra(Constant.PASSBOOK_ID);
+        int passBookId = Integer.valueOf(idStr);
+        PassBook passBook = appDatabase.passBookDAO().getItem(passBookId);
+
+        if(passBookId == 0 || passBook == null) {
+            initModelForCreateNewPassbook();
+            registerPassbookScreenType = RegisterPassbookScreenType.CREATE_NEW;
+            return;
+        }
+
+        Customer customer = appDatabase.customerDAO().getItem(passBook.customerId);
         List<String> passBookTypes = getPassbookType();
 
+        models.add(new TextFieldModel(getString(R.string.passbook_id), String.valueOf(passBook.Id), "", InputType.TYPE_CLASS_NUMBER));
+        models.add(new SpinnerModel(getString(R.string.passbook_type), passBook.passBookType, "", passBookTypes));
+        models.add(new TextFieldModel(getString(R.string.customer_name), customer.fullName, "", InputType.TYPE_CLASS_TEXT));
+        models.add(new TextFieldModel(getString(R.string.identify_number), customer.identifyNumber, "", InputType.TYPE_CLASS_TEXT));
+        models.add(new TextFieldModel(getString(R.string.address), customer.address, "", InputType.TYPE_CLASS_TEXT));
+        models.add(new DateTimeModel(getString(R.string.register_date), passBook.creationDate, "", DatePickerType.NORMAL));
+        models.add(new TextFieldModel(getString(R.string.amount), String.valueOf(passBook.amount), "", InputType.TYPE_CLASS_NUMBER));
+
+        models.get(0).isEnable = false;
+        models.get(5).isEnable = false;
+        models.get(6).isEnable = false;
+    }
+
+    private void initModelForCreateNewPassbook() {
         int nextPassbookId = presenter.getNextPassbookId();
+
+        List<String> passBookTypes = getPassbookType();
 
         models.add(new TextFieldModel(getString(R.string.passbook_id), String.valueOf(nextPassbookId), "", InputType.TYPE_CLASS_NUMBER));
         models.add(new SpinnerModel(getString(R.string.passbook_type), null, "", passBookTypes));
@@ -49,8 +91,6 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
         models.add(new TextFieldModel(getString(R.string.address), "", "", InputType.TYPE_CLASS_TEXT));
         models.add(new DateTimeModel(getString(R.string.register_date), new Date(), "", DatePickerType.NORMAL));
         models.add(new TextFieldModel(getString(R.string.amount), "", "", InputType.TYPE_CLASS_NUMBER));
-
-        adapter = new FormAdapter(this, models, lst_input);
     }
 
     @Override
@@ -129,5 +169,10 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
     public void setAmountIsSmallThanRegulationError(int minDepositAmount) {
         models.get(6).isError = true;
         models.get(6).errorSTr = getString(R.string.amount_must_greater_then) + String.valueOf(minDepositAmount);
+    }
+
+    @Override
+    public RegisterPassbookScreenType getViewMode() {
+        return registerPassbookScreenType;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.passbook.adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passbook.R;
@@ -21,6 +23,7 @@ import java.util.List;
 public class SearchPassBookAdapter extends RecyclerView.Adapter<SearchPassBookAdapter.SearchPassBookViewHolder> {
     private SearchPassBookActivity activity;
     private List<PassBookItem> models;
+    private PassBookItem selectedItem;
 
     public SearchPassBookAdapter(SearchPassBookActivity activity, List<PassBookItem> models) {
         this.activity = activity;
@@ -52,10 +55,27 @@ public class SearchPassBookAdapter extends RecyclerView.Adapter<SearchPassBookAd
             holder.txtPassBookId.setText(passBookItem.passBookId);
             holder.txtAmount.setText(passBookItem.amount);
 
+            if(position == models.size() - 1) {
+                holder.underline.setVisibility(View.GONE);
+            } else if(holder.underline.getVisibility() != View.VISIBLE) {
+                holder.underline.setVisibility(View.VISIBLE);
+            }
+
             holder.item_passbook.setOnLongClickListener(v -> {
+                selectedItem = models.get(position);
+
+                int color = ContextCompat.getColor(activity, R.color.selected_bg);
+                holder.item_passbook.setBackgroundColor(color);
+
                 PopupMenu popup = new PopupMenu(activity, holder.rlMenu);
                 popup.setOnMenuItemClickListener(activity);
                 popup.inflate(R.menu.search_passbook_menu);
+
+                popup.setOnDismissListener(menu -> {
+                    holder.item_passbook.setBackgroundColor(Color.TRANSPARENT);
+                    selectedItem = null;
+                });
+
                 popup.show();
                 return true;
             });
@@ -67,11 +87,14 @@ public class SearchPassBookAdapter extends RecyclerView.Adapter<SearchPassBookAd
         return models.size();
     }
 
+    public PassBookItem getSelectedItem() {return selectedItem;}
+
     public class SearchPassBookViewHolder extends RecyclerView.ViewHolder{
         private TextView txtPassbookType;
         private TextView txtCustomerName;
         private TextView txtPassBookId;
         private TextView txtAmount;
+        private View underline;
 
         public RelativeLayout item_passbook;
         public RelativeLayout rlMenu;
@@ -83,6 +106,7 @@ public class SearchPassBookAdapter extends RecyclerView.Adapter<SearchPassBookAd
             txtCustomerName = itemView.findViewById(R.id.txtCustomerName);
             txtPassBookId = itemView.findViewById(R.id.txtPassBookId);
             txtAmount = itemView.findViewById(R.id.txtAmount);
+            underline = itemView.findViewById(R.id.underline);
 
             item_passbook = itemView.findViewById(R.id.item_passbook);
             rlMenu = itemView.findViewById(R.id.rlMenu);

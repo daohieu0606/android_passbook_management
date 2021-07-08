@@ -5,4 +5,5 @@
         android:radius="@dimen/bg_corner"/>
     <stroke android:color="@android:color/darker_gray"
         android:width="@dimen/line_height"/>
+    <solid android:color="@color/white"/>
 </shape>
