@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 
 import com.example.passbook.data.enums.LanguageType;
 import com.example.passbook.services.impl.CurrentStateService;
+import com.example.passbook.services.impl.MenuFunctionService;
 import com.example.passbook.utils.Constant;
 import com.example.passbook.utils.LocaleHelper;
 
@@ -39,6 +40,7 @@ public class MyApplication extends Application {
     private void registerServices() {
         try {
             ServiceLocator.getInstance().registerService(ICurrentStateService.class, CurrentStateService.class, null);
+            ServiceLocator.getInstance().registerService(IMenuFunctionService.class, MenuFunctionService.class, null);
         } catch (Exception e) {
             e.printStackTrace();
         }

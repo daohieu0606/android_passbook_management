@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +30,9 @@ import com.example.passbook.daos.PassBookDAO;
 import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.data.models.PassBookItem;
 import com.example.passbook.services.AppDatabase;
+import com.example.passbook.services.IMenuFunctionService;
+import com.example.passbook.services.ServiceLocator;
+import com.example.passbook.services.impl.MenuFunctionService;
 import com.example.passbook.utils.Constant;
 
 import java.util.ArrayList;
@@ -108,6 +112,10 @@ public class SearchPassBookActivity extends BaseActivity
             }
             return false;
         });
+
+        btnMenu.setOnClickListener(v -> {
+            showPopup(v);
+        });
     }
 
     private void onSearch() {
@@ -145,18 +153,33 @@ public class SearchPassBookActivity extends BaseActivity
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         Log.i(MyTag, "on item menu clicked");
+        IMenuFunctionService menuFunctionService = ServiceLocator.getInstance().getService(IMenuFunctionService.class);
 
         int itemId = item.getItemId();
         switch (itemId) {
             case R.id.deleteItem:
                 performDeletePassbook();
-                break;
+                return true;
 
             case R.id.editItem:
                 performEditPassbook();
-                break;
+                return true;
+
+            case R.id.btnLanguage:
+                menuFunctionService.showChangeLanguageDialog(this);
+                return true;
+
+            case R.id.btnTheme:
+                menuFunctionService.showChangeThemeDialog(this);
+                return true;
+
+            case R.id.btnAbout:
+                menuFunctionService.goToAboutActivity(this);
+                return true;
+
+            default:
+                return false;
         }
-        return false;
     }
 
     private void performEditPassbook() {
@@ -184,5 +207,14 @@ public class SearchPassBookActivity extends BaseActivity
 
             Log.i(MyTag, "list pasbook count: " + passBookDAO.getItems().size());
         }
+    }
+
+    private void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(this);
+        popup.show();
+
     }
 }
