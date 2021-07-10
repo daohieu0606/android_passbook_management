@@ -8,14 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApp"
+        android:theme="@style/PinkTheme"
         android:name=".services.MyApplication">
         <activity android:name=".activities.searchpassbook.SearchPassBookActivity">
 
         </activity>
         <activity android:name=".activities.TestLibActivity"></activity>
         <activity android:name=".activities.about.AboutActivity"></activity>
-        <activity android:name=".activities.pickupchangeregulation.PickUpChangeRegulationTypeActivity" />
+        <activity android:name=".activities.changeregulation.ChangeRegulationTypeActivity" />
         <activity android:name=".activities.selectmonthtogetreport.SelectMonthToGetReportActivity" />
         <activity android:name=".activities.pickupreport.PickupReportActivity" />
         <activity android:name=".activities.monthlyreport.MonthlyReportActivity" />

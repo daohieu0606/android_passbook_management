@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 public class ThemeHelper {
     public static void setTheme(AppCompatActivity activity) {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(Constant.SETTING, Context.MODE_PRIVATE);
-        String stringTheme = sharedPreferences.getString(Constant.THEME, Constant.DEFAULT_THEME);
+        String stringTheme = sharedPreferences.getString(Constant.THEME, Constant.PINK_THEME);
 
         if(!StringUtils.isEmpty(stringTheme)) {
             activity.setTheme(activity.getResources().getIdentifier(stringTheme, Constant.STYLE, activity.getPackageName()));

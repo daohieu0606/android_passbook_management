@@ -2,54 +2,68 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/base_padding">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/rlPassBookType"
-        android:layout_width="@dimen/image_dimen"
-        android:layout_height="@dimen/image_dimen"
-        android:padding="@dimen/base_padding"
-        android:layout_marginBottom="@dimen/base_margin"
-        android:background="@drawable/bg_stroke_border">
-
-        <TextView
-            android:id="@+id/txtPassbookType"
-            android:textAlignment="center"
-            android:textSize="@dimen/small_size"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_red_dark"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"/>
-    </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_toRightOf="@id/rlPassBookType"
+        android:id="@+id/item_passbook"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="@dimen/base_margin">
-        <TextView
-            android:id="@+id/txtCustomerName"
-            android:textStyle="bold"
-            android:textSize="@dimen/title_text_size"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/rlPassBookType"
+            android:layout_width="@dimen/image_dimen"
+            android:layout_height="@dimen/image_dimen"
+            android:padding="@dimen/base_control_margin"
+            android:layout_margin="@dimen/base_margin"
+            android:background="@drawable/bg_stroke_border">
+
+            <TextView
+                android:id="@+id/txtPassbookType"
+                android:textAlignment="center"
+                android:textSize="@dimen/small_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_toRightOf="@id/rlPassBookType"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/base_margin">
+            <TextView
+                android:id="@+id/txtCustomerName"
+                android:textStyle="bold"
+                android:textSize="@dimen/title_text_size"
+                android:maxLines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtPassBookId"
+                android:maxLines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtAmount"
+                android:maxLines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rlMenu"
+            android:layout_toRightOf="@id/content"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/txtPassBookId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/txtAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+    </RelativeLayout>
     <View
-        android:layout_below="@id/rlPassBookType"
+        android:id="@+id/underline"
+        android:layout_below="@id/item_passbook"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="@dimen/base_control_margin"/>
+        android:background="@android:color/darker_gray"/>
 </RelativeLayout>

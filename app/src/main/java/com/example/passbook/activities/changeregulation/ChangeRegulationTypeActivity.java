@@ -1,4 +1,4 @@
-package com.example.passbook.activities.pickupchangeregulation;
+package com.example.passbook.activities.changeregulation;
 
 import android.os.Bundle;
 import android.text.InputType;
@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PickUpChangeRegulationTypeActivity extends TabBarActivity
-        implements View.OnClickListener, PickUpChangeRegulationTypeContract.View {
+public class ChangeRegulationTypeActivity extends TabBarActivity
+        implements View.OnClickListener, ChangeRegulationTypeContract.View {
     private Button btnNumOfType;
     private Button btnMinDeposit;
     private Button btnTerm;
@@ -33,7 +33,7 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
     private DialogHaveListView dialog;
     private List<BaseFormModel> models;
 
-    private PickUpChangeRegulationTypeContract.Presenter presenter;
+    private ChangeRegulationTypeContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
 
         super.onCreate(savedInstanceState);
 
-        presenter = new PickUpChangeRegulationTypePresenter(this);
+        presenter = new ChangeRegulationTypePresenter(this);
         init();
     }
 
@@ -123,7 +123,7 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
                     dialog.dismiss();
                 } else {
                     models.get(1).isError = true;
-                    models.get(1).errorSTr = getString(R.string.value_must_be_greater_than_zero);
+                    models.get(1).errorSTr = String.format(getString(R.string.value_must_be_greater_than_0), 0);
                     dialog.notifyDataChanged();
                 }
             }
@@ -132,13 +132,12 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
         dialog.show();
     }
 
-    private void changeTerm() {   //TODO: change name to terms
+    private void changeTerm() {
         models.clear();
 
         List<String> passBookTypes = new ArrayList<>();
         passBookTypes.add(PassBookType.THREE_MONTH.getText());
         passBookTypes.add(PassBookType.SIX_MONTH.getText());
-        //passBookTypes.add(PassBookType.INFINITE.getText());
 
         models.add(new SpinnerModel(getResources().getString(R.string.passbook_type), null, "", passBookTypes));
         models.add(new TextFieldModel(getString(R.string.min_term), "", "", InputType.TYPE_CLASS_NUMBER));
@@ -162,7 +161,7 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
                     dialog.dismiss();
                 } else {
                     models.get(1).isError = true;
-                    models.get(1).errorSTr = getString(R.string.value_must_be_greater_than_zero);
+                    models.get(1).errorSTr = String.format(getString(R.string.value_must_be_greater_than_0), 15);
                     dialog.notifyDataChanged();
                 }
             }
@@ -192,7 +191,7 @@ public class PickUpChangeRegulationTypeActivity extends TabBarActivity
                     Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
                 } else {
                     models.get(0).isError = true;
-                    models.get(0).errorSTr = getString(R.string.value_must_be_greater_than_zero);
+                    models.get(0).errorSTr = String.format(getString(R.string.value_must_be_greater_than_0), 100000);
                     dialog.notifyDataChanged();
                 }
             }

@@ -4,11 +4,10 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.passbook.activities.base.BaseContract;
 import com.example.passbook.activities.base.BasePresenter;
 import com.example.passbook.activities.editdepositslip.EditDepositActivity;
 import com.example.passbook.activities.editwithdrawslip.EditWithdrawalActivity;
-import com.example.passbook.activities.pickupchangeregulation.PickUpChangeRegulationTypeActivity;
+import com.example.passbook.activities.changeregulation.ChangeRegulationTypeActivity;
 import com.example.passbook.activities.pickupreport.PickupReportActivity;
 import com.example.passbook.activities.registerpassbook.RegisterPassBookActivity;
 import com.example.passbook.activities.searchpassbook.SearchPassBookActivity;
@@ -21,8 +20,6 @@ import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.models.MainFuncModel;
 import com.example.passbook.utils.Utils;
-
-import java.util.Date;
 
 public class MainPresenter extends BasePresenter implements MainContract.Presenter {
     private MainContract.View view;
@@ -125,7 +122,7 @@ public class MainPresenter extends BasePresenter implements MainContract.Present
                 break;
 
             case CHANGE_REGULATIONS:
-                intent = new Intent((AppCompatActivity)view, PickUpChangeRegulationTypeActivity.class);
+                intent = new Intent((AppCompatActivity)view, ChangeRegulationTypeActivity.class);
                 break;
 
             default:

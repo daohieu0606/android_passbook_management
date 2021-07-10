@@ -19,6 +19,7 @@ import com.example.passbook.data.enums.LanguageType;
 import com.example.passbook.data.enums.ThemeType;
 import com.example.passbook.intefaces.OnDialogButtonClick;
 import com.example.passbook.services.ICurrentStateService;
+import com.example.passbook.services.IMenuFunctionService;
 import com.example.passbook.services.ServiceLocator;
 import com.example.passbook.utils.LocaleHelper;
 import com.example.passbook.utils.ThemeHelper;
@@ -31,11 +32,13 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
     private IconLabel btnMenu;
 
     protected String title;
-
+    protected IMenuFunctionService menuFunctionService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        menuFunctionService = ServiceLocator.getInstance().getService(IMenuFunctionService.class);
 
         setContentView(R.layout.activity_base_form);
         Init();
@@ -97,145 +100,19 @@ public abstract class TabBarActivity extends BaseActivity implements PopupMenu.O
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.btnLanguage:
-                showChangeLanguageDialog();
+                menuFunctionService.showChangeLanguageDialog(this);
                 return true;
 
             case R.id.btnTheme:
-                performChangeTheme();
+                menuFunctionService.showChangeThemeDialog(this);
                 return true;
 
             case R.id.btnAbout:
-                goToAboutActivity();
+                menuFunctionService.goToAboutActivity(this);
                 return true;
 
             default:
                 return false;
-        }
-    }
-
-    private void goToAboutActivity() {
-        Intent intent = new Intent(this, AboutActivity.class);
-        moveToAnotherActivity(intent);
-    }
-
-    private void showChangeLanguageDialog() {
-        CustomDialog customDialog = new CustomDialog(
-                this,
-                R.layout.body_select_language,
-                getString(R.string.select_language));
-
-        RadioGroup rgLanguage = customDialog.getBody().findViewById(R.id.rgLanguage);
-
-        setSelectedLanguageRadioButton(rgLanguage);
-
-        customDialog.onDialogButtonClick = new OnDialogButtonClick() {
-            @Override
-            public void onNegativeClick() {
-
-            }
-
-            @Override
-            public void onPositiveClick() {
-                performChangeLanguage(rgLanguage);
-                customDialog.dismiss();
-            }
-        };
-
-        customDialog.show();
-    }
-
-    private void setSelectedLanguageRadioButton(RadioGroup rgLanguage) {
-        LanguageType languageType = currentStateService.getCurrentLanguageType();
-
-        switch (languageType) {
-            case VIETNAMESE:
-                rgLanguage.check(R.id.rbVietnamese);
-                break;
-
-            case ENGLISH:
-            default:
-                rgLanguage.check(R.id.rbEnglish);
-        }
-    }
-
-    private void performChangeLanguage(RadioGroup rgLanguage){
-        int selectedId = rgLanguage.getCheckedRadioButtonId();
-
-        switch (selectedId) {
-            case R.id.rbVietnamese:
-                LocaleHelper.setLocale(this, LanguageType.VIETNAMESE);
-                break;
-
-            case R.id.rbEnglish:
-            default:
-                LocaleHelper.setLocale(this, LanguageType.ENGLISH);
-                break;
-        }
-
-        ThemeHelper.reloadActivity(this);
-    }
-
-    private void performChangeTheme() {
-        CustomDialog customDialog = new CustomDialog(
-                this,
-                R.layout.body_select_theme,
-                getString(R.string.select_theme));
-
-        RadioGroup rgTheme = customDialog.getBody().findViewById(R.id.rgTheme);
-
-        setSelectedThemeRadioButton(rgTheme);
-
-        setOnThemeRadioGroupSelected(customDialog, rgTheme);
-
-        customDialog.show();
-    }
-
-    private void setOnThemeRadioGroupSelected(CustomDialog customDialog, RadioGroup rgTheme) {
-        customDialog.onDialogButtonClick = new OnDialogButtonClick() {
-            @Override
-            public void onNegativeClick() {
-                //do nothing
-            }
-
-            @Override
-            public void onPositiveClick() {
-                int selectedId = rgTheme.getCheckedRadioButtonId();
-
-                switch (selectedId) {
-                    case R.id.rbPink:
-                        presenter.changeTheme(ThemeType.PINK);
-                        break;
-
-                    case R.id.rbBlue:
-                        presenter.changeTheme(ThemeType.BLUE);
-                        break;
-
-                    case R.id.rbYellow:
-                        presenter.changeTheme(ThemeType.YELLOW);
-                        break;
-                }
-            }
-        };
-    }
-
-    private void setSelectedThemeRadioButton(RadioGroup rgTheme) {
-        ThemeType themeType = ServiceLocator.getInstance()
-                            .getService(ICurrentStateService.class)
-                            .getCurrentThemeType();
-        switch (themeType) {
-            case PINK:
-                rgTheme.check(R.id.rbPink);
-                break;
-
-            case BLUE:
-                rgTheme.check(R.id.rbBlue);
-                break;
-
-            case YELLOW:
-                rgTheme.check(R.id.rbYellow);
-                break;
-
-            case DEFAULT:
         }
     }
 }

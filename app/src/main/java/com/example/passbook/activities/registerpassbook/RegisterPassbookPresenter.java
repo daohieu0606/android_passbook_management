@@ -21,28 +21,37 @@ public class RegisterPassbookPresenter extends FormPresenter implements Register
         Customer customer = (Customer) objects[0];
         PassBook passBook = (PassBook) objects[1];
 
-        Customer existedCustomer = appDatabase
-                .customerDAO()
-                .getCustomerByIdentifyNumberAndName(customer.identifyNumber, customer.fullName);
+        switch (view.getViewMode()) {
+            case EDIT:
+                updatePassbook(passBook, customer);
+                break;
 
-        if(existedCustomer == null) {
-            int id = (int) appDatabase.customerDAO().insertItem(customer);
-
-            customer.Id = id;
-        } else {
-            customer.Id = existedCustomer.Id;
+            case CREATE_NEW:
+            default:
+                addNewPassbook(passBook, customer);
+                break;
         }
-
-        passBook.customerId = customer.Id;
-        PassBookDAO passBookDAO = appDatabase.passBookDAO();
-        passBookDAO.insertItem(passBook);
 
         return true;
     }
 
+    private void addNewPassbook(PassBook passBook, Customer customer) {
+        long cusId = appDatabase.customerDAO().insertItem(customer);
+
+        passBook.customerId = (int) cusId;
+        PassBookDAO passBookDAO = appDatabase.passBookDAO();
+        passBookDAO.insertItem(passBook);
+    }
+
+    private void updatePassbook(PassBook passBook, Customer customer) {
+        appDatabase.customerDAO().updateOrInsertItem(customer);
+
+        PassBookDAO passBookDAO = appDatabase.passBookDAO();
+        passBookDAO.updateOrInsertItem(passBook);
+    }
+
     @Override
     protected boolean manualCheck(Object... objects) {
-        Customer customer = (Customer) objects[0];
         PassBook passBook = (PassBook) objects[1];
 
         boolean result = true;

@@ -45,4 +45,5 @@ public class Constant {
     public static final String MONTH_YEAR_FORMAT = "MMM yyyy";
     public static final String ENGLISH_TYPE_STRING = "en";
     public static final String VIETNAMESE_TYPE_STRING = "vi";
+    public static final String PASSBOOK_ID = "PASSBOOK_ID";
 }

@@ -1,8 +1,8 @@
-package com.example.passbook.activities.pickupchangeregulation;
+package com.example.passbook.activities.changeregulation;
 
 import com.example.passbook.activities.base.BaseContract;
 
-public interface PickUpChangeRegulationTypeContract {
+public interface ChangeRegulationTypeContract {
     interface View extends BaseContract.View {
     }
 
