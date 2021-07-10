@@ -94,5 +94,7 @@
     <string name="email_colon__">E-mail: </string>
     <string name="github_colon__">Github: </string>
     <string name="mtrl_picker_confirm" tools:override="true">Đồng ý</string>
+    <string name="the_difference_is_equal_to_total_revenue_minus_total_expenditure">Chênh lệch bằng tổng thu trừ tổng chi</string>
+    <string name="the_difference_is_equal_to_num_of_opened_passbook_minus_num_of_closed_passbook">Chênh lệch bằng số Sổ tiết kiệm đã mở trừ số Sổ tiết kiệm đã đóng</string>
 
 </resources>

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:paddingStart="@dimen/base_margin"
+    android:paddingEnd="@dimen/base_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +15,7 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="2"
-        android:layout_margin="@dimen/base_margin">
+        android:layout_marginTop="@dimen/base_margin">
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -55,6 +58,27 @@
     <com.levitnudi.legacytableview.LegacyTableView
         android:id="@+id/tbPassbook"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtTitle"
+            android:text="@string/note"
+            android:textSize="@dimen/tiny_size"
+            android:layout_marginEnd="@dimen/base_control_margin"
+            android:textStyle="bold|italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/message"
+            android:layout_toRightOf="@id/txtTitle"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/tiny_size"
+            android:text="@string/the_difference_is_equal_to_num_of_opened_passbook_minus_num_of_closed_passbook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"/>
+    </RelativeLayout>
 </LinearLayout>

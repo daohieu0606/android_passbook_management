@@ -26,74 +26,7 @@ public class MainPresenter extends BasePresenter implements MainContract.Present
 
     public MainPresenter(MainContract.View view) {
         super(view);
-
         this.view = view;
-    }
-
-    @Override
-    public void intData() {
-        initBankRegulation();
-        intPassbookRegulation();
-        hardcode(); //TODO: remove hard code
-    }
-
-    private void intPassbookRegulation() {
-        if (appDatabase.passBookRegulationDAO().getItems().size() < 3) {
-            PassBookRegulation threeMonthsRegulation = new PassBookRegulation();
-            threeMonthsRegulation.passBookType = PassBookType.THREE_MONTH;
-            threeMonthsRegulation.creationDateTime = Utils.parseDate("2020-01-01");
-            threeMonthsRegulation.term = 3 * 30;
-            threeMonthsRegulation.Id = 1;
-            threeMonthsRegulation.interestRate = 0.005f;
-
-            PassBookRegulation sixMonthsRegulation = new PassBookRegulation();
-            sixMonthsRegulation.passBookType = PassBookType.SIX_MONTH;
-            sixMonthsRegulation.creationDateTime = Utils.parseDate("2020-01-01");
-            sixMonthsRegulation.term = 6 * 30;
-            sixMonthsRegulation.Id = 2;
-            sixMonthsRegulation.interestRate = 0.0055f;
-
-            PassBookRegulation infiniteRegulation = new PassBookRegulation();
-            infiniteRegulation.passBookType = PassBookType.INFINITE;
-            infiniteRegulation.creationDateTime = Utils.parseDate("2020-01-01");
-            infiniteRegulation.term = 0;
-            infiniteRegulation.Id = 3;
-            infiniteRegulation.interestRate = 0.0015f;
-
-            appDatabase.passBookRegulationDAO().insertItem(threeMonthsRegulation);
-            appDatabase.passBookRegulationDAO().insertItem(sixMonthsRegulation);
-            appDatabase.passBookRegulationDAO().insertItem(infiniteRegulation);
-        }
-    }
-
-    private void hardcode() {
-        for (Customer customer:
-                HardCode.HardCodeCustomer.getCustomers()) {
-            appDatabase.customerDAO().insertItem(customer);
-        }
-
-        for (PassBook passBook :
-                HardCode.HardCodePassbook.getPassBooks()) {
-            appDatabase.passBookDAO().insertItem(passBook);
-        }
-
-        for (TransactionForm transactionForm :
-                HardCode.HardCodeTransactionForm.getTransactionForms()) {
-            appDatabase.transactionFormDAO().insertItem(transactionForm);
-        }
-    }
-
-    private void initBankRegulation() {
-        if(appDatabase.bankRegulationDAO().getItems().size() == 0) {
-            BankRegulation bankRegulation = new BankRegulation();
-            bankRegulation.existedPassBookTypes = PassBookType.THREE_MONTH.getValue()
-                    | PassBookType.SIX_MONTH.getValue()
-                    | PassBookType.INFINITE.getValue();
-            bankRegulation.minDepositAmount = 100000;
-            bankRegulation.Id = 1;
-
-            appDatabase.bankRegulationDAO().insertItem(bankRegulation);
-        }
     }
 
     @Override

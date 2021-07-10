@@ -29,15 +29,15 @@ public class HardCode {
             InfinitePassBook passBook5 = new InfinitePassBook();
             InfinitePassBook passBook6 = new InfinitePassBook();
 
-            passBook1.Id = 1;
-            passBook2.Id = 2;
-            passBook3.Id = 3;
-            passBook4.Id = 4;
-            passBook5.Id = 5;
-            passBook6.Id = 6;
-            passBook7.Id = 7;
-            passBook8.Id = 8;
-            passBook9.Id = 9;
+            passBook1.Id = 1011;
+            passBook2.Id = 1012;
+            passBook3.Id = 1013;
+            passBook4.Id = 1014;
+            passBook5.Id = 1015;
+            passBook6.Id = 1016;
+            passBook7.Id = 1017;
+            passBook8.Id = 1018;
+            passBook9.Id = 1019;
 
             passBook1.customerId = 1;
             passBook2.customerId = 2;
@@ -59,15 +59,15 @@ public class HardCode {
             passBook8.creationDate = new Date();
             passBook9.creationDate = Utils.getNextDate(new Date());
 
-            passBook1.amount = 520313;
-            passBook2.amount = 421;
-            passBook3.amount = 23213;
-            passBook4.amount = 21231;
-            passBook5.amount = 213;
-            passBook6.amount = 1523;
-            passBook6.amount = 1523;
-            passBook6.amount = 1523;
-            passBook6.amount = 1523;
+//            passBook1.amount = 0;
+//            passBook2.amount = 0;
+//            passBook3.amount = 0;
+//            passBook4.amount = 0;
+//            passBook5.amount = 0;
+//            passBook6.amount = 1523;
+//            passBook6.amount = 1523;
+//            passBook6.amount = 1523;
+//            passBook6.amount = 1523;
 
             result.add(passBook1);
             result.add(passBook2);
@@ -151,12 +151,12 @@ public class HardCode {
             transactionForm5.Id = 5;
             transactionForm6.Id = 6;
 
-            transactionForm1.passBookId = 1;
-            transactionForm2.passBookId = 2;
-            transactionForm3.passBookId = 3;
-            transactionForm4.passBookId = 4;
-            transactionForm5.passBookId = 5;
-            transactionForm6.passBookId = 6;
+            transactionForm1.passBookId = 1011;
+            transactionForm2.passBookId = 1012;
+            transactionForm3.passBookId = 1013;
+            transactionForm4.passBookId = 1014;
+            transactionForm5.passBookId = 1015;
+            transactionForm6.passBookId = 1016;
 
             transactionForm1.customerId = 1;
             transactionForm2.customerId = 2;
@@ -172,12 +172,12 @@ public class HardCode {
             transactionForm5.transactionDateTime = new Date();
             transactionForm6.transactionDateTime = new Date();
 
-            transactionForm1.amount = 1;
-            transactionForm2.amount = 2;
-            transactionForm3.amount = 3;
-            transactionForm4.amount = 4;
-            transactionForm5.amount = 5;
-            transactionForm6.amount = 6;
+            transactionForm1.amount = 100000;
+            transactionForm2.amount = 200000;
+            transactionForm3.amount = 300000;
+            transactionForm4.amount = 400000;
+            transactionForm5.amount = 500000;
+            transactionForm6.amount = 600000;
 
             result.add(transactionForm1);
             result.add(transactionForm2);

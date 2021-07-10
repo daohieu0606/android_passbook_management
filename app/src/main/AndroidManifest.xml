@@ -13,6 +13,13 @@
         <activity android:name=".activities.searchpassbook.SearchPassBookActivity">
 
         </activity>
+        <activity android:name=".activities.splashscreen.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.TestLibActivity"></activity>
         <activity android:name=".activities.about.AboutActivity"></activity>
         <activity android:name=".activities.changeregulation.ChangeRegulationTypeActivity" />
@@ -28,11 +35,7 @@
         </activity>
         <activity android:name=".activities.base.TabBarActivity" />
         <activity android:name=".activities.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
