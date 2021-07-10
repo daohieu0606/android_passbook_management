@@ -4,8 +4,11 @@ import com.example.passbook.activities.form.FormPresenter;
 import com.example.passbook.daos.PassBookDAO;
 import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.Customer;
+import com.example.passbook.data.entitys.DepositSlip;
 import com.example.passbook.data.entitys.PassBook;
+import com.example.passbook.data.entitys.TransactionForm;
 
+import java.util.Date;
 import java.util.Random;
 
 public class RegisterPassbookPresenter extends FormPresenter implements RegisterPassbookContract.Presenter {
@@ -40,7 +43,15 @@ public class RegisterPassbookPresenter extends FormPresenter implements Register
 
         passBook.customerId = (int) cusId;
         PassBookDAO passBookDAO = appDatabase.passBookDAO();
-        passBookDAO.insertItem(passBook);
+        int passBookId = (int) passBookDAO.insertItem(passBook);
+
+        DepositSlip depositSlip = new DepositSlip();
+        depositSlip.passBookId = passBookId;
+        depositSlip.customerId = (int) cusId;
+        depositSlip.amount = passBook.amount;
+        depositSlip.transactionDateTime = new Date();
+
+        appDatabase.transactionFormDAO().insertItem(depositSlip);
     }
 
     private void updatePassbook(PassBook passBook, Customer customer) {

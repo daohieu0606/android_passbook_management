@@ -32,7 +32,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         presenter = new MainPresenter(this);
 
         init();
-        presenter.intData();
     }
 
     private void init() {

@@ -12,7 +12,6 @@ public interface MainContract {
     }
 
     interface Presenter extends BaseContract.Presenter {
-        void intData();
         void handleItemClick(MainFuncModel item);
     }
 }

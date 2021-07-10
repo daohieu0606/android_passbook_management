@@ -19,6 +19,7 @@
     <dimen name="search_height">@dimen/_30sdp</dimen>
     <dimen name="switcher_width">@dimen/_200sdp</dimen>
     <dimen name="margin_header">@dimen/_80sdp</dimen>
+    <dimen name="tiny_size">11sp</dimen>
     <dimen name="small_size">14sp</dimen>
     <dimen name="medium_size">18sp</dimen>
     <dimen name="large_size">24sp</dimen>
@@ -26,4 +27,6 @@
     <dimen name="item_adapter_height">@dimen/_48sdp</dimen>
     <dimen name="title_text_size">16sp</dimen>
     <dimen name="about_image_size">@dimen/_120sdp</dimen>
+    <dimen name="progress_bottom_margin">@dimen/_15sdp</dimen>
+    <dimen name="splash_screen_image_size">@dimen/_100sdp</dimen>
 </resources>

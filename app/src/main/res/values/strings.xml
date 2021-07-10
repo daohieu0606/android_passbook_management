@@ -93,5 +93,17 @@
     <string name="email_colon__">Email: </string>
     <string name="github_colon__">Github: </string>
     <string name="mtrl_picker_confirm" tools:override="true">Ok</string>
+    <string name="the_difference_is_equal_to_total_revenue_minus_total_expenditure">The difference is equal to total revenue minus total expenditure</string>
+    <string name="the_difference_is_equal_to_num_of_opened_passbook_minus_num_of_closed_passbook">The difference is equal to num of Opened Passbook minus num of Closed Passbook</string>
 
+
+    <string name="pick_up_month">Pick up month</string>
+    <string name="loading_regulation">loading bank regulations ...</string>
+    <string name="loading_passbook_regulation">loading passbook regulations ...</string>
+    <string name="loading_passbook_records">loading passbook records ...</string>
+    <string name="finished">Finished!</string>
+    <string name="loading">loading ...</string>
+    <string name="note">Note:</string>
+    <string name="total_revenue">Total revenue</string>
+    <string name="total_expenditure">Total expenditure</string>
 </resources>

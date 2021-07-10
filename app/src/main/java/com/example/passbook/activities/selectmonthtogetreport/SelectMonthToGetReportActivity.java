@@ -41,8 +41,7 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
 
         models = new ArrayList<>();
         models.add(new SpinnerModel(getResources().getString(R.string.passbook_type), null, "", passBookTypes));
-        //TODO: pick up only month and year
-        models.add(new DateTimeModel(getString(R.string.pick_up_date), new Date(), "", DatePickerType.MONTH_YEAR_ONLY));
+        models.add(new DateTimeModel(getString(R.string.pick_up_month), new Date(), "", DatePickerType.MONTH_YEAR_ONLY));
 
         adapter = new FormAdapter(this, models, lst_input);
     }
