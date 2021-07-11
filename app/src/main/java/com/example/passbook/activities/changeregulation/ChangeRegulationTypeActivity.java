@@ -93,9 +93,9 @@ public class ChangeRegulationTypeActivity extends TabBarActivity
         models.clear();
 
         List<String> passBookTypes = new ArrayList<>();
-        passBookTypes.add(PassBookType.THREE_MONTH.getText());
-        passBookTypes.add(PassBookType.SIX_MONTH.getText());
-        passBookTypes.add(PassBookType.INFINITE.getText());
+        passBookTypes.add(PassBookType.THREE_MONTH.getText(this));
+        passBookTypes.add(PassBookType.SIX_MONTH.getText(this));
+        passBookTypes.add(PassBookType.INFINITE.getText(this));
 
         models.add(new SpinnerModel(getResources().getString(R.string.passbook_type), null, "", passBookTypes));
         models.add(new TextFieldModel(
@@ -112,32 +112,36 @@ public class ChangeRegulationTypeActivity extends TabBarActivity
 
             @Override
             public void onPositiveClick() {
-                Float interestRate = Float.valueOf((String) models.get(1).value);
-
-                if(interestRate >= PassBookRegulation.MIN_INTEREST_RATE) {
-                    PassBookType passBookType = PassBookType.fromString((String) models.get(0).value);
-
-                    updateInterestRate(passBookType, interestRate);
-
-                    Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
-                    dialog.dismiss();
-                } else {
-                    models.get(1).isError = true;
-                    models.get(1).errorSTr = String.format(getString(R.string.value_must_be_greater_than_0), 0);
-                    dialog.notifyDataChanged();
-                }
+                performChangeInterest();
             }
         };
 
         dialog.show();
     }
 
+    private void performChangeInterest() {
+        Float interestRate = Float.valueOf((String) models.get(1).value);
+
+        if(interestRate >= PassBookRegulation.MIN_INTEREST_RATE) {
+            PassBookType passBookType = PassBookType.fromString((String) models.get(0).value, this);
+
+            updateInterestRate(passBookType, interestRate);
+
+            Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+        } else {
+            models.get(1).isError = true;
+            models.get(1).errorSTr = String.format(getString(R.string.value_must_be_greater_than_0), 0);
+            dialog.notifyDataChanged();
+        }
+    }
+
     private void changeTerm() {
         models.clear();
 
         List<String> passBookTypes = new ArrayList<>();
-        passBookTypes.add(PassBookType.THREE_MONTH.getText());
-        passBookTypes.add(PassBookType.SIX_MONTH.getText());
+        passBookTypes.add(PassBookType.THREE_MONTH.getText(this));
+        passBookTypes.add(PassBookType.SIX_MONTH.getText(this));
 
         models.add(new SpinnerModel(getResources().getString(R.string.passbook_type), null, "", passBookTypes));
         models.add(new TextFieldModel(getString(R.string.min_term), "", "", InputType.TYPE_CLASS_NUMBER));
@@ -150,24 +154,28 @@ public class ChangeRegulationTypeActivity extends TabBarActivity
 
             @Override
             public void onPositiveClick() {
-                Integer minTime = Integer.valueOf((String) models.get(1).value);
-
-                if(minTime >= BankRegulation.MIN_DEPOSIT_TIME) {
-                    PassBookType passBookType = PassBookType.fromString((String) models.get(0).value);
-
-                    updateMinTime(passBookType, minTime);
-
-                    Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
-                    dialog.dismiss();
-                } else {
-                    models.get(1).isError = true;
-                    models.get(1).errorSTr = String.format(getString(R.string.value_must_be_greater_than_0), 15);
-                    dialog.notifyDataChanged();
-                }
+                performChangeTerm();
             }
         };
 
         dialog.show();
+    }
+
+    private void performChangeTerm() {
+        Integer minTime = Integer.valueOf((String) models.get(1).value);
+
+        if(minTime >= BankRegulation.MIN_DEPOSIT_TIME) {
+            PassBookType passBookType = PassBookType.fromString((String) models.get(0).value, this);
+
+            updateMinTime(passBookType, minTime);
+
+            Toast.makeText(getApplicationContext(), getString(R.string.succeed), Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+        } else {
+            models.get(1).isError = true;
+            models.get(1).errorSTr = String.format(getString(R.string.value_must_be_greater_than_0), 15);
+            dialog.notifyDataChanged();
+        }
     }
 
     private void changeMinDepositAmount() {

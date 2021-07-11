@@ -95,7 +95,6 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
         return result;
     }
 
-    //TODO: handle for each passbook type
     private float getInterest(WithdrawalSlip withdrawalSlip) {
         PassBook passBook = appDatabase.passBookDAO().getItem(withdrawalSlip.passBookId);
         Date iterate = passBook.creationDate;

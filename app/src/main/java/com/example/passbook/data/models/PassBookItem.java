@@ -2,6 +2,7 @@ package com.example.passbook.data.models;
 
 import android.content.Context;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.example.passbook.data.entitys.Customer;
@@ -17,7 +18,7 @@ public class PassBookItem {
     public static PassBookItem passBookEntityToModel(Context context, PassBook passBook) {
         PassBookItem result = new PassBookItem();
 
-        result.passBookType = passBook.passBookType.getText();
+        result.passBookType = passBook.passBookType.getText((AppCompatActivity) context);
         result.amount = String.valueOf(passBook.amount);
         result.passBookId = String.valueOf(passBook.Id);
 

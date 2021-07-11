@@ -34,7 +34,7 @@ public class SelectMonthToGetReportPresenter extends FormPresenter
 
         Intent intent = new Intent((AppCompatActivity) view, MonthlyReportActivity.class);
         intent.putExtra(Constant.DATE_TO_GET_REPORT, dataValue);
-        intent.putExtra(Constant.PASSBOOK_TYPE, passBookType.getText());
+        intent.putExtra(Constant.PASSBOOK_TYPE, passBookType.getText((AppCompatActivity) view));
 
         view.moveToAnotherActivity(intent);
         return false;

@@ -49,7 +49,7 @@ public class MonthlyReportActivity extends TabBarActivity implements MonthlyRepo
 
     private void initData() {
         String passBookTypeStr = getIntent().getStringExtra(Constant.PASSBOOK_TYPE);
-        passBookType = PassBookType.fromString(passBookTypeStr);
+        passBookType = PassBookType.fromString(passBookTypeStr, this);
         long monthToGetReportLong = getIntent().getLongExtra(Constant.DATE_TO_GET_REPORT, -1);
 
         if(passBookType == null || monthToGetReportLong == -1) {
@@ -60,7 +60,7 @@ public class MonthlyReportActivity extends TabBarActivity implements MonthlyRepo
             endMonth = Utils.getEndMonth(monthToGetReport);
 
             txtMonth.setText(Utils.dateToString(monthToGetReport, Constant.MONTH_YEAR_FORMAT));
-            txtPassBookType.setText(passBookType.getText());
+            txtPassBookType.setText(passBookType.getText(this));
         }
     }
 

@@ -22,6 +22,8 @@ public class MonthlyReportPresenter extends BasePresenter implements MonthlyRepo
     @Override
     public void initTableViewData(Date startMonth, Date endMonth, PassBookType passBookType) {
         Date currentDay = startMonth;
+        int ordinalNumber = 1;
+
         while (!currentDay.after(endMonth)) {
             Date startDate = Utils.getStartDate(currentDay);
             Date endDate = Utils.getEndDate(currentDay);
@@ -30,7 +32,6 @@ public class MonthlyReportPresenter extends BasePresenter implements MonthlyRepo
             int numOfOpenedPassbook = 0;
             int numOfClosedPassbook = 0;
             int difference = 0;
-            int ordinalNumber = 1;
 
             List<PassBook> tempPassbooks = appDatabase.passBookDAO().getItems();
 

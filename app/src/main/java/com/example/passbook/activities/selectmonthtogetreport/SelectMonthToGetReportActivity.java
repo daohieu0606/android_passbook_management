@@ -35,9 +35,9 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
     @Override
     protected void initModelAndAdapter() {
         List<String> passBookTypes = new ArrayList<>();
-        passBookTypes.add(PassBookType.THREE_MONTH.getText());
-        passBookTypes.add(PassBookType.SIX_MONTH.getText());
-        passBookTypes.add(PassBookType.INFINITE.getText());
+        passBookTypes.add(PassBookType.THREE_MONTH.getText(this));
+        passBookTypes.add(PassBookType.SIX_MONTH.getText(this));
+        passBookTypes.add(PassBookType.INFINITE.getText(this));
 
         models = new ArrayList<>();
         models.add(new SpinnerModel(getResources().getString(R.string.passbook_type), null, "", passBookTypes));
@@ -48,7 +48,7 @@ public class SelectMonthToGetReportActivity extends FormHaveSubmitButtonActivity
 
     @Override
     protected void getDataFromViewAndCallPresenterHandle() {
-        PassBookType passBookType = PassBookType.fromString((String) models.get(0).value);
+        PassBookType passBookType = PassBookType.fromString((String) models.get(0).value, this);
         Date date = (Date) models.get(1).value;
 
         presenter.handleSubmit(passBookType, date);

@@ -45,7 +45,7 @@ public class SplashScreenPresenter extends BasePresenter implements SplashScreen
             PassBookRegulation infiniteRegulation = new PassBookRegulation();
             infiniteRegulation.passBookType = PassBookType.INFINITE;
             infiniteRegulation.creationDateTime = Utils.parseDate("2020-01-01");
-            infiniteRegulation.term = 0;
+            infiniteRegulation.term = 15;
             infiniteRegulation.Id = 3;
             infiniteRegulation.interestRate = 0.0015f;
 

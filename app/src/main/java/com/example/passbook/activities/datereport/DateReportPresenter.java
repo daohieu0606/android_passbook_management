@@ -1,5 +1,8 @@
 package com.example.passbook.activities.datereport;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.passbook.R;
 import com.example.passbook.activities.base.BasePresenter;
 import com.example.passbook.converters.DateConverter;
 import com.example.passbook.data.entitys.PassBook;
@@ -61,16 +64,23 @@ public class DateReportPresenter extends BasePresenter implements DateReportCont
             difference = depositTotal - withdrawTotal;
 
             LegacyTableView.insertLegacyContent(String.valueOf(passBook.Id));
-            LegacyTableView.insertLegacyContent(passBook.passBookType.getText());
+            LegacyTableView.insertLegacyContent(passBook.passBookType.getText((AppCompatActivity) view));
+            LegacyTableView.insertLegacyContent(toPassbookStateString(passBook));
             LegacyTableView.insertLegacyContent(String.valueOf(depositTotal));
             LegacyTableView.insertLegacyContent(String.valueOf(withdrawTotal));
             LegacyTableView.insertLegacyContent(String.valueOf(difference));
         }
 
-        /*for(int i = 0; i< passBooksByDate.size(); i++) {
-
-        }*/
-
         view.setDataToView();
+    }
+
+    private String toPassbookStateString(PassBook passBook) {
+        switch (passBook.passbookState) {
+            case CLOSED:
+                return ((AppCompatActivity)view).getString(R.string.closed);
+            case OPENED:
+            default:
+                return ((AppCompatActivity)view).getString(R.string.opening);
+        }
     }
 }

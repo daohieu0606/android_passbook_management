@@ -20,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.TestLibActivity"></activity>
         <activity android:name=".activities.about.AboutActivity"></activity>
         <activity android:name=".activities.changeregulation.ChangeRegulationTypeActivity" />
         <activity android:name=".activities.selectmonthtogetreport.SelectMonthToGetReportActivity" />
@@ -30,9 +29,6 @@
         <activity android:name=".activities.registerpassbook.RegisterPassBookActivity" />
         <activity android:name=".activities.editdepositslip.EditDepositActivity" />
         <activity android:name=".activities.editwithdrawslip.EditWithdrawalActivity" />
-        <activity android:name=".activities.TestDataActivity">
-
-        </activity>
         <activity android:name=".activities.base.TabBarActivity" />
         <activity android:name=".activities.main.MainActivity">
 

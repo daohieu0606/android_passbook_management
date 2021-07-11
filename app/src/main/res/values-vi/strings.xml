@@ -33,6 +33,7 @@
     <string name="passbook_id_is_not_existed">Id sổ tiết kiệm không tồn tại</string>
     <string name="passbook_type_must_be_infinite_type">Loại sổ tiết kiệm phải là loại không kỳ hạn</string>
     <string name="passbook_have_not_closed_yet">Sổ tiết kiệm vẫn chưa đóng!</string>
+    <string name="passbook_has_closed">Sổ tiết kiệm đã đóng!</string>
     <string name="customer_id_is_wrong">Id khách hàng sai</string>
     <string name="amount_must_greater_then">Số tiền phải lớn hơn </string>
     <string name="value_must_be_greater_than_0">Giá trị phải lớn hơn %d</string>
@@ -97,4 +98,19 @@
     <string name="the_difference_is_equal_to_total_revenue_minus_total_expenditure">Chênh lệch bằng tổng thu trừ tổng chi</string>
     <string name="the_difference_is_equal_to_num_of_opened_passbook_minus_num_of_closed_passbook">Chênh lệch bằng số Sổ tiết kiệm đã mở trừ số Sổ tiết kiệm đã đóng</string>
 
+    <string name="pick_up_month">Chọn tháng</string>
+    <string name="loading_regulation">khởi tạo điều khoản ngân hàng …</string>
+    <string name="loading_passbook_regulation">khởi tạo điều khoản sổ tiết kiệm …</string>
+    <string name="loading_passbook_records">khởi tạo danh sách sổ tiết kiệm …</string>
+    <string name="finished">Hoàn thành!</string>
+    <string name="loading">khởi tạo …</string>
+    <string name="note">Ghi chú:</string>
+    <string name="total_revenue">Tổng doanh thu</string>
+    <string name="total_expenditure">Tổng chi</string>
+    <string name="have_error">Có lỗi</string>
+    <string name="interest">Lãi xuất</string>
+    <string name="your_interest">"Tiền lãi của bạn là: "</string>
+    <string name="state">Trạng thái</string>
+    <string name="opening">Đang mở</string>
+    <string name="closed">Đã đóng</string>
 </resources>
