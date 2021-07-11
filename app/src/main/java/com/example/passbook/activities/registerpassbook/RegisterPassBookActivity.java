@@ -2,6 +2,7 @@ package com.example.passbook.activities.registerpassbook;
 
 import android.os.Bundle;
 import android.text.InputType;
+import android.widget.Toast;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.form.FormHaveSubmitButtonActivity;
@@ -69,7 +70,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
         models.add(new TextFieldModel(getString(R.string.passbook_id), String.valueOf(passBook.Id), "", InputType.TYPE_CLASS_NUMBER));
         models.add(new SpinnerModel(getString(R.string.passbook_type), passBook.passBookType, "", passBookTypes));
         models.add(new TextFieldModel(getString(R.string.customer_name), customer.fullName, "", InputType.TYPE_CLASS_TEXT));
-        models.add(new TextFieldModel(getString(R.string.identify_number), customer.identifyNumber, "", InputType.TYPE_CLASS_TEXT));
+        models.add(new TextFieldModel(getString(R.string.identify_number), customer.identifyNumber, "", InputType.TYPE_CLASS_NUMBER));
         models.add(new TextFieldModel(getString(R.string.address), customer.address, "", InputType.TYPE_CLASS_TEXT));
         models.add(new DateTimeModel(getString(R.string.register_date), passBook.creationDate, "", DatePickerType.NORMAL));
         models.add(new TextFieldModel(getString(R.string.amount), String.valueOf(passBook.amount), "", InputType.TYPE_CLASS_NUMBER));
@@ -87,7 +88,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
         models.add(new TextFieldModel(getString(R.string.passbook_id), String.valueOf(nextPassbookId), "", InputType.TYPE_CLASS_NUMBER));
         models.add(new SpinnerModel(getString(R.string.passbook_type), null, "", passBookTypes));
         models.add(new TextFieldModel(getString(R.string.customer_name), "", "", InputType.TYPE_CLASS_TEXT));
-        models.add(new TextFieldModel(getString(R.string.identify_number), "", "", InputType.TYPE_CLASS_TEXT));
+        models.add(new TextFieldModel(getString(R.string.identify_number), "", "", InputType.TYPE_CLASS_NUMBER));
         models.add(new TextFieldModel(getString(R.string.address), "", "", InputType.TYPE_CLASS_TEXT));
         models.add(new DateTimeModel(getString(R.string.register_date), new Date(), "", DatePickerType.NORMAL));
         models.add(new TextFieldModel(getString(R.string.amount), "", "", InputType.TYPE_CLASS_NUMBER));
@@ -106,17 +107,17 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
         BankRegulation bankRegulation = appDatabase.bankRegulationDAO().getItem(1);
 
         if(bankRegulation == null) {
-            //TODO: remove finish() and call function init bank regulation
+            Toast.makeText(this, getString(R.string.have_error), Toast.LENGTH_LONG).show();
             finish();
         } else {
             if((bankRegulation.existedPassBookTypes & PassBookType.THREE_MONTH.getValue()) != 0) {
-                passBookTypes.add(PassBookType.THREE_MONTH.getText());
+                passBookTypes.add(PassBookType.THREE_MONTH.getText(this));
             }
             if((bankRegulation.existedPassBookTypes & PassBookType.SIX_MONTH.getValue()) != 0) {
-                passBookTypes.add(PassBookType.SIX_MONTH.getText());
+                passBookTypes.add(PassBookType.SIX_MONTH.getText(this));
             }
             if((bankRegulation.existedPassBookTypes & PassBookType.INFINITE.getValue()) != 0) {
-                passBookTypes.add(PassBookType.INFINITE.getText());
+                passBookTypes.add(PassBookType.INFINITE.getText(this));
             }
         }
 
@@ -135,7 +136,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
 
     private PassBook getPassBookFromView() {
         PassBook passBook = null;
-        PassBookType passBookType = PassBookType.fromString((String) models.get(1).value);
+        PassBookType passBookType = PassBookType.fromString((String) models.get(1).value, this);
 
         switch (passBookType) {
             case THREE_MONTH:

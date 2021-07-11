@@ -1,5 +1,8 @@
 package com.example.passbook.data.enums;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.passbook.R;
 import com.example.passbook.data.entitys.InfinitePassBook;
 import com.example.passbook.data.entitys.SixMonthPassBook;
 import com.example.passbook.data.entitys.ThreeMonthPassBook;
@@ -33,17 +36,27 @@ public enum PassBookType {
         }
     }
 
-    public static PassBookType fromString(String value) {
+    public String getText(AppCompatActivity activity) {
         switch (value) {
-            case Constant.THREE_MONTHS:
-                return PassBookType.THREE_MONTH;
+            case 1:
+                return activity.getString(R.string.three_months_type);
 
-            case Constant.SIX_MONTHS:
-                return PassBookType.SIX_MONTH;
+            case 2:
+                return activity.getString(R.string.six_month_types);
 
-            case Constant.INFINITE:
+            case 4:
             default:
-                return PassBookType.INFINITE;
+                return activity.getString(R.string.infinite_type);
+        }
+    }
+
+    public static PassBookType fromString(String value, AppCompatActivity activity) {
+        if (value.equals(activity.getString(R.string.three_months_type))) {
+            return THREE_MONTH;
+        } else if (value.equals(activity.getString(R.string.six_month_types))) {
+            return SIX_MONTH;
+        } else {
+            return INFINITE;
         }
     }
 }

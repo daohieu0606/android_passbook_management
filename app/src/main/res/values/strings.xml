@@ -32,6 +32,7 @@
     <string name="passbook_id_is_not_existed">Passbook Id is not existed</string>
     <string name="passbook_type_must_be_infinite_type">Passbook Type must be infinite type</string>
     <string name="passbook_have_not_closed_yet">Passbook haven\'t closed yet!</string>
+    <string name="passbook_has_closed">Passbook has closed!</string>
     <string name="customer_id_is_wrong">Customer Id is wrong</string>
     <string name="amount_must_greater_then">Amount must greater then</string>
     <string name="value_must_be_greater_than_0">Value must be greater than %d</string>
@@ -92,18 +93,24 @@
     <string name="author_name_colon__">Author Name: </string>
     <string name="email_colon__">Email: </string>
     <string name="github_colon__">Github: </string>
-    <string name="mtrl_picker_confirm" tools:override="true">Ok</string>
+    <string name="mtrl_picker_confirm" tools:override="true">OK</string>
     <string name="the_difference_is_equal_to_total_revenue_minus_total_expenditure">The difference is equal to total revenue minus total expenditure</string>
     <string name="the_difference_is_equal_to_num_of_opened_passbook_minus_num_of_closed_passbook">The difference is equal to num of Opened Passbook minus num of Closed Passbook</string>
 
 
     <string name="pick_up_month">Pick up month</string>
-    <string name="loading_regulation">loading bank regulations ...</string>
-    <string name="loading_passbook_regulation">loading passbook regulations ...</string>
-    <string name="loading_passbook_records">loading passbook records ...</string>
+    <string name="loading_regulation">loading bank regulations …</string>
+    <string name="loading_passbook_regulation">loading passbook regulations …</string>
+    <string name="loading_passbook_records">loading passbook records …</string>
     <string name="finished">Finished!</string>
-    <string name="loading">loading ...</string>
+    <string name="loading">loading …</string>
     <string name="note">Note:</string>
     <string name="total_revenue">Total revenue</string>
     <string name="total_expenditure">Total expenditure</string>
+    <string name="have_error">Have error</string>
+    <string name="interest">Interest</string>
+    <string name="your_interest">"Your interest: "</string>
+    <string name="state">State</string>
+    <string name="opening">Opening</string>
+    <string name="closed">Closed</string>
 </resources>

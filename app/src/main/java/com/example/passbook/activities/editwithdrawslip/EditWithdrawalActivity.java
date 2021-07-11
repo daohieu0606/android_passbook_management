@@ -147,8 +147,8 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
     public void notifyInterest(float interest) {
         NotificationPopup notificationPopup = new NotificationPopup(
                 this,
-                "Interest",
-                "Your interest: " + String.valueOf(interest),
+                getString(R.string.interest),
+                getString(R.string.your_interest) + String.valueOf(interest),
                 () -> {
                     finish();
                 });

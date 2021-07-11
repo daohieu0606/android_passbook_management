@@ -186,7 +186,7 @@ public class FormAdapter extends RecyclerView.Adapter {
                         }
                     });
                 }
-                items.get(position).value = value;      //TODO: check valid value here
+                items.get(position).value = value;
             }
         };
 
