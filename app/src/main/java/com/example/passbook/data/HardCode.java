@@ -140,9 +140,9 @@ public class HardCode {
             TransactionForm transactionForm1 = new DepositSlip();
             TransactionForm transactionForm2 = new DepositSlip();
             TransactionForm transactionForm3 = new DepositSlip();
-            TransactionForm transactionForm4 = new WithdrawalSlip();
-            TransactionForm transactionForm5 = new WithdrawalSlip();
-            TransactionForm transactionForm6 = new WithdrawalSlip();
+            TransactionForm transactionForm4 = new DepositSlip();
+            TransactionForm transactionForm5 = new DepositSlip();
+            TransactionForm transactionForm6 = new DepositSlip();
 
             transactionForm1.Id = 1;
             transactionForm2.Id = 2;

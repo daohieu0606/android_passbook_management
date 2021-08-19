@@ -108,10 +108,13 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
                     .passBookRegulationDAO()
                     .getItemForCalInterestRate(passBook.passBookType, begin);
 
-            int period = (int) Utils.subDates(iterate, current);
+            float period = (float) Utils.subDates(iterate, current);
 
             if(period >= passBookRegulation.term) {
-                interest += passBookRegulation.interestRate* withdrawalSlip.amount;
+
+                float percentYear = period / 360.0f;
+
+                interest += (passBookRegulation.interestRate* withdrawalSlip.amount * percentYear);
                 iterate = Utils.plusDates(iterate, passBookRegulation.term);
             } else {
                 break;

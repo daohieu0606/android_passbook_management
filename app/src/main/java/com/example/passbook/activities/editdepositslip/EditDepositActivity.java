@@ -121,7 +121,7 @@ implements EditDepositSlipContract.View{
     @Override
     public void setPassbookIsClosedError() {
         models.get(0).isError = true;
-        models.get(0).errorSTr = getString(R.string.passbook_have_not_closed_yet);
+        models.get(0).errorSTr = getString(R.string.passbook_has_closed);
     }
 
     @Override

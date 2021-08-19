@@ -102,7 +102,7 @@ public class ChangeRegulationTypeActivity extends TabBarActivity
                 getString(R.string.interest_rate),
                 "",
                 "",
-                InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL));
+                InputType.TYPE_NUMBER_FLAG_DECIMAL));
 
         dialog.onDialogButtonClick = new OnDialogButtonClick() {
             @Override

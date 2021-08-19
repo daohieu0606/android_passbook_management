@@ -18,6 +18,7 @@ import com.example.passbook.intefaces.OnDismissListener;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -122,7 +123,7 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
     @Override
     public void setPassbookIsClosedError() {
         models.get(0).isError = true;
-        models.get(0).errorSTr = getString(R.string.passbook_have_not_closed_yet);
+        models.get(0).errorSTr = getString(R.string.passbook_has_closed);
     }
 
     @Override
@@ -145,10 +146,13 @@ public class EditWithdrawalActivity extends FormHaveSubmitButtonActivity impleme
 
     @Override
     public void notifyInterest(float interest) {
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        String interestStr = formatter.format(interest);
+
         NotificationPopup notificationPopup = new NotificationPopup(
                 this,
                 getString(R.string.interest),
-                getString(R.string.your_interest) + String.valueOf(interest),
+                getString(R.string.your_interest) + interestStr,
                 () -> {
                     finish();
                 });

@@ -15,6 +15,7 @@ import com.example.passbook.data.entitys.PassBook;
 import com.example.passbook.data.entitys.PassBookRegulation;
 import com.example.passbook.data.entitys.TransactionForm;
 import com.example.passbook.data.enums.PassBookType;
+import com.example.passbook.data.enums.TransactionFormType;
 import com.example.passbook.utils.Utils;
 
 public class SplashScreenPresenter extends BasePresenter implements SplashScreenContract.Presenter {
@@ -94,6 +95,18 @@ public class SplashScreenPresenter extends BasePresenter implements SplashScreen
         for (TransactionForm transactionForm :
                 HardCode.HardCodeTransactionForm.getTransactionForms()) {
             appDatabase.transactionFormDAO().insertItem(transactionForm);
+
+            PassBook passBook = appDatabase.passBookDAO().getItem(transactionForm.passBookId);
+
+            if(passBook != null) {
+                if(transactionForm.transactionFormType == TransactionFormType.DEPOSIT) {
+                    passBook.amount += transactionForm.amount;
+                } else {
+                    passBook.amount -= transactionForm.amount;
+                }
+
+                appDatabase.passBookDAO().updateOrInsertItem(passBook);
+            }
         }
 
         try {
