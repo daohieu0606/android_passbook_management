@@ -26,6 +26,10 @@ public class PassBook extends BaseEntity {
     public PassBookType passBookType;
     public PassbookState passbookState;
 
+    //Hieu Dao add missing fields
+    public float interestRate;
+    public Date expiredDate;
+
     public PassBook() {
         passbookState = PassbookState.OPENED;
     }

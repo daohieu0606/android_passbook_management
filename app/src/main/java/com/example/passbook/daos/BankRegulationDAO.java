@@ -30,7 +30,7 @@ public interface BankRegulationDAO extends IDAO<BankRegulation> {
     @Query(Constant.SELECT_ALL + Constant.BANK_REGULATION_TABLE
             + Constant.WHERE + Constant.ID + Constant.LIKE + "id"
             + Constant.LIMIT + "1")
-    BankRegulation getItem(int id);
+    BankRegulation getItem(long id);
 
     @Override
     @Delete

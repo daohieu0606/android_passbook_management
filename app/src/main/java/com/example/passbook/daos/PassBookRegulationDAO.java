@@ -10,7 +10,6 @@ import com.example.passbook.data.entitys.PassBookRegulation;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.utils.Constant;
 
-import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -32,7 +31,7 @@ public interface PassBookRegulationDAO extends IDAO<PassBookRegulation> {
     @Query(Constant.SELECT_ALL + Constant.PASSBOOK_REGULATION_TABLE
             + Constant.WHERE + Constant.ID + Constant.LIKE + "id"
             + Constant.LIMIT + "1")
-    PassBookRegulation getItem(int id);
+    PassBookRegulation getItem(long id);
 
     @Override
     @Delete

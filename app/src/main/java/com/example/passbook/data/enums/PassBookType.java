@@ -3,9 +3,6 @@ package com.example.passbook.data.enums;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.passbook.R;
-import com.example.passbook.data.entitys.InfinitePassBook;
-import com.example.passbook.data.entitys.SixMonthPassBook;
-import com.example.passbook.data.entitys.ThreeMonthPassBook;
 import com.example.passbook.utils.Constant;
 
 public enum PassBookType {

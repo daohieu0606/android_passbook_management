@@ -1,13 +1,9 @@
 package com.example.passbook.activities.splashscreen;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.passbook.R;
 import com.example.passbook.activities.base.BasePresenter;
-import com.example.passbook.activities.main.MainActivity;
 import com.example.passbook.data.HardCode;
 import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.Customer;
@@ -31,21 +27,21 @@ public class SplashScreenPresenter extends BasePresenter implements SplashScreen
         if (appDatabase.passBookRegulationDAO().getItems().size() < 3) {
             PassBookRegulation threeMonthsRegulation = new PassBookRegulation();
             threeMonthsRegulation.passBookType = PassBookType.THREE_MONTH;
-            threeMonthsRegulation.creationDateTime = Utils.parseDate("2020-01-01");
+            threeMonthsRegulation.creationRegulationDateTime = Utils.parseDate("2020-01-01");
             threeMonthsRegulation.term = 3 * 30;
             threeMonthsRegulation.Id = 1;
             threeMonthsRegulation.interestRate = 0.005f;
 
             PassBookRegulation sixMonthsRegulation = new PassBookRegulation();
             sixMonthsRegulation.passBookType = PassBookType.SIX_MONTH;
-            sixMonthsRegulation.creationDateTime = Utils.parseDate("2020-01-01");
+            sixMonthsRegulation.creationRegulationDateTime = Utils.parseDate("2020-01-01");
             sixMonthsRegulation.term = 6 * 30;
             sixMonthsRegulation.Id = 2;
             sixMonthsRegulation.interestRate = 0.0055f;
 
             PassBookRegulation infiniteRegulation = new PassBookRegulation();
             infiniteRegulation.passBookType = PassBookType.INFINITE;
-            infiniteRegulation.creationDateTime = Utils.parseDate("2020-01-01");
+            infiniteRegulation.creationRegulationDateTime = Utils.parseDate("2020-01-01");
             infiniteRegulation.term = 15;
             infiniteRegulation.Id = 3;
             infiniteRegulation.interestRate = 0.0015f;

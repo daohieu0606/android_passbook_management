@@ -30,7 +30,7 @@ public interface CustomerDAO extends IDAO<Customer> {
     @Query(Constant.SELECT_ALL + Constant.CUSTOMER_TABLE
             + Constant.WHERE + Constant.ID + Constant.LIKE + "id"
             + Constant.LIMIT + "1")
-    Customer getItem(int id);
+    Customer getItem(long id);
 
     @Query(Constant.SELECT_ALL + Constant.CUSTOMER_TABLE
             + Constant.WHERE + Constant.IDENTIFY_NUMBER_COLUMN + Constant.LIKE + "identifyNumber"

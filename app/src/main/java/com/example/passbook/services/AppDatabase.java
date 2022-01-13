@@ -2,7 +2,6 @@ package com.example.passbook.services;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
-import androidx.room.Transaction;
 import androidx.room.TypeConverters;
 
 import com.example.passbook.converters.DateConverter;

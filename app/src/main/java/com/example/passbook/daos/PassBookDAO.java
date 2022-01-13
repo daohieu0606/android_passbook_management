@@ -32,7 +32,7 @@ public interface PassBookDAO extends IDAO<PassBook> {
     @Query(Constant.SELECT_ALL + Constant.PASSBOOK_TABLE
             + Constant.WHERE + Constant.ID + Constant.LIKE + "id"
             + Constant.LIMIT + "1")
-    PassBook getItem(int id);
+    PassBook getItem(long id);
 
     @Override
     @Delete
@@ -64,5 +64,5 @@ public interface PassBookDAO extends IDAO<PassBook> {
     @Query(Constant.SELECT_ALL + Constant.PASSBOOK_TABLE
             + Constant.WHERE + Constant.CUSTOMER_ID_COLUMN + Constant.LIKE + "customerId"
             + Constant.LIMIT + "1")
-    PassBook getItemByCustomerId(int customerId);
+    PassBook getItemByCustomerId(long customerId);
 }

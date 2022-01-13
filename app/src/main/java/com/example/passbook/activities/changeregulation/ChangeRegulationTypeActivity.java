@@ -298,7 +298,7 @@ public class ChangeRegulationTypeActivity extends TabBarActivity
         }
 
         passBookRegulation.Id = 0;
-        passBookRegulation.creationDateTime = new Date();
+        passBookRegulation.creationRegulationDateTime = new Date();
 
         return passBookRegulation;
     }

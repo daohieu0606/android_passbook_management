@@ -2,12 +2,10 @@ package com.example.passbook.data;
 
 import com.example.passbook.data.entitys.Customer;
 import com.example.passbook.data.entitys.DepositSlip;
-import com.example.passbook.data.entitys.InfinitePassBook;
+import com.example.passbook.data.entitys.MonthlyPassBook;
 import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.data.entitys.SixMonthPassBook;
-import com.example.passbook.data.entitys.ThreeMonthPassBook;
+import com.example.passbook.data.entitys.TimelessPassBook;
 import com.example.passbook.data.entitys.TransactionForm;
-import com.example.passbook.data.entitys.WithdrawalSlip;
 import com.example.passbook.utils.Utils;
 
 import java.util.ArrayList;
@@ -19,15 +17,15 @@ public class HardCode {
         public static List<PassBook> getPassBooks() {
             List<PassBook> result  = new ArrayList<>();
 
-            ThreeMonthPassBook passBook1 = new ThreeMonthPassBook();
-            ThreeMonthPassBook passBook2 = new ThreeMonthPassBook();
-            ThreeMonthPassBook passBook7 = new ThreeMonthPassBook();
-            ThreeMonthPassBook passBook8 = new ThreeMonthPassBook();
-            ThreeMonthPassBook passBook9 = new ThreeMonthPassBook();
-            SixMonthPassBook passBook3  = new SixMonthPassBook();
-            SixMonthPassBook passBook4  = new SixMonthPassBook();
-            InfinitePassBook passBook5 = new InfinitePassBook();
-            InfinitePassBook passBook6 = new InfinitePassBook();
+            PassBook passBook1 = new MonthlyPassBook(3);
+            PassBook passBook2 = new MonthlyPassBook(3);
+            PassBook passBook7 = new MonthlyPassBook(3);
+            PassBook passBook8 = new MonthlyPassBook(3);
+            PassBook passBook9 = new MonthlyPassBook(6);
+            PassBook passBook3 = new MonthlyPassBook(6);
+            PassBook passBook4 = new MonthlyPassBook(6);
+            PassBook passBook5 = new TimelessPassBook();
+            PassBook passBook6 = new TimelessPassBook();
 
             passBook1.Id = 1011;
             passBook2.Id = 1012;

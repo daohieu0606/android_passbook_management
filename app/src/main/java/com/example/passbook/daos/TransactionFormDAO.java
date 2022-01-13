@@ -30,7 +30,7 @@ public interface TransactionFormDAO extends IDAO<TransactionForm> {
     @Query(Constant.SELECT_ALL + Constant.TRANSACTION_FORM_TABLE
             + Constant.WHERE + Constant.ID + Constant.LIKE + "id"
             + Constant.LIMIT + "1")
-    TransactionForm getItem(int id);
+    TransactionForm getItem(long id);
 
     @Override
     @Delete

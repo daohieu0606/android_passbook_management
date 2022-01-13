@@ -6,11 +6,17 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 public class BaseEntity implements Serializable {
     @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    public int Id;
+    public long Id;
+
+    //Hieu Dao add missing fields;
+    public Date creationDateTime;
+    public Date updateDateTime;
+    public boolean isDeleted;
 }

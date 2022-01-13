@@ -11,15 +11,7 @@ import com.example.passbook.activities.changeregulation.ChangeRegulationTypeActi
 import com.example.passbook.activities.pickupreport.PickupReportActivity;
 import com.example.passbook.activities.registerpassbook.RegisterPassBookActivity;
 import com.example.passbook.activities.searchpassbook.SearchPassBookActivity;
-import com.example.passbook.data.HardCode;
-import com.example.passbook.data.entitys.BankRegulation;
-import com.example.passbook.data.entitys.Customer;
-import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.data.entitys.PassBookRegulation;
-import com.example.passbook.data.entitys.TransactionForm;
-import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.models.MainFuncModel;
-import com.example.passbook.utils.Utils;
 
 public class MainPresenter extends BasePresenter implements MainContract.Presenter {
     private MainContract.View view;

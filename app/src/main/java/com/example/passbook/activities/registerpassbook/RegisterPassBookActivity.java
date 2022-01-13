@@ -9,10 +9,9 @@ import com.example.passbook.activities.form.FormHaveSubmitButtonActivity;
 import com.example.passbook.adapters.FormAdapter;
 import com.example.passbook.data.entitys.BankRegulation;
 import com.example.passbook.data.entitys.Customer;
-import com.example.passbook.data.entitys.InfinitePassBook;
+import com.example.passbook.data.entitys.MonthlyPassBook;
 import com.example.passbook.data.entitys.PassBook;
-import com.example.passbook.data.entitys.SixMonthPassBook;
-import com.example.passbook.data.entitys.ThreeMonthPassBook;
+import com.example.passbook.data.entitys.TimelessPassBook;
 import com.example.passbook.data.enums.DatePickerType;
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.enums.PassbookState;
@@ -140,16 +139,16 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
 
         switch (passBookType) {
             case THREE_MONTH:
-                passBook = new ThreeMonthPassBook();
+                passBook = new MonthlyPassBook(3);
                 break;
 
             case SIX_MONTH:
-                passBook = new SixMonthPassBook();
+                passBook = new MonthlyPassBook(6);
                 break;
 
             case INFINITE:
             default:
-                passBook = new InfinitePassBook();
+                passBook = new TimelessPassBook();
         }
 
         passBook.Id = Integer.valueOf((String) models.get(0).value);
