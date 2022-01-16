@@ -71,7 +71,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
         models.add(new TextFieldModel(getString(R.string.customer_name), customer.fullName, "", InputType.TYPE_CLASS_TEXT));
         models.add(new TextFieldModel(getString(R.string.identify_number), customer.identifyNumber, "", InputType.TYPE_CLASS_NUMBER));
         models.add(new TextFieldModel(getString(R.string.address), customer.address, "", InputType.TYPE_CLASS_TEXT));
-        models.add(new DateTimeModel(getString(R.string.register_date), passBook.creationDate, "", DatePickerType.NORMAL));
+        models.add(new DateTimeModel(getString(R.string.register_date), passBook.creationPassBookDate, "", DatePickerType.NORMAL));
         models.add(new TextFieldModel(getString(R.string.amount), String.valueOf(passBook.amount), "", InputType.TYPE_CLASS_NUMBER));
 
         models.get(0).isEnable = false;
@@ -139,11 +139,11 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
 
         switch (passBookType) {
             case THREE_MONTH:
-                passBook = new MonthlyPassBook(3);
+                passBook = MonthlyPassBook.createInstance(100000, 3);
                 break;
 
             case SIX_MONTH:
-                passBook = new MonthlyPassBook(6);
+                passBook = MonthlyPassBook.createInstance(100000, 6);
                 break;
 
             case INFINITE:
@@ -153,7 +153,7 @@ public class RegisterPassBookActivity extends FormHaveSubmitButtonActivity imple
 
         passBook.Id = Integer.valueOf((String) models.get(0).value);
         passBook.passbookState = PassbookState.OPENED;
-        passBook.creationDate = (Date) models.get(5).value;
+        passBook.creationPassBookDate = (Date) models.get(5).value;
         passBook.amount = Integer.valueOf((String) models.get(6).value);
 
         return passBook;

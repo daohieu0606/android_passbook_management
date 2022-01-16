@@ -1,10 +1,7 @@
 package com.example.passbook.data.entitys;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Ignore;
 
 import com.example.passbook.data.enums.PassBookType;
 import com.example.passbook.data.enums.PassbookState;
@@ -19,18 +16,22 @@ import static androidx.room.ForeignKey.CASCADE;
         parentColumns = "id",
         childColumns = "customerId",
         onDelete = CASCADE))
-public class PassBook extends BaseEntity {
+public abstract class PassBook extends BaseEntity {
     public int customerId;
-    public Date creationDate;
+    public Date creationPassBookDate;
+    public Date expiredDate;
     public int amount;
     public PassBookType passBookType;
     public PassbookState passbookState;
 
     //Hieu Dao add missing fields
     public float interestRate;
-    public Date expiredDate;
 
     public PassBook() {
         passbookState = PassbookState.OPENED;
+    }
+
+    public void deposit(int amount) {
+
     }
 }

@@ -17,13 +17,13 @@ public class HardCode {
         public static List<PassBook> getPassBooks() {
             List<PassBook> result  = new ArrayList<>();
 
-            PassBook passBook1 = new MonthlyPassBook(3);
-            PassBook passBook2 = new MonthlyPassBook(3);
-            PassBook passBook7 = new MonthlyPassBook(3);
-            PassBook passBook8 = new MonthlyPassBook(3);
-            PassBook passBook9 = new MonthlyPassBook(6);
-            PassBook passBook3 = new MonthlyPassBook(6);
-            PassBook passBook4 = new MonthlyPassBook(6);
+            PassBook passBook1 = MonthlyPassBook.createInstance(100000, 3);
+            PassBook passBook2 = MonthlyPassBook.createInstance(100000, 3);
+            PassBook passBook7 = MonthlyPassBook.createInstance(100000, 3);
+            PassBook passBook8 = MonthlyPassBook.createInstance(100000, 3);
+            PassBook passBook9 = MonthlyPassBook.createInstance(100000, 6);
+            PassBook passBook3 = MonthlyPassBook.createInstance(100000, 6);
+            PassBook passBook4 = MonthlyPassBook.createInstance(100000, 6);
             PassBook passBook5 = new TimelessPassBook();
             PassBook passBook6 = new TimelessPassBook();
 
@@ -47,15 +47,15 @@ public class HardCode {
             passBook8.customerId = 6;
             passBook9.customerId = 6;
 
-            passBook1.creationDate = Utils.parseDate("2021-02-01");
-            passBook2.creationDate = new Date();
-            passBook3.creationDate = new Date();
-            passBook4.creationDate = new Date();
-            passBook5.creationDate = new Date();
-            passBook6.creationDate = new Date();
-            passBook7.creationDate = new Date();
-            passBook8.creationDate = new Date();
-            passBook9.creationDate = Utils.getNextDate(new Date());
+            passBook1.creationPassBookDate = Utils.parseDate("2021-02-01");
+            passBook2.creationPassBookDate = new Date();
+            passBook3.creationPassBookDate = new Date();
+            passBook4.creationPassBookDate = new Date();
+            passBook5.creationPassBookDate = new Date();
+            passBook6.creationPassBookDate = new Date();
+            passBook7.creationPassBookDate = new Date();
+            passBook8.creationPassBookDate = new Date();
+            passBook9.creationPassBookDate = Utils.getNextDate(new Date());
 
 //            passBook1.amount = 0;
 //            passBook2.amount = 0;

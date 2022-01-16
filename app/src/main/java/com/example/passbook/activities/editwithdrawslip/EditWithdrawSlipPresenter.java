@@ -71,7 +71,7 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
 
     private boolean checkMinNumOfDates(PassBook refPassbook, Date withDrawDate) {
         boolean result = true;
-        long period = Utils.subDates(refPassbook.creationDate, withDrawDate);
+        long period = Utils.subDates(refPassbook.creationPassBookDate, withDrawDate);
 
         if(refPassbook.passBookType == PassBookType.INFINITE) {
             if(period < 15) {
@@ -83,7 +83,7 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
                     .passBookRegulationDAO()
                     .getItemForCalInterestRate(
                             refPassbook.passBookType,
-                            DateConverter.dateToTimestamp(refPassbook.creationDate));
+                            DateConverter.dateToTimestamp(refPassbook.creationPassBookDate));
 
             long term = passBookRegulation != null? passBookRegulation.term : 15;
             if(period < term) {
@@ -97,7 +97,7 @@ public class EditWithdrawSlipPresenter extends FormPresenter implements EditWith
 
     private float getInterest(WithdrawalSlip withdrawalSlip) {
         PassBook passBook = appDatabase.passBookDAO().getItem(withdrawalSlip.passBookId);
-        Date iterate = passBook.creationDate;
+        Date iterate = passBook.creationPassBookDate;
         Date current = withdrawalSlip.transactionDateTime;
         float interest = 0.0f;
 
